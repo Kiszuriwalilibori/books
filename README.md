@@ -16,6 +16,10 @@
 -- subject/category
 - Filters results
 - Sorts results
+- stores chosen books as favorite on local computer
+- removes books
+- shows full information about books
+- redirects to online shop
 
 
 ### Tech
@@ -75,25 +79,27 @@ The following tools and resources has been used while developing Google Books
 - fixed bug with jumping buttons
 - fixed bug with jumping width due to scroll presence
 
+### 1.3
+- local storage implemented
+- generally revised code
+
+
 ### Todos
 
- - Table in IE 11 looks dramatically
+  - Do rozważenia czy nie przerobić switcha w tablebody na fabrykę funkcji.
+  - mógłby się nadać the commaqnd pattern z learning Java Script Design patterns wzrorzec fajny carmanagerexecute do powyższego.
+  - okazuje się, żo można dwukrotnie dodać książkę do pokaż pełne informacje co nie jest własciwe  
+  - ewentualnie errory przez portal a nie podstronę
  - set or map instead of object in case of sorting/filtering
- - guzik do szczególow w wyszukiwaniu aktywny kiedy sa
  - confirmation modal for deleting item
 - niejasne dlaczego nie łapię błędu kiedy strona detailed info niedostępna z powodu braku internetu ale       sprawdzić   dokładniej czy napewno idzie proc błędu
 - Use the React-Redux Hooks API#
 -właściwie łapanie errora w fetch dziwnie wygląda czy nie prościej z ajaxem to zrobić
 - fetchsinglebook nie łapie errora kiedy dam do wyszukania jakiś dziwny adres
 
-xxx w chrome w sytuacji kiedy było otwarte w ff jednoczesnie przy wpisywaniu tytułu pojawiają się jakies dziwne podpowiedzi
+w chrome w sytuacji kiedy było otwarte w ff jednoczesnie przy wpisywaniu tytułu pojawiają się jakies dziwne podpowiedzi
 Jakiś problem prawdopodobnie z lokalizacją pliku webworkera
 
 ### License
 
 This software is distributed under MIT license
-
-
-
-
-@JankoWalski You could do something on the first click and then not do anything within half a second, like a debounce but handling the first and ignoring the other calls within a certain time frame: const debounceFirst = (fn, downTime = 500) => {   let active = true;   return (...args) => {     if (active) {       active = false;       fn(...args);     }     setTimeout(() => (active = true), downTime);   }; }; const yourNewActon = debounceFirst(deleteAction); //onClick={yourNewAction} – HMR 22 hours ago

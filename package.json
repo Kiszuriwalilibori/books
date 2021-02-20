@@ -1,6 +1,6 @@
 {
   "name": "google_books_finder",
-  "homepage": "http://kiszuriwalilibori.github.io/google_books_router_redux",
+  "homepage": "http://kiszuriwalilibori.github.io/books",
   "version": "1.2.2",
   "private": true,
   "dependencies": {
@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.7",
+    "comlink": "^4.3.0",
     "dotenv": "^8.2.0",
     "es6-promise": "^4.2.8",
     "es6-symbol": "^3.1.3",
