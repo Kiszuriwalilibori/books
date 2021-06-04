@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { finishWhenInternetExplorer } from '../js/finishWhenInternetExplorer';
-import { cacheSupported, cacheNotEmpty,checkSupportForCache } from "../redux/booksReducer";
+import { finishWhenInternetExplorer } from "../js/finishWhenInternetExplorer";
+import { cacheSupported, cacheNotEmpty, checkSupportForCache } from "../redux/booksReducer";
 
 const UnconnectedLandingPage = props => {
   const { checkSupportForCache } = props;
 
   finishWhenInternetExplorer();
 
-  useEffect(() => {checkSupportForCache();
-    
+  useEffect(() => {
+    checkSupportForCache();
   }, [checkSupportForCache]);
 
   return (
@@ -58,7 +58,7 @@ const UnconnectedLandingPage = props => {
 const mapDispatchToProps = dispatch => ({
   cacheSupported: () => dispatch(cacheSupported()),
   cacheNotEmpty: () => dispatch(cacheNotEmpty()),
-  checkSupportForCache:()=>dispatch(checkSupportForCache()),
+  checkSupportForCache: () => dispatch(checkSupportForCache()),
 });
 
 const LandingPage = withRouter(connect(null, mapDispatchToProps)(UnconnectedLandingPage));

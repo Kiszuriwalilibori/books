@@ -1,6 +1,6 @@
 import * as React from "react";
 import MyTooltip from "../common/Tooltip";
-import buttonDescriptions from '../../js/buttonDescriptions';
+import buttonDescriptions from "../../js/buttonDescriptions";
 
 const GenericSmallButton = props => {
   const { id, type } = props;

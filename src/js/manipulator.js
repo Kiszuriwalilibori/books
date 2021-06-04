@@ -6,6 +6,7 @@ export var Manipulator = class {
   }
 
   remove(payload) {
+    console.log(payload);
     let booksAfterRemoval = remove([...this.state.data], payload);
     const temporaryResult = sort(filtrate(booksAfterRemoval, this.state.filter), this.state.isSortOrderDescending, this.state.currentSortColumn);
     this.state.data = booksAfterRemoval;

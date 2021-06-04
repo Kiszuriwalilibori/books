@@ -3,8 +3,7 @@ import { shallowEqual, useSelector } from "react-redux";
 import getSummary from "../../js/getSummary";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
-import GenericLinkButton from "./GenericLink";
-import FadeButton from "../common/FadeButton";
+import NavigationFactory from "./NavigationFactory";
 import { useDispatch } from "react-redux";
 import debounce from "lodash/debounce";
 
@@ -162,12 +161,7 @@ let SingleBook = () => {
   
   return singleBookData && singleBookData.volumeInfo ? (
     <section className="details-container details">
-      <nav className="books__buttons">
-        <FadeButton visible={true} cls={prevButtonVisible ? "button--problem" : "button--inactive"} fn={prevButtonVisible ? requirePrevious : () => {}} text={"<<<"} />
-        <GenericLinkButton link="/books" label="Znalezione książki" />
-        <GenericLinkButton link="/search" label="Powrót do Wyszukiwanie" />
-        <FadeButton visible={true} cls={nextButtonVisible ? "button--problem" : "button--inactive"} fn={nextButtonVisible ? requireNext : () => {}} text={">>>"} />
-      </nav>
+      <NavigationFactory />
       <article>
         <Title node={singleBookData.volumeInfo.title} />
         <Cover node={singleBookData?.volumeInfo?.imageLinks?.smallThumbnail} label={"zdjęcie okładki"} />

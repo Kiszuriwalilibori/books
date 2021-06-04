@@ -2,7 +2,6 @@ import React from 'react';
 import {lazy} from 'react';
 import Awaiting from '../js/awaiting';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -17,7 +16,7 @@ const SingleBook =lazy(()=>import('./SearchResults/SingleBook'));
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+  
     <Switch>
       <Route exact  path = "/" component ={Awaiting(StarWars)} />
       <Route exact  path = "/search" component ={Awaiting(Search)} />
@@ -27,7 +26,7 @@ function App() {
       <Route exact  path = "/single_book" component ={Awaiting(SingleBook)} />
       <Route exact  path = "/error" component ={Awaiting(Error)} /> 
     </Switch>
-</Router> 
+
   );
 }
 

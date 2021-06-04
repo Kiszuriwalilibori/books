@@ -11,8 +11,8 @@ export const paths = {
   error: "/error",
   data: "./results",
   connecting: "./connecting",
-  singleBook: "./single_book",
-  books: "./books",
+  singleBook: "/single_book",
+  books: "/books",
   search: "./search",
 };
 

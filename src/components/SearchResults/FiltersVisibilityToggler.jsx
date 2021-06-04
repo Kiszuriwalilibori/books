@@ -11,7 +11,7 @@ const Toggler = props => {
     []
   );
   return (
-    <button className="button--ok button-long" onClick={debouncedToggle}>
+    <button className="button button--ok button-long" onClick={debouncedToggle}>
       Ukryj/pokaż filtry
     </button>
   );

@@ -11,6 +11,10 @@ import booksReducer from './redux/booksReducer'
 import * as serviceWorker from "./js/serviceWorker";
 import rootSaga from "./js/saga";
 import { configureStore } from '@reduxjs/toolkit';
+import {
+  BrowserRouter as Router,
+  
+} from "react-router-dom";
 
 const saga = createSagaMiddleware();
 
@@ -21,7 +25,9 @@ export const store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
+    <Router basename={process.env.PUBLIC_URL}>
     <App />
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

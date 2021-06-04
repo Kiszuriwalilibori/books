@@ -5,17 +5,13 @@ import { connect } from "react-redux";
 import MyTooltip from "../common/Tooltip";
 import PropTypes from "prop-types";
 
-// export const getCellClass = index => {
-//   return index === 0 || index === 1 ? "header__cell-large" : "header__cell-small";
-// };
-
 const getCellClass = index => {
   return index === 0 || index === 1 ? "header__cell header__cell-large" : " header__cell header__cell-small";
 };
 
 const marker = isDescending => (isDescending ? " \u2191" : " \u2193");
 
-let Header = props => {
+const Header = props => {
   const dispatch = useDispatch();
   const { sortColumn, isSortOrderDescending } = props;
   let tableRow = useRef(null);
@@ -44,9 +40,9 @@ const mapStateToProps = state => ({
   isSortOrderDescending: state.books.isSortOrderDescending,
 });
 
-Header = connect(mapStateToProps, null)(Header);
+const BooksTableHeader = connect(mapStateToProps, null)(Header);
 
-export default Header;
+export default BooksTableHeader;
 
 Header.propTypes = {
   sortColumn: PropTypes.number,

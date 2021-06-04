@@ -21,7 +21,6 @@ export const showPreviousDetails = createAction("PREVIOUS_DETAILS_SHOW");
 export const showNextDetails = createAction("NEXT_DETAILS_SHOW");
 export const setIsFetchedFromURL = createAction("IS_FETCHED_FROM_URL_SHOW");
 export const toggleSnackBar = createAction("SNACKBAR_TOGGLE");
-// REDUCER //////////////////////////////////////////////////////////////////////////////
 
 const initialState = {
   data: [],
@@ -190,7 +189,7 @@ export function fetchSingleBook({ redirect, id, toStore }) {
       .then(json => {
         if (json) {
           switch (
-            toStore //gdybym miał realizować wzrorzec strategii to zamiast switcha musiałbym w tym miejscu pobrać strategię z menadżera strategii a gdzie indziej, w momencie kiedy decyduję jakafunkcja będzi zrealizowana - wrzucić strategię do manadżera strategii
+            toStore 
           ) {
             case true:
               redirect.connecting();
@@ -237,7 +236,7 @@ export function fetchFromFavorites() {
 export function removeFromFavorites() {
   return async dispatch => {
     const result = { input: formatFetchedBooks(window.Storage.local.getAll()) };
-    dispatch(fetchBooks(result)); /// do tego momentu jest ok i pobiera co powinno
+    dispatch(fetchBooks(result)); 
     dispatch(setIsFetchedFromURL(false));
   };
 }

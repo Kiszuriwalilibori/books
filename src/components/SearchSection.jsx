@@ -11,7 +11,7 @@ import fetchBooks from "../js/fetchBooks";
 import { cloneDeep } from "lodash";
 import { StyledAlert } from "./common/StyledAlert";
 import { CustomContainer } from "./common/CustomContainer";
-import FadeButton from "./common/FadeButton";
+import Button from "./common/Button";
 import { fetchFromFavorites } from "../redux/booksReducer";
 import { sourcePlaceholders, sourceArrayOfSearchFieldNames } from "../fixtures/fixtures";
 import MyTooltip from "../components/common/Tooltip";
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
       fontFamily: "Open Sans, sans-serif !important",
       backgroundColor: "rgba(122, 194, 33, 0.8)",
     },
-    "& .MuiFormLabel-root": { color: "white !important" },
+    "& .MuiFormLabel-root": { color: "white !important", fontFamily: 'Montserrat' },
     "& .MuiOutlinedInput-notchedOutline": { border: "3px solid", borderColor: "rgb(122, 194, 33)!important" },
   },
 }));
@@ -117,10 +117,11 @@ const Search = props => {
         ))}
       </form>
       <div className="search__buttons">
-        <FadeButton visible={true} cls={areButtonsVisible() ? "button--ok" : "button--inactive"} fn={areButtonsVisible() ? process : null} text={"Szukaj"} />
-        <FadeButton visible={true} cls={areButtonsVisible() ? "button--problem" : "button--inactive"} fn={areButtonsVisible() ? handleResetForm : () => {}} text={"Wyczyść"} />
-        <FadeButton visible={true} cls={isReadFromFavouritesVisible ? "button--favorites" : "button--inactive"} fn={isReadFromFavouritesVisible ? processFavorites : null} text={"Ulubione"} />
+        <Button visible={true} cls={areButtonsVisible() ? "button--ok" : "button--inactive"} fn={areButtonsVisible() ? process : null} text={"Szukaj"} />
+        <Button visible={true} cls={areButtonsVisible() ? "button--problem" : "button--inactive"} fn={areButtonsVisible() ? handleResetForm : () => {}} text={"Wyczyść"} />
+        <Button visible={true} cls={isReadFromFavouritesVisible ? "button--favorites" : "button--inactive"} fn={isReadFromFavouritesVisible ? processFavorites : null} text={"Ulubione"} />
       </div>
+     
     </CustomContainer>
   );
 };

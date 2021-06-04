@@ -139,7 +139,7 @@ const comparator = (pattern, val) => !!(String(val).toLowerCase().includes(Strin
        return result;
      };
 
-     var filtrationResult = temp.filter((row) => compareRows(pattern, row)); /* performs actual filterBooks */
+     var filtrationResult = temp.filter((row) => compareRows(pattern, row)); 
    }
    return filterNotEmpty ? filtrationResult : data;
  };

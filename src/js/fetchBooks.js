@@ -10,14 +10,14 @@ const fetchBooks = (path, redirect) => {
   async function recursiveSingleFetch() {
     const fullPath = path + startIndex.toString();
    
-    const x = await fetch(fullPath).catch((error) => {
+    const fetchResult = await fetch(fullPath).catch((error) => {
       result.error = true;
       result.errorMessage = error.message;
       store.dispatch({type:"ERROR_SHOW", payload: result})
       redirect.error();
     });
-    if (x) {
-      const resp = await x.json();
+    if (fetchResult) {
+      const resp = await fetchResult.json();
       if (resp.items) {
         startIndex += indexStep;
         temporaryStorage = temporaryStorage.concat(resp.items);
