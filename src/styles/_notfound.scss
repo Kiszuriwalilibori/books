@@ -1,0 +1,10 @@
+.notfound__item {
+  font-size: 2rem;
+  color: #CD0D11;
+}
+
+@media only screen and (max-width: 780px) {
+  .notfound__item {
+    font-size: calc(12px + 20 * ((100vw - 320px) / 460));
+  }
+}

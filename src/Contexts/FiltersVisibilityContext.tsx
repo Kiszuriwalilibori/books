@@ -1,0 +1,38 @@
+import * as React from "react";
+interface FiltersVisibilityContextProps {
+    areFiltersVisible: boolean;
+    toggleFiltersVisibility: () => void;
+}
+const initialState = {
+    areFiltersVisible: true,
+};
+
+const FiltersVisibilityContext = React.createContext<FiltersVisibilityContextProps>({} as FiltersVisibilityContextProps);
+
+class FiltersVisibilityContextProvider extends React.Component {
+    state = {
+        areVisible: initialState.areFiltersVisible,
+    };
+
+    render() {
+        return (
+            <FiltersVisibilityContext.Provider
+                value={{
+                    areFiltersVisible: this.state.areVisible,
+                    toggleFiltersVisibility: () => this.setState({ areVisible: !this.state.areVisible }),
+                }}
+            >
+                {this.props.children}
+            </FiltersVisibilityContext.Provider>
+        );
+    }
+}
+
+function useFiltersVisibilityContext() {
+    const context = React.useContext(FiltersVisibilityContext);
+    if (context === undefined) {
+        throw new Error("it must be used within a FiltersVisibilityContextProvider");
+    }
+    return context;
+}
+export { FiltersVisibilityContextProvider, FiltersVisibilityContext, useFiltersVisibilityContext };

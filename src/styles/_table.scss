@@ -1,0 +1,71 @@
+.table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    padding: 0;
+    word-wrap: break-word;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    color: $starwars_color;
+    border-radius: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.16),
+        0 8px 8px rgba(0, 0, 0, 0.2);
+
+    & td {
+        border-top: 1px solid $starwars_color;
+        min-width: 108px;
+        padding: 0.75rem;
+    }
+
+    & > tbody {
+        background-color: $table_background;
+        & tr:hover {
+            background-color: $table_row_hover;
+            transition: all 0.3s;
+        }
+        & td {
+            max-height: 12rem;
+            & .cell-regular {
+                overflow-y: auto;
+            }
+            & .cell-withButtons {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+    & > thead {
+        background-color: $table_header_color;
+        & .header__cell {
+            vertical-align: bottom;
+            border: none;
+            padding: 0.75rem;
+            cursor: pointer;
+            &.header__cell-small {
+                width: 10%;
+            }
+            &.header__cell-large {
+                width: 30%;
+            }
+        }
+    }
+}
+
+.table__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8vw;
+    text-decoration: none;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
