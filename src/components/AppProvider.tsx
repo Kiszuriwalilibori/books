@@ -8,13 +8,7 @@ import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 
 import { rootSaga } from "js/utils";
-// import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, snackbarReducer } from "js/redux/reducers";
-import booksReducer from "js/redux/reducers/booksReducer";
-import snackbarReducer from "js/redux/reducers/snackbarReducer";
-import detailsReducer from "js/redux/reducers/detailsReducer";
-import errorReducer from "js/redux/reducers/errorReducer";
-import dataSourceReducer from "js/redux/reducers/dataSourceReducer";
-import cacheReducer from "js/redux/reducers/cacheReducer";
+import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, snackbarReducer } from "js/redux/reducers";
 import { FiltersVisibilityContextProvider, RemoveBookModalVisibilityContextProvider } from "Contexts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
