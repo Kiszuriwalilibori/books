@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoogle_books_finder=self.webpackChunkgoogle_books_finder||[]).push([[801],{2801:function(e,o,n){n.r(o),n.d(o,{NotFoundPage:function(){return f}});var t=n(2791),r=n(3936),i=n(3402),u=n(7689),c=n(184),f=function(){var e=(0,u.s0)();return(0,t.useEffect)((function(){setTimeout((function(){e(-1)}),3e3)}),[]),(0,c.jsx)(r.Bc,{error:"Strona o adresie ".concat(decodeURIComponent(window.location.href)," nie istnieje")})};o.default=t.memo((0,i.GG)(f))}}]);
+//# sourceMappingURL=801.a41bf551.chunk.js.map

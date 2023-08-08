@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoogle_books_finder=self.webpackChunkgoogle_books_finder||[]).push([[601],{7601:function(e,s,a){a.r(s);var l=a(2791),o=a(3208),n=a(3402),r=a(4871),t=a(184),i=l.memo((0,n.T5)((0,n.Ur)((0,n.mP)((0,n.dk)((function(){return(0,t.jsx)(o.Z,{in:!0,timeout:1e3,children:(0,t.jsxs)("table",{className:"table","aria-label":"Table of Books",children:[(0,t.jsxs)("thead",{className:"table__header",children:[(0,t.jsx)(r.vx,{}),(0,t.jsx)(r.my,{})]}),(0,t.jsx)(r.SB,{})]})})}))))));s.default=i}}]);
+//# sourceMappingURL=601.448dbd8e.chunk.js.map
