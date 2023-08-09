@@ -252,7 +252,7 @@ przepisac na obiekty
 --033 manipulator na function chaining
 
 ----034 nie działa persist, czy nie da się przerobić useLocalStorage z pakietu tak, żeby brało jak persist.
-Raczej nie były próby liczne.
+Raczej nie były próby liczne. Saga coś tu wnosi nie właściwego
 
 --035 typy BookRecord i BookRecordsArray prawdopodobnie dublują się z TableDataType i TableRow
 
@@ -276,8 +276,8 @@ domyslnymi wartościami albo zrobić opcjonalne albo jedno i drugie.
 
 43 dograć extended assertions i przejrzeć testy
 
-44 przemysleć Action Button w połaczeniu z useGotoshop czy podobnymi konstrukcjami i podjąc decyzję czy
-idziemy w tę stronę. Wtedy ewentualnie dopisac testy
+----44 przemysleć Action Button w połaczeniu z useGotoshop czy podobnymi konstrukcjami i podjąc decyzję czy
+idziemy w tę stronę. Wtedy ewentualnie dopisac testy Nie idziemy w tę stronę
 
 45 Ze względu na zmiany w konstrukcji sprawdzanie pod kątem IE nie jest realizowane, czy da się to obejść.
 

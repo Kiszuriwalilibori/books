@@ -1,17 +1,14 @@
-/**
- * TODO z niejasnych przyczyn nie dziala testowanie favorites dlatego jest skipped.
- */
 import { render } from "../../../../../testing-library-utils";
 import userEvent from "@testing-library/user-event";
 import { cleanup, waitFor } from "@testing-library/react";
 import RemoveFromFavoritesButton from "../../../../../../../src/Pages/Books/Parts/cells/buttons/RemoveFromFavoritesButton";
 
 beforeEach(() => {
-  cleanup();
-  jest.clearAllMocks();
+    cleanup();
+    jest.clearAllMocks();
 });
 const actions = {
-  removeBook: jest.fn(),
+    removeBook: jest.fn(),
 };
 
 jest.mock("../../../../../../../src/hooks/useDispatchAction.ts", () => () => actions);
@@ -19,38 +16,38 @@ jest.mock("../../../../../../../src/hooks/useDispatchAction.ts", () => () => act
 const mockID = "mockID";
 
 describe("Given ShowFullInfoButton component", () => {
-  describe("when clicked", () => {
-    it("dispatches remove action once", async () => {
-      render(<RemoveFromFavoritesButton id={mockID} />);
+    describe("when clicked", () => {
+        it("dispatches remove action once", async () => {
+            render(<RemoveFromFavoritesButton id={mockID} />);
 
-      const Button = document.querySelector(`[aria-label=${"removeBookFromFavorites"}]`);
+            const Button = document.querySelector(`[aria-label=${"removeBookFromFavorites"}]`);
 
-      userEvent.click(Button as Element);
+            userEvent.click(Button as Element);
 
-      await waitFor(() => {
-        expect(actions.removeBook).toBeCalledTimes(1);
-        expect(actions.removeBook).toBeCalledWith(
-          expect.objectContaining({
-            id: mockID,
-          })
-        );
-      });
+            await waitFor(() => {
+                expect(actions.removeBook).toBeCalledTimes(1);
+                expect(actions.removeBook).toBeCalledWith(
+                    expect.objectContaining({
+                        id: mockID,
+                    })
+                );
+            });
+        });
+        it.skip("calls remove method of Favorites", async () => {
+            const Favorites = {
+                remove: jest.fn(),
+            };
+            jest.mock("../../../../../../../src/hooks/useFavorites", () => () => Favorites);
+
+            render(<RemoveFromFavoritesButton id={mockID} />);
+
+            const Button = document.querySelector(`[aria-label=${"removeBookFromFavorites"}]`);
+
+            userEvent.click(Button as Element);
+
+            await waitFor(() => {
+                expect(Favorites.remove).toBeCalledTimes(1);
+            });
+        });
     });
-    it.skip("calls remove method of Favorites", async () => {
-      const Favorites = {
-        remove: jest.fn(),
-      };
-      jest.mock("../../../../../../../src/hooks/useFavorites", () => () => Favorites);
-
-      render(<RemoveFromFavoritesButton id={mockID} />);
-
-      const Button = document.querySelector(`[aria-label=${"removeBookFromFavorites"}]`);
-
-      userEvent.click(Button as Element);
-
-      await waitFor(() => {
-        expect(Favorites.remove).toBeCalledTimes(1);
-      });
-    });
-  });
 });
