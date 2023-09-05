@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgoogle_books_finder=self.webpackChunkgoogle_books_finder||[]).push([[205],{9205:function(e,o,n){n.r(o),n.d(o,{NotFoundPage:function(){return t}});var r=n(2791),i=n(369),u=n(3402),s=n(184),t=function(){return(0,s.jsx)(i.Bc,{error:"Nie znaleziono ksi\u0119\u017cek spe\u0142niaj\u0105cych podane kryteria"})};o.default=r.memo((0,u.GG)(t))}}]);
-//# sourceMappingURL=205.83b3fff4.chunk.js.map
