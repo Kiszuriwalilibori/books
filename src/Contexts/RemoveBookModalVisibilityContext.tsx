@@ -1,37 +1,32 @@
-import * as React from 'react';
+import * as React from "react";
+import { BookID } from "types/types";
 
-interface RemoveBookModalVisibilityContextProps {
-    isVisible: boolean;
-    target?: Element | null;
-    openModal: (target: Element) => void;
+interface Props {
+    isRemoveBookModalVisible: boolean;
+    book?: BookID | null;
+    showWarningModal: (bookID: BookID) => void;
     closeModal: () => void;
 }
 const initialState = {
-    isVisible: false,
-    target: null,
+    isRemoveBookModalVisible: false,
+    book: null,
 };
-const RemoveBookModalVisibilityContext = React.createContext<RemoveBookModalVisibilityContextProps>(
-    {} as RemoveBookModalVisibilityContextProps,
-);
+const RemoveBookModalVisibilityContext = React.createContext<Props>({} as Props);
 
 function RemoveBookModalVisibilityContextProvider({ children }: { children: React.ReactNode }) {
-    const [isVisible, setIsVisible] = React.useState<RemoveBookModalVisibilityContextProps['isVisible']>(
-        initialState.isVisible,
-    );
-    const [target, setTarget] = React.useState<RemoveBookModalVisibilityContextProps['target']>(
-        initialState.target,
-    );
+    const [isRemoveBookModalVisible, setIsRemoveBookModalVisible] = React.useState<Props["isRemoveBookModalVisible"]>(initialState.isRemoveBookModalVisible);
+    const [bookID, setBookID] = React.useState<Props["book"]>(initialState.book);
 
     return (
         <RemoveBookModalVisibilityContext.Provider
             value={{
-                isVisible,
-                target,
-                openModal: target => {
-                    setTarget(target);
-                    setIsVisible(true);
+                isRemoveBookModalVisible,
+                book: bookID,
+                showWarningModal: bookID => {
+                    setBookID(bookID);
+                    setIsRemoveBookModalVisible(true);
                 },
-                closeModal: () => setIsVisible(false),
+                closeModal: () => setIsRemoveBookModalVisible(false),
             }}
         >
             {children}
@@ -42,14 +37,10 @@ function RemoveBookModalVisibilityContextProvider({ children }: { children: Reac
 function useRemoveBookModalVisibilityContext() {
     const context = React.useContext(RemoveBookModalVisibilityContext);
     if (context === undefined) {
-        throw new Error('useCount must be used within a CountProvider');
+        throw new Error("Context must be used within a ContextProvider");
     }
     return context;
 }
 
-export {
-    RemoveBookModalVisibilityContextProvider,
-    useRemoveBookModalVisibilityContext,
-    RemoveBookModalVisibilityContext,
-};
-export type { RemoveBookModalVisibilityContextProps };
+export { RemoveBookModalVisibilityContextProvider, useRemoveBookModalVisibilityContext, RemoveBookModalVisibilityContext };
+export type { Props as RemoveBookModalVisibilityContextProps };

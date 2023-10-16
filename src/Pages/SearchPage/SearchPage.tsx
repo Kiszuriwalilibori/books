@@ -1,40 +1,38 @@
 import * as React from "react";
 
-import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-
-import { fetchBooksFromAPI, createRedirect } from "js/utils";
-
-import useStyles from "./styles";
-import Paths from "Routing/Paths";
-
-import { PageContainer } from "components";
-import { FavoriteButton, Logo, TextFieldWithTooltip } from "./components";
-import { validateInput, createFullPathToAPI, prefixSearchFormInput } from "./utils";
-import { Alert, Button } from "components";
-import { withSnackBarHOC } from "HOCs";
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { shallowEqual, useSelector } from "react-redux";
+import { FavoriteButton, SearchField } from "./components";
+import { validateInput, createURL } from "./utils";
+import { Alert, Button, LogoFactory } from "components";
+import { useFetchBooks } from "hooks/useFetchBooks";
+import { BookForm, PageContainer, SearchButtons, SearchInputs } from "pages/styled";
 import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initialValues, initialValidationState } from "./utils/model";
+import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
 
 export const SearchPage = () => {
-    const classes = useStyles();
     const [validated, setValidated] = React.useState(initialValidationState);
-    const history = useNavigate();
+    const [URL, setURL] = React.useState("");
+
+    const isLoading = useTypedSelector(state => state.loading.isLoading, shallowEqual);
+    const isOnline = useSelector(isOnlineSelector);
+    const fetchBooksFromAPI = useFetchBooks();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const redirect = React.useMemo(createRedirect(history), [history]);
+
     const { values, handleSubmit, getFieldProps, handleReset } = useFormik({
         initialValues,
         onSubmit(formValues: SearchFormValues) {
             const isValidated = validateInput(formValues);
             setValidated(isValidated);
-            if (isValidated.valid) {
-                history(Paths.connecting);
-                fetchBooksFromAPI(createFullPathToAPI(prefixSearchFormInput(formValues)), redirect);
+            if (isValidated.isValid) {
+                setURL(createURL(formValues));
             }
         },
     });
 
-    const areButtonsDisabled = React.useCallback(() => {
+    const isFormEmpty = React.useCallback(() => {
         return Object.values(values).join("") === "";
     }, [values]);
 
@@ -44,28 +42,40 @@ export const SearchPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    React.useEffect(() => {
+        let controller = new AbortController();
+        if (URL) {
+            fetchBooksFromAPI(URL, controller);
+        }
+        return () => controller?.abort();
+    }, [URL, fetchBooksFromAPI]);
+
     return (
-        <PageContainer maxWidth={false} disableGutters={true} sx={{ alignItems: "unset" }}>
-            <Logo />
-            <Alert renderCondition={!validated.valid} message={validated.message} />
-            <form className={classes.root} id="search__form">
-                {Object.values(SearchPageField).map((fieldName: SearchPageField) => (
-                    <TextFieldWithTooltip key={fieldName} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
-                ))}
-            </form>
-            <div className="search__buttons">
-                <Button disabled={areButtonsDisabled()} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
-                    Szukaj
-                </Button>
+        <>
+            <PageContainer maxWidth={false} disableGutters={true} sx={{ alignItems: "unset" }}>
+                <LogoFactory />
+                <Alert shouldRender={!validated.isValid} alertMessage={validated.message} />
+                <BookForm id="search__form">
+                    <SearchInputs>
+                        {Object.values(SearchPageField).map((fieldName: SearchPageField) => (
+                            <SearchField key={fieldName} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
+                        ))}
+                    </SearchInputs>
+                    <SearchButtons>
+                        <Button form="search__form" disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
+                            Szukaj
+                        </Button>
 
-                <Button disabled={areButtonsDisabled()} onClick={clearFormAndValidation} className="button--problem" type="reset">
-                    Wyczyść
-                </Button>
+                        <Button disabled={isLoading || isFormEmpty()} onClick={clearFormAndValidation} className="button--problem" type="reset">
+                            Wyczyść
+                        </Button>
 
-                <FavoriteButton />
-            </div>
-        </PageContainer>
+                        <FavoriteButton />
+                    </SearchButtons>
+                </BookForm>
+            </PageContainer>
+        </>
     );
 };
 
-export default connect(null, null)(withSnackBarHOC(SearchPage));
+export default SearchPage;

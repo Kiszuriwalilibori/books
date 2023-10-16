@@ -1,5 +1,5 @@
 import * as React from "react";
-interface FiltersVisibilityContextProps {
+interface Props {
     areFiltersVisible: boolean;
     toggleFiltersVisibility: () => void;
 }
@@ -7,7 +7,7 @@ const initialState = {
     areFiltersVisible: true,
 };
 
-const FiltersVisibilityContext = React.createContext<FiltersVisibilityContextProps>({} as FiltersVisibilityContextProps);
+const FiltersVisibilityContext = React.createContext<Props>({} as Props);
 
 class FiltersVisibilityContextProvider extends React.Component {
     state = {

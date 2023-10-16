@@ -1,5 +1,4 @@
 import FavoriteButton from "./FavoritesButton";
-import Logo from "./Logo";
-import TextFieldWithTooltip from "./TextFieldWithTooltip";
+import SearchField from "./SearchField";
 
-export { FavoriteButton, Logo, TextFieldWithTooltip };
+export { FavoriteButton, SearchField };

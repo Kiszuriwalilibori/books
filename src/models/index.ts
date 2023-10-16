@@ -1,3 +1,3 @@
-import { columns } from "./Columns";
+import { columns } from "./columns";
 
 export { columns };

@@ -1,5 +1,5 @@
-import createFullPathToAPI from "./createFullPathToAPI";
-import prefixSearchFormInput from "./prefixSearchFormInput";
+import createURL from "./createURL";
+import searchFields from "./searchFields";
 import validateInput from "./validateInput";
 
-export { createFullPathToAPI, prefixSearchFormInput, validateInput };
+export { createURL, searchFields, validateInput };

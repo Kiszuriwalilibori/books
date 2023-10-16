@@ -1,16 +1,15 @@
 import { ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 
-import { RootStateType } from "types";
-import { FilteredStorage, ReformatFetchedBooks } from "js/utils";
-import { fetchBooksFromFavorites, setIsFromNetwork } from "../actionCreators";
+import { BookRecord, RootStateType } from "types";
+import { FilteredStorage, FormatFetchedBooks } from "js/utils";
+import { storeBooks, setIsFromNetwork } from "../actionCreators";
 
 export function thunkFetchFromFavorites(): ThunkAction<void, RootStateType, unknown, AnyAction> {
-    return async dispatch => {
+    return dispatch => {
         const favorites = new FilteredStorage(item => item.kind === "books#volume");
-        const result = { data: ReformatFetchedBooks.Run(favorites.getAllItems()) };
-
-        dispatch(fetchBooksFromFavorites(result));
+        const retrievedFromFavorites = FormatFetchedBooks.Run(favorites.getAll() as BookRecord[]);
+        dispatch(storeBooks(retrievedFromFavorites));
         dispatch(setIsFromNetwork(false));
     };
 }

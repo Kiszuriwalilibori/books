@@ -7,7 +7,8 @@
     max-width: 1000px;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0px 0px 58px -2px $details_item_font_color, inset 0 0 5px $details_item_font_color;
+    box-shadow: $button-shadow;
+    margin-top: 10vw;
 }
 
 .details__link {

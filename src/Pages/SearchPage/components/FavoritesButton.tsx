@@ -1,32 +1,42 @@
 import { connect } from "react-redux";
 
+import { useNavigate } from "react-router-dom";
+
+import Paths from "routing/Paths";
+
 import { Button } from "components";
-import { useFavorites, useCreateRedirect } from "hooks";
+import { useFavoriteBooks } from "hooks";
 import { thunkFetchFromFavorites } from "js/redux/thunks/thunkFetchFromFavorites";
+import { AppDispatch, RootStateType } from "types";
 
 export interface Props {
-    fetchFromFavorites: Function;
+    fetchFromFavorites: () => void;
+    isLoading: boolean;
 }
 
 export function FavoritesButton(props: Props): JSX.Element {
-    const redirect = useCreateRedirect();
-    const { fetchFromFavorites } = props;
-    const { favorites } = useFavorites();
+    const navigate = useNavigate();
+    const { fetchFromFavorites, isLoading } = props;
+    const { favoriteBooks } = useFavoriteBooks();
 
     const processFavorites = () => {
         fetchFromFavorites();
-        redirect.books();
+        navigate(Paths.books);
     };
 
     return (
-        <Button disabled={!favorites.containsBooks()} className="button--favorites" onClick={processFavorites}>
+        <Button disabled={!favoriteBooks.areNotEmpty() || isLoading} className="button--favorites" onClick={processFavorites}>
             Ulubione
         </Button>
     );
 }
 
-const mapDispatchToProps = (dispatch: Function) => ({
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
     fetchFromFavorites: () => dispatch(thunkFetchFromFavorites()),
 });
 
-export default connect(null, mapDispatchToProps)(FavoritesButton);
+const mapStateToProps = (state: RootStateType) => ({
+    isLoading: state.loading.isLoading,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesButton);

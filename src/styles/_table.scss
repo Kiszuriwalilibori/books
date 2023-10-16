@@ -1,6 +1,9 @@
 .table {
-    display: block;
-    width: 100%;
+    width: calc(100vw - 20px);
+    @media (min-width: 1200px) {
+        width: 1180px;
+    }
+    table-layout: fixed;
     overflow-x: auto;
     overflow-y: hidden;
     border-collapse: collapse;
@@ -15,8 +18,7 @@
     border-radius: 2px;
     max-width: 1200px;
     margin: 0 auto;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.16),
-        0 8px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.16), 0 8px 8px rgba(0, 0, 0, 0.2);
 
     & td {
         border-top: 1px solid $starwars_color;
@@ -35,11 +37,6 @@
             & .cell-regular {
                 overflow-y: auto;
             }
-            & .cell-withButtons {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
         }
     }
     & > thead {
@@ -49,23 +46,17 @@
             border: none;
             padding: 0.75rem;
             cursor: pointer;
+            @media only screen and (max-width: 768px) {
+                font-weight: normal;
+                font-size: calc(9px + 4 * (100vw - 320px) / 448);
+            }
+
             &.header__cell-small {
-                width: 10%;
+                width: 13.3333%;
             }
             &.header__cell-large {
-                width: 30%;
+                width: 20%;
             }
         }
     }
-}
-
-.table__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 8vw;
-    text-decoration: none;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
 }

@@ -163,7 +163,20 @@ Routing elements rewritten with rendering props pattern
 -   40 solved
 -   42 solved
 
-### 1.4.7
+### 1.4.8
+
+-   redirect replaced with navigate for simplicity
+-   no more button dataset related functionalities
+-   names with "individualBook' replaced with "details"
+-   alert functionality now with notistack for simplicity
+-   some folders rearranged
+
+### 1.4.9
+
+-   Connecting Page eliminated, progress now directly on component.
+-   NotFoundPage removed - error page does its job.
+-   fetchBooksfrom Api now is a hook useFetchBooks.
+-   on search page buttons disactivate on loading
 
 ### Todos
 
@@ -287,9 +300,3 @@ jak sortowanie i filtrowanie a to źle wygląda Prawdopodobnie wszystko zależy 
 ### License
 
 This software is distributed under MIT license
-
-LinkButon.test.tsx zawiera dzialający przykład testu routingu
-
-remove.ts łapanie błędu nie powinno być takie
-
-rozważyć useCallback i React.useMemo szerzej, wszystkie createredirect w starym stylu były memoizowane

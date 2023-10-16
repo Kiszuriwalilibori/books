@@ -1,6 +1,5 @@
-import { BookRecordsArray } from "types";
-
-import { itemsPerPage } from "config";
+import { BooksState } from "types";
+import { ITEMS_PER_PAGE } from "config";
 
 /**
  * extracts from all data a part being given page content
@@ -9,12 +8,12 @@ import { itemsPerPage } from "config";
  * @param limit number of pages in the array
  * @returns array with rows being content of current page
  */
-export const sliceSinglePageData = (index: number, dataArray: BookRecordsArray, limit: number): BookRecordsArray => {
-  if (index > limit) index = limit;
-  const first = itemsPerPage * (index - 1);
-  const last = first + itemsPerPage > dataArray.length ? dataArray.length : first + itemsPerPage;
+export const sliceSinglePageData = (index: number, dataArray: BooksState["books"], limit: number): BooksState["books"] => {
+    if (index > limit) index = limit;
+    const first = ITEMS_PER_PAGE * (index - 1);
+    const last = first + ITEMS_PER_PAGE > dataArray.length ? dataArray.length : first + ITEMS_PER_PAGE;
 
-  return dataArray.slice(first, last);
+    return dataArray.slice(first, last);
 };
 
 export default sliceSinglePageData;

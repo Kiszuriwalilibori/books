@@ -1,4 +1,59 @@
-import { HeaderItems } from "../models/Columns";
+export type Book = string[];
+
+export type Books = Book[];
+
+export interface BookDetails {
+    id: string;
+    volumeInfo: {
+        title: string;
+        imageLinks: {
+            smallThumbnail: { linkToCover: string; label: string };
+            thumbnail: string;
+            small: string;
+            medium: string;
+            large: string;
+            extraLarge: string;
+        };
+        authors: (string | { [key: string]: string })[];
+        publisher: string;
+        publishedDate: string;
+        language: string;
+        pageCount: number;
+        categories: (string | { [key: string]: string })[];
+        industryIdentifiers: { type: string; identifier: string }[];
+        description: string;
+        printType: string;
+        subtitle?: string;
+    };
+    saleInfo: {
+        isEbook: boolean;
+        saleability: string;
+        listPrice: { amount: number; currencyCode: string };
+        retailPrice: { amount: number; currencyCode: string };
+        buyLink: string;
+    };
+    accessInfo: {
+        textToSpeechPermission: string;
+        webReaderLink: string;
+    };
+}
+export type ID = BookDetails["id"];
+
+export interface BookRecord {
+    id: BookDetails["id"];
+    volumeInfo: Pick<BookDetails["volumeInfo"], "title" | "authors" | "subtitle" | "publishedDate" | "language" | "categories">;
+}
+
+export interface FlatBookRecord extends Pick<BookDetails["volumeInfo"], "title" | "authors" | "subtitle" | "publishedDate" | "language" | "categories"> {
+    id: BookDetails["id"];
+}
+export interface FavoriteRecord extends BookRecord {
+    kind: string;
+}
+
+// const x: BookRecord = { id: "dupa", volumeInfo: { authors: ["sts"], title: "sts", publishedDate: "xxx", language: "pl" } };
+
+export type ColumnHeaders = "Tytuł" | "Autorzy" | "Język" | "Etykiety" | "Podtytuł" | "Wydano" | "";
 
 export enum SearchableFields {
     authors = "authors",
@@ -13,72 +68,28 @@ export enum NotSearchableFields {
     publishedDate = "publishedDate",
     id = "id",
 }
-export type SourceFieldsArray = Array<SearchableFields | NotSearchableFields>;
 
-export type Headers = Partial<Record<SearchableFields | NotSearchableFields, any>>;
-
-export type FormattedFetchedRecord = Partial<Record<SearchableFields | NotSearchableFields, string>>;
-
-export type BookRecord = string[];
-
-export type BookRecordsArray = BookRecord[];
-
-export type FiltrationObject = {
-    [Item in HeaderItems]?: string;
+type FilteringCondition = {
+    [Item in ColumnHeaders]?: string;
 };
 
-export type PathKeys = "not_found" | "error" | "data" | "connecting" | "individualBook" | "books" | "search" | "load" | "landing" | "no_page";
+export type PathKeys = "not_found" | "error" | "data" | "details" | "books" | "search" | "load" | "landing" | "no_page";
 
-export type FilterObject = Partial<Record<HeaderItems, string>>;
-
-type HistoryCall = () => void;
-
-export type RedirectType = Record<Exclude<PathKeys, "load" | "landing">, HistoryCall>;
-
-export type ApiResponse = Object;
-
-export type TemporaryStorageContent = ApiResponse[];
-export interface FetchResult {
-    error?: boolean;
-    data?: TemporaryStorageContent;
-    errorMessage?: string;
-}
+export type FilterObject = Partial<Record<ColumnHeaders, string>>;
 
 export type RoundButtons = "removeBook" | "addToFavorites" | "showFullInfo" | "removeBookFromFavorites" | "goToShop" | "test";
 
-export interface BookDetailsContent {
-    volumeInfo: {
-        title: string;
-        imageLinks: {
-            smallThumbnail: { linkToCover: string; label: string };
-            thumbnail: string;
-            small: string;
-            medium: string;
-            large: string;
-            extraLarge: string;
-        };
-        authors: string[];
-        publisher: string;
-        publishedDate: string;
-        language: string;
-        pageCount: number;
-        categories: string[];
-        industryIdentifiers: { type: string; identifier: string }[];
-        description: string;
-        printType: string;
-    };
-    saleInfo: {
-        isEbook: boolean;
-        saleability: string;
-        listPrice: { amount: number; currencyCode: string };
-        retailPrice: { amount: number; currencyCode: string };
-        buyLink: string;
-    };
-    accessInfo: {
-        textToSpeechPermission: string;
-        webReaderLink: string;
-    };
-}
-export interface BookDetails {
-    bookData: BookDetailsContent;
+export type BookID = { id: ID };
+
+export interface BooksState {
+    data: Books;
+    errorMessage: string;
+    books: Books;
+    filter: FilteringCondition;
+    currentPageNumber: number;
+    currentSortColumn: number | undefined;
+    isSortOrderDescending: boolean;
+    numberOfPages: number;
+    currentPageBooksData: Books;
+    sort: null;
 }

@@ -1,16 +1,29 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { BooksManager } from "../../BooksManager/BooksManager";
-import { initialState } from "../initialState";
-import { filterBooks, removeBook, changePage, fetchBooksFromFavorites, sortBook } from "../actionCreators";
+import { BooksManager } from "../../BooksManager";
+import { filterBooks, removeBook, changePage, storeBooks, sortBooks } from "../actionCreators";
+import { BooksState } from "types";
+
+export const initialState: BooksState = {
+    data: [],
+    errorMessage: "",
+    books: [],
+    filter: {},
+    currentPageNumber: 1,
+    currentSortColumn: undefined,
+    isSortOrderDescending: false,
+    numberOfPages: 0,
+    currentPageBooksData: [],
+    sort: null,
+};
 
 export const booksReducer = createReducer(initialState, builder => {
     builder
 
-        .addCase(fetchBooksFromFavorites, (state, action) => {
+        .addCase(storeBooks, (state, action) => {
             if (action.payload) {
                 const manager = new BooksManager(state);
-                manager.FetchFavoriteBooks(action.payload);
+                manager.StoreBooks(action.payload);
                 state.data = manager.state.data;
                 state.books = manager.state.books;
                 state.numberOfPages = manager.state.numberOfPages;
@@ -25,7 +38,7 @@ export const booksReducer = createReducer(initialState, builder => {
             state.currentPageBooksData = manager.state.currentPageBooksData;
         })
 
-        .addCase(sortBook, (state, action) => {
+        .addCase(sortBooks, (state, action) => {
             const manager = new BooksManager(state);
             manager.Sort(action.payload);
             state.currentSortColumn = manager.state.currentSortColumn;
@@ -43,11 +56,12 @@ export const booksReducer = createReducer(initialState, builder => {
 
         .addCase(removeBook, (state, action) => {
             const manager = new BooksManager(state);
-            manager.Remove(action.payload.id);
+            manager.Remove(action.payload);
             state.data = manager.state.data;
             state.currentPageBooksData = manager.state.currentPageBooksData;
             state.numberOfPages = manager.state.numberOfPages;
         })
+
         .addDefaultCase(() => {});
 });
 

@@ -1,15 +1,10 @@
-import addType from "./addType";
 import breakWhenInternetExplorer from "./breakWhenInternetExplorer";
 import Buttons from "./buttonsFactory";
-import createMessageSnackBarTextContent from "./createMessageSnackBarTextContent";
-import createRedirect from "./createRedirect";
-import fetchBooksFromAPI from "./fetchBooksFromAPI";
-import getSummary from "./getSummary";
-import goToShop from "./goToShop";
+import getValue from "./getValue";
 import isOffline from "./isOffline";
 import { FilteredStorage, LocalStorage } from "./localStorage";
-import ReformatFetchedBooks from "./ReformatFetchedBooks";
-import rootSaga from "./saga";
-import searchFields from "./searchFields";
+import FormatFetchedBooks from "./formatFetchedBooks";
+import rootSaga from "./rootSaga";
+import isErrorCode from "./isErrorCode";
 
-export { addType, breakWhenInternetExplorer, Buttons, createMessageSnackBarTextContent, createRedirect, fetchBooksFromAPI, getSummary, goToShop, isOffline, FilteredStorage, LocalStorage, ReformatFetchedBooks, rootSaga, searchFields };
+export { breakWhenInternetExplorer, Buttons, FormatFetchedBooks, getValue, isErrorCode, isOffline, FilteredStorage, LocalStorage, rootSaga };

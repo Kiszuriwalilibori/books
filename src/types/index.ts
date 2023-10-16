@@ -1,8 +1,11 @@
-import { ApiResponse, BookDetails, BookRecord, BookRecordsArray, BookDetailsContent, FetchResult, Headers, SearchableFields, NotSearchableFields, SourceFieldsArray, FormattedFetchedRecord, FiltrationObject, PathKeys, FilterObject, RedirectType, TemporaryStorageContent, RoundButtons } from "./types";
+import { BookDetails, Book, BookRecord, Books, BooksState, ColumnHeaders, FavoriteRecord, ID, SearchableFields, NotSearchableFields, PathKeys, FilterObject, RoundButtons, FlatBookRecord } from "./types";
 
-import { RootStateType } from "components/AppProvider";
-import { Favorites } from "hooks/useFavorites";
-import { HeaderItems } from "../models/Columns";
+import { RootStateType, AppDispatch } from "components/AppProvider";
+
+import { FavoriteBooks } from "hooks/useFavoriteBooks";
+
+import { ThunkAddBookToFavoritesArgs } from "js/redux/thunks";
 
 export { SearchableFields, NotSearchableFields };
-export type { ApiResponse, BookDetails, BookDetailsContent, BookRecord, BookRecordsArray, FetchResult, SourceFieldsArray, Headers, FormattedFetchedRecord, FiltrationObject, PathKeys, FilterObject, RedirectType, TemporaryStorageContent, HeaderItems, Favorites, RootStateType, RoundButtons };
+
+export type { AppDispatch, Book, BookDetails, Books, BookRecord, BooksState, ColumnHeaders, FavoriteRecord, FilterObject, FavoriteBooks, FlatBookRecord, ID, PathKeys, RootStateType, RoundButtons, ThunkAddBookToFavoritesArgs };

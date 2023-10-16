@@ -1,4 +1,4 @@
-import { SearchableFields, NotSearchableFields } from "types";
+import { ColumnHeaders, SearchableFields, NotSearchableFields } from "types";
 import toArray from "./toArray";
 // this enum exclusively keeps order of columns in the table
 enum Columns {
@@ -15,10 +15,8 @@ export enum ContentCategoryEnum {
     numericalString,
 }
 
-export type HeaderItems = "Tytuł" | "Autorzy" | "Język" | "Etykiety" | "Podtytuł" | "Wydano" | "";
-
 type Header = {
-    [key in Columns]: HeaderItems;
+    [key in Columns]: ColumnHeaders;
 };
 
 type contentCategories = {
@@ -33,20 +31,10 @@ enum Classes {
 type CellClasses = {
     [key in Columns]: Classes;
 };
-type hasButtons = {
-    [key in Columns]: boolean;
-};
-type sourceFields = {
-    [key in Columns]: SearchableFields | NotSearchableFields;
-};
 
-// function toArray(obj: Header | contentCategories | sourceFields | CellClasses | hasButtons) {
-//   return Object.entries(obj)
-//     .sort((a, b) => {
-//       return +a - +b;
-//     })
-//     .map(item => item[1]);
-// }
+type sourceFields = {
+    [key in Columns]: Exclude<SearchableFields | NotSearchableFields, "subject">;
+};
 
 const headers: Header = {
     [Columns.title]: "Tytuł",
@@ -69,7 +57,7 @@ const contentCategoriesObject: contentCategories = {
 const contentCellClassesObject: CellClasses = {
     [Columns.title]: Classes.large,
     [Columns.authors]: Classes.large,
-    [Columns.language]: Classes.small,
+    [Columns.language]: Classes.large,
     [Columns.categories]: Classes.small,
     [Columns.subtitle]: Classes.small,
     [Columns.publishedDate]: Classes.small,

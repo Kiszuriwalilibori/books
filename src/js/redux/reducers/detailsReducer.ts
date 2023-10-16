@@ -3,7 +3,7 @@ import { RootStateType } from "types/index";
 
 import { showPreviousDetails, showNextDetails, fetchDetails } from "../actionCreators";
 
-const initialState = { booksWithDetailedInfo: [] as string[], currentBookWithDetailedInfoIndex: 0 /*, nextDetailedBookButtonVisible: false*/ };
+const initialState = { booksWithDetailedInfo: [] as string[], currentBookWithDetailedInfoIndex: 0 };
 
 export const detailsReducer = createReducer(initialState, builder => {
     builder

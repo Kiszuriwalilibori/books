@@ -1,33 +1,37 @@
 import loadable from "@loadable/component";
-import { Routes, Route } from "react-router-dom";
-import Paths from "Routing/Paths";
-import { CheckSupportForLocalStorage } from "components";
 
-const Books = loadable(() => import("Pages/Books/BooksPage"));
-const Connecting = loadable(() => import("Pages/ConnectingPage"));
-const Error = loadable(() => import("Pages/ErrorPage"));
-const IndividualBook = loadable(() => import("Pages/IndividualBookPage"));
-const LoadPage = loadable(() => import("Pages/ConnectingPage"));
-const NotFound = loadable(() => import("Pages/NotFoundPage"));
-const Search = loadable(() => import("Pages/SearchPage"));
-const StarWars = loadable(() => import("Pages/LandingPage"));
-const NoPage = loadable(() => import("Pages/NoPage"));
+import { Routes, Route } from "react-router-dom";
+
+import Paths from "routing/Paths";
+
+import { WithCheckSupportForLocalStorage, WithLoadingIndicatorHOC } from "hocs";
+import { useHandleConnectionStatus } from "hooks";
+const Books = loadable(() => import("pages/BooksPage"));
+const Error = loadable(() => import("pages/ErrorPage"));
+const Details = loadable(() => import("pages/DetailsPage"));
+const NotFound = loadable(() => import("pages/NotFoundPage"));
+const Search = loadable(() => import("pages/SearchPage"));
+const Landing = loadable(() => import("pages/LandingPage"));
+const NoPage = loadable(() => import("pages/NoPage"));
 
 function App() {
+    useHandleConnectionStatus();
     return (
-        <CheckSupportForLocalStorage>
-            <Routes>
-                <Route path={Paths.landing} element={<StarWars />} />
-                <Route path={Paths.search} element={<Search />} />
-                <Route path={Paths.books} element={<Books />} />
-                <Route path={Paths.not_found} element={<NotFound />} />
-                <Route path={Paths.connecting} element={<Connecting />} />
-                <Route path={Paths.error} element={<Error />} />
-                <Route path={Paths.individualBook} element={<IndividualBook />} />
-                <Route path={Paths.load} element={<LoadPage />} />
-                <Route path={Paths.no_page} element={<NoPage />} />
-            </Routes>
-        </CheckSupportForLocalStorage>
+        <WithCheckSupportForLocalStorage>
+            <WithLoadingIndicatorHOC>
+                <main>
+                    <Routes>
+                        <Route path={Paths.landing} element={<Landing />} />
+                        <Route path={Paths.search} element={<Search />} />
+                        <Route path={Paths.books} element={<Books />} />
+                        <Route path={Paths.not_found} element={<NotFound />} />
+                        <Route path={Paths.error} element={<Error />} />
+                        <Route path={Paths.details} element={<Details />} />
+                        <Route path={Paths.no_page} element={<NoPage />} />
+                    </Routes>
+                </main>
+            </WithLoadingIndicatorHOC>
+        </WithCheckSupportForLocalStorage>
     );
 }
 export default App;

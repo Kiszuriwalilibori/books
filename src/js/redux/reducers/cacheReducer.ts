@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 import { cacheSupported } from "../actionCreators";
+import { RootStateType } from "components/AppProvider";
 
 const initialState = { isSupported: false };
 export const cacheReducer = createReducer(initialState, builder => {
@@ -10,3 +11,5 @@ export const cacheReducer = createReducer(initialState, builder => {
 });
 
 export default cacheReducer;
+
+export const isCacheSupported = (state: RootStateType) => state.cache.isSupported;

@@ -16,7 +16,7 @@ export type SearchFormValues = { [key in SearchPageField]: string };
 
 export interface ValidationState {
     message: string;
-    valid: boolean;
+    isValid: boolean;
 }
 
 export const initialValues: SearchFormValues = {
@@ -25,4 +25,4 @@ export const initialValues: SearchFormValues = {
     [SearchPageField.SUBJECT]: "",
 };
 
-export const initialValidationState = { valid: true, message: "" };
+export const initialValidationState: ValidationState = { isValid: true, message: "" };

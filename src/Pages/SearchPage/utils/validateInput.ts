@@ -1,11 +1,11 @@
 import pickBy from "lodash/pickBy";
 import isEmpty from "lodash/isEmpty";
 import { initialValidationState, SearchFormValues } from "./model";
-import { searchFields } from "js/utils";
+import { searchFields } from ".";
 import { SearchableFields } from "types";
 
 interface resultType {
-    valid: boolean;
+    isValid: boolean;
     message: string;
 }
 /**
@@ -14,28 +14,28 @@ interface resultType {
  * @returns object with validation result and error message
  */
 const validateInput = (fields: SearchFormValues) => {
-    let result: resultType = initialValidationState;
+    let validationResult: resultType = initialValidationState;
     let message: string[] = [];
 
     const test = (item: string): boolean => {
         return item.length >= 2 && /\d|[A-z]/.test(item);
     };
 
-    const filteredState: { [index in SearchableFields as string]: string } = pickBy(fields);
+    const searchKeys: { [index in SearchableFields as string]: string } = pickBy(fields);
 
-    if (!isEmpty(filteredState)) {
-        for (let stateItemKey in filteredState) {
-            if (test(filteredState[stateItemKey]) === false) {
-                const label = searchFields.getPlaceholder(stateItemKey);
-                result = { valid: false, message: "Nieprawidłowe dane w polu " + label };
+    if (!isEmpty(searchKeys)) {
+        for (let key in searchKeys) {
+            if (test(searchKeys[key]) === false) {
+                const label = searchFields.getPlaceholder(key);
+                validationResult = { isValid: false, message: "Nieprawidłowe dane w polu " + label };
                 message.push(label);
             }
         }
     }
 
-    if (result.valid === false) result.message = "Nieprawidłowe wartości w polach: " + message.join(", ");
+    if (validationResult.isValid === false) validationResult.message = "Nieprawidłowe wartości w polach: " + message.join(", ");
 
-    return result;
+    return validationResult;
 };
 
 export default validateInput;

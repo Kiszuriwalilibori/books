@@ -1,26 +1,23 @@
-import { BookRecordsArray, BookRecord } from "types";
+import { Books, Book, BooksState, ID } from "types";
 
 /**
  * removes row from array of rows
- * @param dataArray given array
- * @param id string identifying row
+ * @param books given array
+ * @param bookID string identifying row
  * @returns  array without subject row
  */
-export const remove = (dataArray: BookRecordsArray, id: string) => {
-    let remainingArray = [...dataArray];
+export const remove = (books: BooksState["data"], bookID: ID) => {
+    let remainingBooks = [...books];
     try {
-        if (!Array.isArray(dataArray)) {
-            throw new Error("Argument array in function remove is not actual array or is empty");
-        }
-
-        const comparator = (item: BookRecord) => {
-            return item[item.length - 1] !== id;
+        const comparator = (item: Book) => {
+            return item[item.length - 1] !== bookID;
         };
 
-        remainingArray = dataArray.filter(comparator);
+        remainingBooks = books.filter(comparator);
     } catch (err) {
+        return remainingBooks;
     } finally {
-        return remainingArray;
+        return remainingBooks;
     }
 };
 export default remove;

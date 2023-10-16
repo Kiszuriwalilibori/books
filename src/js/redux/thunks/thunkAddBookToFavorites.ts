@@ -1,48 +1,74 @@
 import { ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 
-import { googleAPI } from "config";
-import { showError, toggleSnackBar } from "../actionCreators";
-import { RedirectType, RootStateType, Favorites } from "types";
-import { createMessageSnackBarTextContent } from "js/utils";
+import { FAVORITE_FIELDS, GOOGLE_API } from "config";
+import { showError, setIsLoading } from "../actionCreators";
+import { RootStateType, FavoriteBooks } from "types";
+import { NavigateFunction } from "react-router-dom";
+import Paths from "routing/Paths";
+import { getValue, isErrorCode } from "js/utils";
 
 export interface ThunkAddBookToFavoritesArgs {
-    redirect: RedirectType;
-    id: string;
-    favorites: Favorites;
+    bookID: string;
+    favorites: FavoriteBooks;
+    navigate: NavigateFunction;
+    showMessage: any;
 }
 
-export const thunkAddBookToFavorites = ({ redirect, id, favorites }: ThunkAddBookToFavoritesArgs): ThunkAction<void, RootStateType, unknown, AnyAction> => {
+export const thunkAddBookToFavorites = ({ bookID, favorites, navigate, showMessage }: ThunkAddBookToFavoritesArgs): ThunkAction<void, RootStateType, unknown, AnyAction> => {
     return async (dispatch, getState) => {
-        const path = googleAPI + id;
-
-        fetch(path)
-            .then(res => res.json())
-            .then(json => {
-                if (json) {
-                    try {
-                        favorites.add(id, json);
-                        dispatch(toggleSnackBar(createMessageSnackBarTextContent("addedToFavorites", json.volumeInfo.title)));
-                    } catch (error) {
-                        dispatch(
-                            showError({
-                                isError: true,
-                                errorMessage: "An attempt to add item to local storage caused error",
-                            })
-                        );
-                        redirect.error!();
-                    }
-                } else {
-                    redirect.not_found!();
-                }
-            })
-            .catch(error => {
-                const result = {
+        const handleError = (errorMessage: string) => {
+            dispatch(
+                showError({
                     isError: true,
-                    errorMessage: error.message,
-                };
-                dispatch(showError(result));
-                redirect.error!();
+                    errorMessage,
+                })
+            );
+            navigate(Paths.error);
+            dispatch(setIsLoading(false));
+            return;
+        };
+        const path = GOOGLE_API + bookID + FAVORITE_FIELDS;
+        if (favorites.contain(bookID)) {
+            showMessage.warning("Książka jest już w Ulubionych, nie można dodać jej po raz drugi");
+            return;
+        } else {
+            dispatch(setIsLoading(true));
+            const response = await fetch(path).catch(error => {
+                dispatch(setIsLoading(false));
+                dispatch(
+                    showError({
+                        isError: true,
+                        errorMessage: error.message ? error.message : `Podczas pobierania danych ksiązki o ID = ${bookID} wystapił błąd`,
+                    })
+                );
+
+                navigate(Paths.error);
+                return;
             });
+            if (response) {
+                const data = await response.json();
+                if (data) {
+                    try {
+                        const code = getValue(data, "code");
+
+                        if (isErrorCode(code)) {
+                            const errorMessage = getValue(data, "message") || "Podczas próby dodania książki do ulubionych wystąpił błąd";
+                            handleError(errorMessage);
+                            return;
+                        } else {
+                            favorites.add(bookID, data);
+                            dispatch(setIsLoading(false));
+                        }
+                    } catch (error) {
+                        const errorMessage = error instanceof Error ? error.message : "Podczas próby dodania książki do ulubionych wystąpił błąd";
+                        handleError(errorMessage);
+                        return;
+                    }
+                }
+            }
+        }
     };
 };
+
+export default thunkAddBookToFavorites;

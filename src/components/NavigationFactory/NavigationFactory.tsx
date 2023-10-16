@@ -7,12 +7,12 @@ import { useLocation } from "react-router-dom";
 import Pagination from "./Pagination";
 import FiltersVisibilityToggler from "./FiltersVisibilityToggler";
 import LinkButton from "./LinkButton";
-import Paths from "Routing/Paths";
+import Paths from "routing/Paths";
 
 import { useDispatchAction } from "hooks";
 import { Button } from "components";
-
 import { getIsPreviousButtonVisible, getIsNextButtonVisible } from "js/redux/selectors";
+import { NavigationContainer } from "pages/styled";
 
 export const NavigationFactory = () => {
     const isPreviousButtonVisible = useSelector(getIsPreviousButtonVisible);
@@ -35,21 +35,21 @@ export const NavigationFactory = () => {
     switch (location.pathname) {
         case Paths.books:
             return (
-                <nav className="books__buttons navigation-factory__item">
+                <NavigationContainer aria-label="navigation from books page">
                     <LinkButton label="Wyszukiwanie" link={Paths.search} />
                     <Pagination />
                     <FiltersVisibilityToggler />
-                </nav>
+                </NavigationContainer>
             );
 
-        case Paths.individualBook:
+        case Paths.details:
             return (
-                <nav className="books__buttons navigation-factory__item">
+                <NavigationContainer aria-label="navigation for single book page">
                     <Button disabled={!isPreviousButtonVisible} onClick={requirePreviousBook} className="button--problem" children={"<<<"} />
                     <LinkButton link={Paths.books} label="Znalezione książki" />
                     <LinkButton link={Paths.search} label="Wyszukiwanie" />
                     <Button disabled={!isNextButtonVisible} onClick={requireNextBook} className="button--problem" children={">>>"} />
-                </nav>
+                </NavigationContainer>
             );
 
         default:

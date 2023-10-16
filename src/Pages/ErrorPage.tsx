@@ -1,22 +1,33 @@
 import { shallowEqual } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
-import { ErrorMessage } from "components";
-import { wrappedInLinkToSearchHOC } from "HOCs";
+import { ErrorMessage, LogoFactory } from "components";
+import { withLinkToSearchPageHOC } from "hocs";
 import { useTypedSelector } from "hooks";
 
 export const ErrorPage = () => {
     const navigate = useNavigate();
+
+    const gotoPreviousPage = useCallback(() => {
+        navigate(-1);
+    }, [navigate]);
+
     useEffect(() => {
-        setTimeout(() => {
-            navigate(-1);
-        }, 2000);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        let timer = setTimeout(() => gotoPreviousPage(), 10000);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [gotoPreviousPage]);
+
     const errorMessage = useTypedSelector(state => state.error.errorMessage, shallowEqual);
 
-    return <ErrorMessage error={errorMessage} />;
+    return (
+        <>
+            <LogoFactory />
+            <ErrorMessage errorMessage={errorMessage} clickHandler={gotoPreviousPage} />
+        </>
+    );
 };
 
-export default wrappedInLinkToSearchHOC(ErrorPage);
+export default withLinkToSearchPageHOC(ErrorPage);

@@ -1,18 +1,21 @@
+import { AlertBox, AlertBoxItem, PageContainer } from "pages/styled";
+
 interface Props {
-    error: string;
+    clickHandler?: () => void;
+    errorMessage: string;
 }
 
 const ErrorMessage = (props: Props): JSX.Element => {
-    const { error } = props;
+    const { clickHandler, errorMessage } = props;
 
     return (
-        <div className="PageContainer">
-            <div className="CustomBox" role="alert">
-                <span className="notfound__item">Ojejku! Coś poszło nie tak:</span>
+        <PageContainer onClick={clickHandler}>
+            <AlertBox role="alert">
+                <AlertBoxItem>Ojejku! Coś poszło nie tak:</AlertBoxItem>
                 <br />
-                <span className="notfound__item">{error} &#128549;</span>
-            </div>
-        </div>
+                <AlertBoxItem>{errorMessage} &#128549;</AlertBoxItem>
+            </AlertBox>
+        </PageContainer>
     );
 };
 export default ErrorMessage;

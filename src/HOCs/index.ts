@@ -1,8 +1,9 @@
-import withQueryClientProviderHOC from "./withQueryClientProviderHOC";
+import WithCheckSupportForLocalStorage from "./withCheckSupportForLocalStorage";
+import withLinkToSearchPageHOC from "./withLinkToSearchPageHOC";
 import withNavigationHOC from "./withNavigationHOC";
-import withRemoveItemWarningModalHOC from "./withRemoveItemWariningModalHOC";
-import withSnackBarHOC from "./withSnackBarHOC";
+import withQueryClientProviderHOC from "./withQueryClientProviderHOC";
+import WithRemoveItemWarningHOC from "./withRemoveItemWarningHOC";
 import withTableContainerHOC from "./withTableContainerHOC";
-import wrappedInLinkToSearchHOC from "./wrappedInLinkToSearchHOC";
+import WithLoadingIndicatorHOC from "./withLoading";
 
-export { withQueryClientProviderHOC, withNavigationHOC, withRemoveItemWarningModalHOC, withSnackBarHOC, withTableContainerHOC, wrappedInLinkToSearchHOC };
+export { WithCheckSupportForLocalStorage, withLinkToSearchPageHOC, WithLoadingIndicatorHOC, withNavigationHOC, withQueryClientProviderHOC, WithRemoveItemWarningHOC, withTableContainerHOC };

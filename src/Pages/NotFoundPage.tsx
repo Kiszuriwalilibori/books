@@ -1,9 +1,13 @@
 import React from "react";
 
+import { ErrorMessage, LogoFactory } from "components";
+import { withLinkToSearchPageHOC } from "hocs";
 
-import { ErrorMessage } from "components";
-import { wrappedInLinkToSearchHOC } from "HOCs";
+export const NotFoundPage = () => (
+    <>
+        <LogoFactory />
+        <ErrorMessage errorMessage={"Nie znaleziono książek spełniających podane kryteria"} />
+    </>
+);
 
-export const NotFoundPage = () => <ErrorMessage error={"Nie znaleziono księżek spełniających podane kryteria"} />;
-
-export default React.memo(wrappedInLinkToSearchHOC(NotFoundPage));
+export default React.memo(withLinkToSearchPageHOC(NotFoundPage));
