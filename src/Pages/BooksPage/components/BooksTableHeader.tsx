@@ -1,5 +1,6 @@
 import * as React from "react";
 import uuid from "react-uuid";
+import debounce from "lodash/debounce";
 import { useDispatch, shallowEqual } from "react-redux";
 
 import { columns } from "models";
@@ -14,9 +15,9 @@ const BooksTableHeader = () => {
     const sortColumn = useTypedSelector(state => state.books.currentSortColumn, shallowEqual);
 
     const sortBooks = React.useCallback(
-        e => {
+        debounce(e => {
             dispatch({ type: "THROTTLED_SORT", payload: e.target.cellIndex });
-        },
+        }, 200),
         [dispatch]
     );
 

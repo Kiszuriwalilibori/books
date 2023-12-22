@@ -7,13 +7,13 @@ const FiltersVisibilityToggler = (): JSX.Element => {
     const { toggleFiltersVisibility } = useFiltersVisibilityContext();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const debouncedToggleFiltersVisibility = React.useCallback(
+    const handleClick = React.useCallback(
         debounce(() => toggleFiltersVisibility(), 200),
         []
     );
 
     return (
-        <button className="button button--ok button--long" onClick={debouncedToggleFiltersVisibility}>
+        <button className="button button--ok button--long" onClick={handleClick}>
             Ukryj/pokaż filtry
         </button>
     );

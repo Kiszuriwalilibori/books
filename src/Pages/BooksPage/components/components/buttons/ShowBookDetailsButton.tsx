@@ -8,7 +8,7 @@ import RoundIconButton from "./RoundIconButton";
 import Paths from "routing/Paths";
 
 import { useDispatchAction } from "hooks";
-import { GOOGLE_API } from "config";
+import { DETAILS_FIELDS, GOOGLE_API } from "config";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
 
 interface Props {
@@ -24,7 +24,7 @@ export const ShowBookDetailsButton = (props: Props) => {
     const getBookDetails = useCallback(
         debounce(() => {
             if (bookID) {
-                const path = GOOGLE_API + bookID;
+                const path = GOOGLE_API + bookID + DETAILS_FIELDS;
                 fetchDetails(path);
                 navigate(Paths.details);
             }

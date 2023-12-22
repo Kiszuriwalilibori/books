@@ -12,7 +12,7 @@ interface Props {
     index: number;
     cellContent: string;
     bookID: string;
-    isFromFavorites: boolean;
+    isFromFavorites: RootStateType["dataSource"]["isNetwork"];
     title: string;
 }
 

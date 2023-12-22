@@ -3,7 +3,7 @@ import { AnyAction } from "redux";
 
 import { FAVORITE_FIELDS, GOOGLE_API } from "config";
 import { showError, setIsLoading } from "../actionCreators";
-import { RootStateType, FavoriteBooks } from "types";
+import { RootStateType, FavoriteBooks, ShowMessage } from "types";
 import { NavigateFunction } from "react-router-dom";
 import Paths from "routing/Paths";
 import { getValue, isErrorCode } from "js/utils";
@@ -12,11 +12,11 @@ export interface ThunkAddBookToFavoritesArgs {
     bookID: string;
     favorites: FavoriteBooks;
     navigate: NavigateFunction;
-    showMessage: any;
+    showMessage: ShowMessage;
 }
 
 export const thunkAddBookToFavorites = ({ bookID, favorites, navigate, showMessage }: ThunkAddBookToFavoritesArgs): ThunkAction<void, RootStateType, unknown, AnyAction> => {
-    return async (dispatch, getState) => {
+    return async dispatch => {
         const handleError = (errorMessage: string) => {
             dispatch(
                 showError({

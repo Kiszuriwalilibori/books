@@ -4,12 +4,12 @@ import { setIsOnline } from "../actionCreators";
 import { RootStateType } from "components/AppProvider";
 
 const initialState = { isOnline: true };
-export const cacheReducer = createReducer(initialState, builder => {
+export const onlineReducer = createReducer(initialState, builder => {
     builder.addCase(setIsOnline, (state, action) => {
         state.isOnline = action.payload;
     });
 });
 
-export default cacheReducer;
+export default onlineReducer;
 
 export const isOnlineSelector = (state: RootStateType) => state.online.isOnline;

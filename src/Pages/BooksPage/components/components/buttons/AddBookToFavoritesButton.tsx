@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { connect } from "react-redux";
 import { debounce } from "lodash";
-import { useNavigate } from "react-router-dom";
 
 import RoundIconButton from "./RoundIconButton";
 
-import { useFavoriteBooks, useMessage } from "hooks";
+import { useFavoriteBooks } from "hooks";
 import { thunkAddBookToFavorites, ThunkAddBookToFavoritesArgs } from "js/redux/thunks";
 import { AppDispatch, Book, RootStateType } from "types";
+import { columns } from "models/columns";
+import { FAVORITE_BOOK_IDENTIFIER } from "config";
 
 interface OwnProps {
     bookID: string;
@@ -20,17 +21,26 @@ interface Props extends OwnProps {
     isLoading: RootStateType["loading"]["isLoading"];
 }
 
+function createFavorite(book: Book) {
+    const obj = {} as any;
+    book.forEach((item, index) => {
+        obj[columns.sourceFields[index]] = item;
+    });
+    return { ...obj, ...FAVORITE_BOOK_IDENTIFIER };
+}
+
 export const AddBookToFavoritesButton = (props: Props) => {
-    const { bookID, thunkAddBookToFavorites, isLoading } = props;
+    const { bookID, isLoading, book } = props;
     const { favoriteBooks } = useFavoriteBooks();
-    const navigate = useNavigate();
-    const showMessage = useMessage();
+    const [foo, setFoo] = useState(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const AddBookToFavorites = React.useCallback(
         debounce(() => {
-            if (bookID) {
-                thunkAddBookToFavorites({ bookID, favorites: favoriteBooks, navigate, showMessage });
+            if (book) {
+                const favoriteBook = createFavorite(book);
+                const result = favoriteBooks.add(bookID, favoriteBook);
+                setFoo(result); // that is only to force render and update favorites this way
             }
         }, 200),
         [favoriteBooks, bookID]

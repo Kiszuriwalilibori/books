@@ -77,20 +77,11 @@ const sorts = {
  */
 export const sort = (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>) => {
     try {
-        if (!Array.isArray(data)) {
-            throw new Error("Attempt to call sort function with not an array as argument");
-        }
-        if (!data.length) {
-            throw new Error("Attempt to sort an empty table");
-        }
         if (key || key === 0) {
             const trim = trimFunctions[columns.contentCategories[key] as ContentCategoryEnum];
             sorts.general(data, isSortOrderDescending, key, trim);
         }
     } catch (err) {
-        const error = err as {
-            message: string;
-        };
         return data;
     } finally {
         return data;

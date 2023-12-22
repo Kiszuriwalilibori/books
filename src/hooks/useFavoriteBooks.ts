@@ -1,12 +1,13 @@
-import { BookDetails } from "types/types";
+import { FlatBookRecord } from "types/types";
 import { LocalStorage, FilteredStorage } from "../js/utils";
 import useDispatchAction from "./useDispatchAction";
 import useMessage from "./useMessage";
+import { FAVORITE_BOOK_IDENTIFIER } from "config";
 
 export interface FavoriteBooks extends FilteredStorage {
     showSize: () => void;
     manageSupport: () => boolean;
-    add: (label: string, item: BookDetails) => void;
+    add: (label: string, item: FlatBookRecord) => boolean;
     remove: (id: string) => void;
     areEmpty: () => boolean;
     areNotEmpty: () => boolean;
@@ -15,7 +16,7 @@ export interface FavoriteBooks extends FilteredStorage {
 const useFavoriteBooks = () => {
     const { cacheSupported } = useDispatchAction();
     const showMessage = useMessage();
-    const favoriteBooks = new FilteredStorage(item => item.kind === "books#volume") as FavoriteBooks;
+    const favoriteBooks = new FilteredStorage(item => item.hasOwnProperty("kind") && item.kind === FAVORITE_BOOK_IDENTIFIER.kind) as FavoriteBooks;
     const showSize: typeof favoriteBooks.showSize = () => {
         const length = favoriteBooks.getLength();
         let storageReport = "";
@@ -41,9 +42,11 @@ const useFavoriteBooks = () => {
     const add: typeof favoriteBooks.add = (label, item) => {
         try {
             LocalStorage.set(label, item);
-            showMessage.success("Poprawnie dodano do ulubionych następującą książkę: " + item.volumeInfo.title);
+            showMessage.success("Poprawnie dodano do ulubionych następującą książkę: " + item.title);
+            return true;
         } catch (error) {
             showMessage.error("Podczas próby dodania ksiązki do ulubionych wystapił błąd");
+            return false;
         }
     };
 

@@ -61,13 +61,12 @@
         opacity: 0.7;
     }
     &--favorites {
-        background-color: #a1d6e2;
-        border-color: #1895ad;
+        background-color: #009688;
+        border-color: #004d40;
         color: white;
         &:hover,
         &:focus {
-            background-color: #1895ad;
-            border-color: #a1d6e2;
+            background-color: #4db6ac;
             color: black;
         }
     }

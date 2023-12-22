@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { BooksState } from "types";
+import { BooksState, RootStateType } from "types";
 interface ShowError {
     isError: boolean;
     errorMessage: string;
@@ -19,8 +19,8 @@ export const showPreviousDetails = createAction("PREVIOUS_DETAILS_SHOW");
 export const showNextDetails = createAction("NEXT_DETAILS_SHOW");
 export const closeSnackBar = createAction("SNACKBAR_CLOSE");
 export const cacheSupported = createAction("CACHE_SET_SUPPORTED");
-export const fetchDetails = createAction<string>("DETAILS_FETCH");
-export const setIsFromNetwork = createAction<boolean>("IS_FETCHED_FROM_URL_SET");
+export const fetchDetails = createAction<RootStateType["details"]["booksWithDetailedInfo"][number]>("DETAILS_FETCH");
+export const setIsFromNetwork = createAction<RootStateType["dataSource"]["isNetwork"]>("IS_FETCHED_FROM_URL_SET");
 export const showError = createAction<ShowError>("ERROR_SHOW");
-export const setIsLoading = createAction<boolean>("IS_LOADING");
-export const setIsOnline = createAction<boolean>("IS_ONLINE");
+export const setIsLoading = createAction<RootStateType["loading"]["isLoading"]>("IS_LOADING");
+export const setIsOnline = createAction<RootStateType["online"]["isOnline"]>("IS_ONLINE");

@@ -21,13 +21,13 @@ export const NavigationFactory = () => {
     const location = useLocation();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const requirePreviousBook: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(
+    const handleShowPreviousBook: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(
         debounce(() => showPreviousDetails(), 200),
         [showPreviousDetails]
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const requireNextBook: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(
+    const handleShowNextBook: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(
         debounce(() => showNextDetails(), 200),
         [showNextDetails]
     );
@@ -45,10 +45,10 @@ export const NavigationFactory = () => {
         case Paths.details:
             return (
                 <NavigationContainer aria-label="navigation for single book page">
-                    <Button disabled={!isPreviousButtonVisible} onClick={requirePreviousBook} className="button--problem" children={"<<<"} />
+                    <Button disabled={!isPreviousButtonVisible} onClick={handleShowPreviousBook} className="button--problem" children={"<<<"} />
                     <LinkButton link={Paths.books} label="Znalezione książki" />
                     <LinkButton link={Paths.search} label="Wyszukiwanie" />
-                    <Button disabled={!isNextButtonVisible} onClick={requireNextBook} className="button--problem" children={">>>"} />
+                    <Button disabled={!isNextButtonVisible} onClick={handleShowNextBook} className="button--problem" children={">>>"} />
                 </NavigationContainer>
             );
 

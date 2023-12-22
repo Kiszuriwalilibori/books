@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import Paths from "routing/Paths";
 
 import { LogoFactory } from "components";
+import { useDebouncedCallback } from "hooks";
 
 export const LandingPage = () => {
     const navigate = useNavigate();
+
+    const handleClick = useDebouncedCallback(navigate, Paths.search);
+
     return (
         <>
             <LogoFactory />
-            <div className="starwars-frame" onClick={() => navigate(Paths.search)}>
+            <div className="starwars-frame" onClick={handleClick}>
                 <div className="starwars-title">
                     Google Books<sub>Finder</sub>
                 </div>

@@ -11,7 +11,7 @@ import { AppDispatch, RootStateType } from "types";
 
 export interface Props {
     fetchFromFavorites: () => void;
-    isLoading: boolean;
+    isLoading: RootStateType["loading"]["isLoading"];
 }
 
 export function FavoritesButton(props: Props): JSX.Element {

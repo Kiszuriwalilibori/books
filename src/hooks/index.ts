@@ -8,5 +8,6 @@ import useGoToShop from "./useGoToShop";
 import { useAppDispatch } from "./useAppDispatch";
 import { useTypedSelector } from "./useTypedSelector";
 import { useCreateDebouncedCallback } from "./useCreateDebouncedCallback";
+import useDebouncedCallback from "./useDebouncedCallback";
 
-export { useAppDispatch, useCreateDebouncedCallback, useDispatchAction, useFavoriteBooks, useFetchBooks, useGoToShop, useHandleConnectionStatus, useMessage, useTypedSelector };
+export { useAppDispatch, useCreateDebouncedCallback, useDebouncedCallback, useDispatchAction, useFavoriteBooks, useFetchBooks, useGoToShop, useHandleConnectionStatus, useMessage, useTypedSelector };

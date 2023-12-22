@@ -178,6 +178,14 @@ Routing elements rewritten with rendering props pattern
 -   fetchBooksfrom Api now is a hook useFetchBooks.
 -   on search page buttons disactivate on loading
 
+### 1.5.0
+
+-   Generally revised
+-   Better error handling
+-   Improved responsibility of table
+-   Some files renamed
+-   more strict typing
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę

@@ -4,7 +4,7 @@ import { RootStateType } from "types/index";
 import { connect } from "react-redux";
 
 interface Props {
-    isLoading: boolean;
+    isLoading: RootStateType["loading"]["isLoading"];
     areDetailsLoading?: boolean;
 }
 const LoadingIndicator = (props: Props) => {

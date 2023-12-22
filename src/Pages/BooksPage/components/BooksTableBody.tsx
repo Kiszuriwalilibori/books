@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 
 import { Rows } from "./components";
-import { Books, RootStateType } from "types";
+import { RootStateType } from "types";
 
 interface Props {
-    books: Books;
+    books: RootStateType["books"]["currentPageBooksData"];
 }
 
 export const BooksTableBody = (props: Props) => {
