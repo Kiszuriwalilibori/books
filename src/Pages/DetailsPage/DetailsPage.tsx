@@ -11,22 +11,24 @@ import { isOffline } from "js/utils";
 import { LoadingIndicator, ErrorMessage, NavigationFactory } from "components";
 import { currentURL } from "js/redux/selectors";
 import { BookDetails } from "types";
+import { usePersistDetailsURL } from "hooks";
 
 const DetailsPage = () => {
     const URL = useSelector(currentURL);
+    const storedURL = usePersistDetailsURL(URL);
 
-    const { isLoading, error, data } = useQuery([URL], () => axios(URL), {
+    const { isLoading, error, data } = useQuery([storedURL], () => axios(storedURL), {
         staleTime: 60000,
         cacheTime: 60000,
         select: data => data.data as BookDetails,
-        enabled: Boolean(URL),
+        enabled: Boolean(storedURL),
     });
 
     if (isOffline()) {
         return <ErrorMessage errorMessage={"No Internet connection available"} />;
     }
 
-    if (!URL) {
+    if (!storedURL && !URL) {
         return <ErrorMessage errorMessage={"Nie dostarczono URL szukanej książki"} />;
     }
     if (isLoading) return <LoadingIndicator areDetailsLoading={true} />;

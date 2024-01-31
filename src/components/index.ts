@@ -4,7 +4,7 @@ import Alert from "./Alert";
 import Button from "./Button";
 import LoadingIndicator from "./LoadingIndicator";
 import NavigationFactory from "./NavigationFactory";
-import Tooltip from "./Tooltip";
+import Tooltip from "./Tooltip/Tooltip";
 import ErrorMessage from "./ErrorMessage";
 import LogoFactory from "./LogoFactory";
 

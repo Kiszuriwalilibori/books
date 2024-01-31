@@ -186,6 +186,15 @@ Routing elements rewritten with rendering props pattern
 -   Some files renamed
 -   more strict typing
 
+### 1.5.2
+
+React updated to 18.2.0
+Stricter typing of Favorites
+removed dep. @mui/styles and babel-plugin-styled-components
+removed withstyles in favor of styled
+junk files removed
+link to fetch details stored for re-fetch after page refresh
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę
@@ -301,9 +310,6 @@ domyslnymi wartościami albo zrobić opcjonalne albo jedno i drugie.
 idziemy w tę stronę. Wtedy ewentualnie dopisac testy Nie idziemy w tę stronę
 
 45 Ze względu na zmiany w konstrukcji sprawdzanie pod kątem IE nie jest realizowane, czy da się to obejść.
-
-46 pokombinować z szerokościami kolumn bo w tej chwili jest to zbyt płynne i się zmieniają w trakcie operacji
-jak sortowanie i filtrowanie a to źle wygląda Prawdopodobnie wszystko zależy od szerokości samych kolumn tabeli. Żeby to przerobić chyba trrzeba by najpierw usunąć wewnętrzny span z td co na próbę jest zrobione w tablecellregular i dopiero wtedy zakładać width
 
 ### License
 

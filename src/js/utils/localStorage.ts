@@ -60,12 +60,12 @@ export class LocalStorage {
     }
 }
 
-export class FilteredStorage extends LocalStorage {
-    data: {}[];
+export class FilteredStorage<T extends any[]> extends LocalStorage {
+    data: T;
 
     constructor(fn: filteringFn) {
         super();
-        this.data = LocalStorage.getFilteredContent(fn);
+        this.data = LocalStorage.getFilteredContent(fn) as T;
     }
     getLength() {
         return this.data.length;

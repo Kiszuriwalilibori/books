@@ -1,7 +1,7 @@
-import { ProgressIndicator, Container } from "./styled";
-
-import { RootStateType } from "types/index";
 import { connect } from "react-redux";
+
+import { ProgressIndicator, Container } from "./LoadingIndicator.styles";
+import { RootStateType } from "types";
 
 interface Props {
     isLoading: RootStateType["loading"]["isLoading"];

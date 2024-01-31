@@ -47,11 +47,10 @@ export interface BookRecord {
 export interface FlatBookRecord extends Pick<BookDetails["volumeInfo"], "title" | "authors" | "subtitle" | "publishedDate" | "language" | "categories"> {
     id: BookDetails["id"];
 }
-export interface FavoriteRecord extends BookRecord {
+
+export interface FavoriteRecord extends FlatBookRecord {
     kind: string;
 }
-
-// const x: BookRecord = { id: "dupa", volumeInfo: { authors: ["sts"], title: "sts", publishedDate: "xxx", language: "pl" } };
 
 export type ColumnHeaders = "Tytuł" | "Autorzy" | "Język" | "Etykiety" | "Podtytuł" | "Wydano" | "";
 

@@ -27,13 +27,14 @@ const stringifyISBN = (ISBNData: ISBNNumber[]) => {
 
 const ISBN = (props: Props) => {
     const { ISBNData, label } = props;
+    const isbnId = uuid();
 
     return (
         <>
-            <p id="ISBN" className="details__header details__strong">
+            <p id={isbnId} className="details__header details__strong">
                 {label + ":\xa0"}
             </p>
-            <ul aria-labelledby="ISBN" className="details__list list">
+            <ul aria-labelledby={isbnId} className="details__list list">
                 {stringifyISBN(ISBNData)}
             </ul>
             <br />

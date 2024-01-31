@@ -1,4 +1,5 @@
 import uuid from "react-uuid";
+
 import createListItemContent from "./utils/createListItemContent";
 
 interface Props {
@@ -8,13 +9,14 @@ interface Props {
 
 const Categories = (props: Props) => {
     const { label, categories } = props;
+    const categoriesId = uuid();
 
     return (
         <>
-            <p id="categories" className="details__header details__strong">
+            <p id={categoriesId} className="details__header details__strong">
                 {label + ":\xa0"}
             </p>
-            <ul aria-labelledby="categories" className="details__list list">
+            <ul aria-labelledby={categoriesId} className="details__list list">
                 {categories.map((category, index, categories) => (
                     <li className="details__item list__item " key={uuid()}>
                         {createListItemContent(category, index, categories)}

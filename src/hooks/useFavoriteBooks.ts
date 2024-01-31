@@ -1,13 +1,13 @@
-import { FlatBookRecord } from "types/types";
+import { FavoriteRecord } from "types/types";
 import { LocalStorage, FilteredStorage } from "../js/utils";
 import useDispatchAction from "./useDispatchAction";
 import useMessage from "./useMessage";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
 
-export interface FavoriteBooks extends FilteredStorage {
+export interface FavoriteBooks extends FilteredStorage<FavoriteRecord[]> {
     showSize: () => void;
     manageSupport: () => boolean;
-    add: (label: string, item: FlatBookRecord) => boolean;
+    add: (label: string, item: FavoriteRecord) => boolean;
     remove: (id: string) => void;
     areEmpty: () => boolean;
     areNotEmpty: () => boolean;
@@ -17,6 +17,7 @@ const useFavoriteBooks = () => {
     const { cacheSupported } = useDispatchAction();
     const showMessage = useMessage();
     const favoriteBooks = new FilteredStorage(item => item.hasOwnProperty("kind") && item.kind === FAVORITE_BOOK_IDENTIFIER.kind) as FavoriteBooks;
+
     const showSize: typeof favoriteBooks.showSize = () => {
         const length = favoriteBooks.getLength();
         let storageReport = "";

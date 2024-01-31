@@ -10,6 +10,7 @@ import { thunkAddBookToFavorites, ThunkAddBookToFavoritesArgs } from "js/redux/t
 import { AppDispatch, Book, RootStateType } from "types";
 import { columns } from "models/columns";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
+import { FavoriteRecord } from "types/types";
 
 interface OwnProps {
     bookID: string;
@@ -26,7 +27,7 @@ function createFavorite(book: Book) {
     book.forEach((item, index) => {
         obj[columns.sourceFields[index]] = item;
     });
-    return { ...obj, ...FAVORITE_BOOK_IDENTIFIER };
+    return { ...obj, ...FAVORITE_BOOK_IDENTIFIER } as FavoriteRecord;
 }
 
 export const AddBookToFavoritesButton = (props: Props) => {

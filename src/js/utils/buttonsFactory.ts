@@ -3,9 +3,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
 import IconButton from "@mui/material/IconButton";
 
-import { withStyles } from "@mui/styles";
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { styled } from "@mui/material/styles";
 
 import { RoundButtons } from "types";
 
@@ -103,25 +103,21 @@ class ButtonFactory {
         return result;
     }
     createIconButton(type: string) {
-        const Button = withStyles({
-            root: {
-                color: this.buttonData[type].color,
-                transition: "background-color 0.5s ease-in-out",
-                "&:hover": { backgroundColor: this.buttonData[type].colorHover },
-                "&:focus": { backgroundColor: this.buttonData[type].colorHover },
-                "&.Mui-disabled": { opacity: 0.2 },
-            },
-        })(IconButton);
+        const Button = styled(IconButton)(({ theme }) => ({
+            color: this.buttonData[type].color,
+            transition: "background-color 0.5s ease-in-out",
+            "&:hover": { backgroundColor: this.buttonData[type].colorHover },
+            "&:focus": { backgroundColor: this.buttonData[type].colorHover },
+            "&.Mui-disabled": { opacity: 0.2 },
+        }));
 
         return Button;
     }
     createIconButtonImage(type: string) {
-        const Image = withStyles({
-            root: {
-                color: this.buttonData[type].color,
-                cursor: "pointer",
-            },
-        })(this.buttonData[type].innerIcon);
+        const Image = styled(this.buttonData[type].innerIcon)(({ theme }) => ({
+            color: this.buttonData[type].color,
+            cursor: "pointer",
+        }));
 
         return Image;
     }

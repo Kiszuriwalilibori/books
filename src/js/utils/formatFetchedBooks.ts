@@ -42,7 +42,6 @@ class FormatFetchedBooks {
         this.fields.forEach(field => {
             bookDataRecord[field] = this.iterate(bookData, field);
         });
-
         return bookDataRecord as FlatBookRecord;
     }
 

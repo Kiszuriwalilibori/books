@@ -9,5 +9,6 @@ import { useAppDispatch } from "./useAppDispatch";
 import { useTypedSelector } from "./useTypedSelector";
 import { useCreateDebouncedCallback } from "./useCreateDebouncedCallback";
 import useDebouncedCallback from "./useDebouncedCallback";
+import usePersistDetailsURL from "./usePersistDetailsURL";
 
-export { useAppDispatch, useCreateDebouncedCallback, useDebouncedCallback, useDispatchAction, useFavoriteBooks, useFetchBooks, useGoToShop, useHandleConnectionStatus, useMessage, useTypedSelector };
+export { useAppDispatch, useCreateDebouncedCallback, useDebouncedCallback, useDispatchAction, useFavoriteBooks, useFetchBooks, useGoToShop, useHandleConnectionStatus, useMessage, usePersistDetailsURL, useTypedSelector };
