@@ -8,7 +8,7 @@ import { useDebouncedCallback } from "hooks";
 export const LandingPage = () => {
     const navigate = useNavigate();
 
-    const handleClick = useDebouncedCallback(navigate, Paths.search);
+    const handleClick = useDebouncedCallback<HTMLDivElement>(navigate, Paths.search);
 
     return (
         <>

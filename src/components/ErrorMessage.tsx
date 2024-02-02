@@ -8,7 +8,7 @@ interface Props {
 
 const ErrorMessage = (props: Props): JSX.Element => {
     const { clickHandler, errorMessage } = props;
-    const handleClick = useDebouncedCallback(clickHandler as Function);
+    const handleClick = useDebouncedCallback<HTMLDivElement>(clickHandler as Function);
 
     return (
         <PageContainer onClick={handleClick}>

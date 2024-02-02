@@ -25,7 +25,7 @@ const RemoveItemWarning = React.forwardRef((props, ref) => {
         [book, closeModal, removeBook]
     );
 
-    const handleCancel = useDebouncedCallback(closeModal);
+    const handleCancel = useDebouncedCallback<HTMLButtonElement>(closeModal);
 
     return (
         <Modal open={isRemoveBookModalVisible} aria-label={"remove warning modal"} role="dialog">
