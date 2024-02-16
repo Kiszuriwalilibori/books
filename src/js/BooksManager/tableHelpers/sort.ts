@@ -1,4 +1,4 @@
-import { BooksState } from "types";
+import { BooksState, NotSearchableFields, SearchableFields } from "types";
 
 import { columns, ContentCategoryEnum } from "models/columns";
 
@@ -44,8 +44,9 @@ const sorts = {
 
     general: (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>, trim: TrimFunction) => {
         data.sort((leftHand, rightHand) => {
-            const trimmedLeftHand = trim(leftHand[key]);
-            const trimmedRightHand = trim(rightHand[key]);
+            const numericalKey = columns.sourceFields.indexOf(key as SearchableFields.authors | SearchableFields.title | NotSearchableFields);
+            const trimmedLeftHand = trim(leftHand[numericalKey]);
+            const trimmedRightHand = trim(rightHand[numericalKey]);
             if (isSortOrderDescending) {
                 if (trimmedLeftHand < trimmedRightHand) {
                     return 1;
@@ -77,8 +78,10 @@ const sorts = {
  */
 export const sort = (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>) => {
     try {
-        if (key || key === 0) {
-            const trim = trimFunctions[columns.contentCategories[key] as ContentCategoryEnum];
+        if (key) {
+            console.log("columns.contentCategories", columns.contentCategories);
+            const numericalKey = columns.sourceFields.indexOf(key as SearchableFields.authors | SearchableFields.title | NotSearchableFields);
+            const trim = trimFunctions[columns.contentCategories[numericalKey] as ContentCategoryEnum];
             sorts.general(data, isSortOrderDescending, key, trim);
         }
     } catch (err) {

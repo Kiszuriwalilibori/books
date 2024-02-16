@@ -20,6 +20,7 @@ export const filtrate = (data: BooksState["data"], filtr: BooksState["filter"]) 
 
     if (filterNotEmpty) {
         const temporaryData = [...data];
+        console.log("data", data, "filtr", filtr);
         const pattern = columns.headers.map(element => {
             return filtr.hasOwnProperty(element) ? filtr[element] : "";
         });

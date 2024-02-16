@@ -85,3 +85,24 @@ class FormatFetchedBooks {
 }
 
 export default FormatFetchedBooks;
+
+export const formatBooks = (foundBooks: BookRecord[]) => {
+    const y = foundBooks.map((item: any) => {
+        const id = item.id;
+        const { volumeInfo, title, authors, subtitle, publishedDate, language, categories } = item.volumeInfo;
+
+        return { id, volumeInfo, title, authors, subtitle, publishedDate, language, categories } as FlatBookRecord;
+    });
+
+    y.forEach(item => {
+        for (let property in item) {
+            if (!(item as any)[property]) {
+                (item as any)[property] = " ";
+            }
+            if (Array.isArray((item as any)[property])) {
+                (item as any)[property] = join((item as any)[property], ", ");
+            }
+        }
+    });
+    return y;
+};

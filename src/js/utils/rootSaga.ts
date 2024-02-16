@@ -1,7 +1,8 @@
 import { put, all, takeLatest } from "redux-saga/effects";
+import { RootStateType } from "types/index";
 interface ThrottledSort {
     type: "THROTTLED_SORT";
-    payload: number;
+    payload: RootStateType["books"]["currentSortColumn"];
 }
 const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 

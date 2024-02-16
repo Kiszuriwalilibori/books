@@ -42,8 +42,8 @@ export class BooksManager extends Manager {
     }
 
     protected _sort(column?: NonNullable<BooksState["currentSortColumn"]>) {
-        if (column || column === 0) {
-            if ((this.state.currentSortColumn || this.state.currentSortColumn === 0) && this.state.currentSortColumn === column) this.state.isSortOrderDescending = !this.state.isSortOrderDescending;
+        if (column) {
+            if (this.state.currentSortColumn && this.state.currentSortColumn === column) this.state.isSortOrderDescending = !this.state.isSortOrderDescending;
             this.state.currentSortColumn = column;
         }
         if (Array.isArray(this.state.data) && this.state.data.length) {

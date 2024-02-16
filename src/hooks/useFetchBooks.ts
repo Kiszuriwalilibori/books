@@ -1,13 +1,14 @@
 import React from "react";
-
+import join from "lodash/join";
 import { useNavigate } from "react-router-dom";
 
 import Paths from "routing/Paths";
 import useMessage from "./useMessage";
 import useDispatchAction from "./useDispatchAction";
 
-import { BookRecord, Books } from "types";
+import { BookRecord, Books, FlatBookRecord } from "types";
 import { FormatFetchedBooks, getValue, isErrorCode } from "js/utils";
+import { formatBooks } from "js/utils/formatFetchedBooks";
 
 interface FetchSummary {
     isError: boolean;
@@ -48,6 +49,8 @@ export const useFetchBooks = () => {
 
         const handleSuccess = (foundBooks: BookRecord[]) => {
             controller?.abort();
+            const y = formatBooks(foundBooks);
+            console.log("y", y);
             fetchSummary.data = FormatFetchedBooks.Run(foundBooks);
             storeBooks(fetchSummary.data);
             setIsFromNetwork(true);

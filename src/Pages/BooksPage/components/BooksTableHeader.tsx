@@ -16,17 +16,19 @@ const BooksTableHeader = () => {
 
     const sortBooks = React.useCallback(
         debounce(e => {
-            dispatch({ type: "THROTTLED_SORT", payload: e.target.cellIndex });
+            const payload = columns.sourceFields[e.target.cellIndex];
+            console.log(payload);
+            dispatch({ type: "THROTTLED_SORT", payload });
         }, 200),
         [dispatch]
     );
-
+    console.log("sortColumn", sortColumn);
     return (
         <tr onClick={sortBooks}>
             {columns.headers.map((item, index) => (
                 <Tooltip title={"Sortuj po " + item} key={uuid()} placement="top-start">
                     <th role="columnheader" className={`header__cell ${columns.classes[index]}`}>
-                        {sortColumn === index ? " " + item + createMarker(isSortOrderDescending) + " " : " " + item + " "}
+                        {sortColumn === columns.sourceFields[index] ? " " + item + createMarker(isSortOrderDescending) + " " : " " + item + " "}
                     </th>
                 </Tooltip>
             ))}

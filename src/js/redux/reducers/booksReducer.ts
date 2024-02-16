@@ -29,6 +29,7 @@ export const booksReducer = createReducer(initialState, builder => {
                 state.numberOfPages = manager.state.numberOfPages;
                 state.currentPageBooksData = manager.state.currentPageBooksData;
             }
+            console.log("payload", action.payload);
         })
 
         .addCase(changePage, (state, action) => {

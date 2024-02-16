@@ -86,7 +86,7 @@ export interface BooksState {
     books: Books;
     filter: FilteringCondition;
     currentPageNumber: number;
-    currentSortColumn: number | undefined;
+    currentSortColumn: string | undefined;
     isSortOrderDescending: boolean;
     numberOfPages: number;
     currentPageBooksData: Books;
