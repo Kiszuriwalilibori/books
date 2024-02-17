@@ -17,12 +17,10 @@ const BooksTableHeader = () => {
     const sortBooks = React.useCallback(
         debounce(e => {
             const payload = columns.sourceFields[e.target.cellIndex];
-            console.log(payload);
             dispatch({ type: "THROTTLED_SORT", payload });
         }, 200),
         [dispatch]
     );
-    console.log("sortColumn", sortColumn);
     return (
         <tr onClick={sortBooks}>
             {columns.headers.map((item, index) => (

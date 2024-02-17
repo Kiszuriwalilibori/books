@@ -87,4 +87,5 @@ export const columns = {
     classes: toArray(contentCellClassesObject),
     withButtons: toArray(withButtonsObject),
     sourceFields: [...toArray(sourceFieldsObject), NotSearchableFields.id],
+    filterFields: [...toArray(sourceFieldsObject)],
 };

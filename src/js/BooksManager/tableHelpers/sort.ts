@@ -79,7 +79,6 @@ const sorts = {
 export const sort = (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>) => {
     try {
         if (key) {
-            console.log("columns.contentCategories", columns.contentCategories);
             const numericalKey = columns.sourceFields.indexOf(key as SearchableFields.authors | SearchableFields.title | NotSearchableFields);
             const trim = trimFunctions[columns.contentCategories[numericalKey] as ContentCategoryEnum];
             sorts.general(data, isSortOrderDescending, key, trim);

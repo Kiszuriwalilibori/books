@@ -68,8 +68,12 @@ export enum NotSearchableFields {
     id = "id",
 }
 
+// type FilteringCondition = {
+//     [Item in ColumnHeaders]?: string;
+// };
+
 type FilteringCondition = {
-    [Item in ColumnHeaders]?: string;
+    [Item in SearchableFields | NotSearchableFields]?: string;
 };
 
 export type PathKeys = "not_found" | "error" | "data" | "details" | "books" | "search" | "load" | "landing" | "no_page";
@@ -82,13 +86,16 @@ export type BookID = { id: ID };
 
 export interface BooksState {
     data: Books;
+    // data:FlatBookRecord[];
     errorMessage: string;
     books: Books;
+    // books: FlatBookRecord[];
     filter: FilteringCondition;
     currentPageNumber: number;
     currentSortColumn: string | undefined;
     isSortOrderDescending: boolean;
     numberOfPages: number;
     currentPageBooksData: Books;
+    // currentPageBooksData: FlatBookRecord[];
     sort: null;
 }

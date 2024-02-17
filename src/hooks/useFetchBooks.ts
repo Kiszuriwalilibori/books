@@ -13,6 +13,7 @@ import { formatBooks } from "js/utils/formatFetchedBooks";
 interface FetchSummary {
     isError: boolean;
     data: Books;
+    // data:FlatBookRecord[];
     errorMessage: string;
 }
 
@@ -49,8 +50,8 @@ export const useFetchBooks = () => {
 
         const handleSuccess = (foundBooks: BookRecord[]) => {
             controller?.abort();
-            const y = formatBooks(foundBooks);
-            console.log("y", y);
+            const books = formatBooks(foundBooks); // puścić to
+            console.log("y", books);
             fetchSummary.data = FormatFetchedBooks.Run(foundBooks);
             storeBooks(fetchSummary.data);
             setIsFromNetwork(true);

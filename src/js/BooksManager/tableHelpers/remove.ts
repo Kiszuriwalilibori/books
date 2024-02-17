@@ -1,4 +1,5 @@
-import { Books, Book, BooksState, ID } from "types";
+import { aryToObj } from "js/utils";
+import { Book, BooksState, ID } from "types";
 
 /**
  * removes row from array of rows
@@ -10,7 +11,8 @@ export const remove = (books: BooksState["data"], bookID: ID) => {
     let remainingBooks = [...books];
     try {
         const comparator = (item: Book) => {
-            return item[item.length - 1] !== bookID;
+            const obj = aryToObj(item); // wystarczy tu usunąć
+            return obj.id !== bookID;
         };
 
         remainingBooks = books.filter(comparator);

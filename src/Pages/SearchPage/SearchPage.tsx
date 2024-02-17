@@ -1,8 +1,10 @@
 import * as React from "react";
+import uuid from "react-uuid";
 
-import { useFormik } from "formik";
-import { useTypedSelector } from "hooks/useTypedSelector";
 import { shallowEqual, useSelector } from "react-redux";
+import { useFormik } from "formik";
+
+import { useTypedSelector } from "hooks/useTypedSelector";
 import { FavoriteButton, SearchField } from "./components";
 import { validateInput, createURL } from "./utils";
 import { Alert, Button, LogoFactory } from "components";
@@ -58,7 +60,7 @@ export const SearchPage = () => {
                 <BookForm id="search__form">
                     <SearchInputs>
                         {Object.values(SearchPageField).map((fieldName: SearchPageField) => (
-                            <SearchField key={fieldName} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
+                            <SearchField key={uuid()} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
                         ))}
                     </SearchInputs>
                     <SearchButtons>

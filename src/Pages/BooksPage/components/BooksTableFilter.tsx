@@ -5,10 +5,22 @@ import { FilterField } from "./components";
 import { useFiltersVisibilityContext } from "contexts";
 import { useDispatchAction } from "hooks";
 import { columns } from "models";
-import { ColumnHeaders } from "types";
+import { ColumnHeaders, NotSearchableFields, SearchableFields } from "types";
+
+// type Filter = {
+//     [key in ColumnHeaders as string]: string;
+// };
+
+// const removeEmptyFields = (obj: Filter): Filter => {
+//     for (const x in obj) {
+//         if (obj[x] === "") delete obj[x];
+//     }
+
+//     return obj;
+// };
 
 type Filter = {
-    [key in ColumnHeaders as string]: string;
+    [key in SearchableFields | NotSearchableFields as string]: string;
 };
 
 const removeEmptyFields = (obj: Filter): Filter => {
@@ -25,13 +37,13 @@ const BooksTableFilter = () => {
     const { filterBooks } = useDispatchAction();
 
     if (!areFiltersVisible) return null;
-
+    const { headers, filterFields } = columns;
     return (
         <tr id="FiltrationArea">
-            {columns.headers.map((fieldName, index) => (
+            {filterFields.map((fieldName, index) => (
                 <td key={uuid()}>
                     <FilterField
-                        label={"filtruj po " + fieldName}
+                        label={"filtruj po " + headers[index]}
                         id={fieldName}
                         size="small"
                         variant="outlined"
@@ -39,6 +51,7 @@ const BooksTableFilter = () => {
                         {...register(fieldName)}
                         onChange={e => {
                             register(fieldName).onChange(e);
+                            const x = removeEmptyFields(getValues());
 
                             filterBooks(removeEmptyFields(getValues()));
                         }}
