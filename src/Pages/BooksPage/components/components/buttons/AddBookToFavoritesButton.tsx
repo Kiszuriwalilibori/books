@@ -8,7 +8,6 @@ import RoundIconButton from "./RoundIconButton";
 import { useFavoriteBooks } from "hooks";
 import { thunkAddBookToFavorites, ThunkAddBookToFavoritesArgs } from "js/redux/thunks";
 import { AppDispatch, Book, RootStateType } from "types";
-import { columns } from "models/columns";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
 import { FavoriteRecord } from "types/types";
 import { aryToObj } from "js/utils";

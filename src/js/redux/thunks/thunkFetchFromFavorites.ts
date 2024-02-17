@@ -9,7 +9,7 @@ import { FAVORITE_BOOK_IDENTIFIER } from "config";
 export function thunkFetchFromFavorites(): ThunkAction<void, RootStateType, unknown, AnyAction> {
     return dispatch => {
         try {
-            const favorites = new FilteredStorage(item => item.kind === FAVORITE_BOOK_IDENTIFIER);
+            const favorites = new FilteredStorage(item => item.kind === FAVORITE_BOOK_IDENTIFIER.kind);
             console.log("favorites", favorites.getAll());
             const retrievedFromFavorites = FormatFetchedBooks.Run(favorites.getAll() as BookRecord[]); // tu nie będzie trzeba nic formatować. favorites.getAll zwróci co trzeba
             dispatch(storeBooks(retrievedFromFavorites));

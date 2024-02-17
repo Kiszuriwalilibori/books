@@ -5,19 +5,7 @@ import { FilterField } from "./components";
 import { useFiltersVisibilityContext } from "contexts";
 import { useDispatchAction } from "hooks";
 import { columns } from "models";
-import { ColumnHeaders, NotSearchableFields, SearchableFields } from "types";
-
-// type Filter = {
-//     [key in ColumnHeaders as string]: string;
-// };
-
-// const removeEmptyFields = (obj: Filter): Filter => {
-//     for (const x in obj) {
-//         if (obj[x] === "") delete obj[x];
-//     }
-
-//     return obj;
-// };
+import { NotSearchableFields, SearchableFields } from "types";
 
 type Filter = {
     [key in SearchableFields | NotSearchableFields as string]: string;
@@ -27,7 +15,6 @@ const removeEmptyFields = (obj: Filter): Filter => {
     for (const x in obj) {
         if (obj[x] === "") delete obj[x];
     }
-
     return obj;
 };
 
@@ -50,9 +37,7 @@ const BooksTableFilter = () => {
                         margin="none"
                         {...register(fieldName)}
                         onChange={e => {
-                            register(fieldName).onChange(e);
-                            const x = removeEmptyFields(getValues());
-
+                            register(fieldName).onChange(e); /// tu się prosi jakaś refka
                             filterBooks(removeEmptyFields(getValues()));
                         }}
                         onMouseEnter={e => {
