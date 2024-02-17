@@ -22,7 +22,7 @@ export const BooksTableBody = (props: Props) => {
         <tbody>
             {bookObjects.map(book => (
                 <tr key={uuid()}>
-                    {columns.filterFields.map((item, index) => {
+                    {columns.fields.map((item, index) => {
                         return <Cell textContent={book[item] as string} index={index} book={book} key={uuid()} />;
                     })}
                 </tr>

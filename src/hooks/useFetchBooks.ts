@@ -50,8 +50,7 @@ export const useFetchBooks = () => {
 
         const handleSuccess = (foundBooks: BookRecord[]) => {
             controller?.abort();
-            const books = formatBooks(foundBooks); // puścić to
-            console.log("y", books);
+            const books = formatBooks(foundBooks); /// puścić to. Niewykluczone, że można by to preformatowanie wepchnąc do axiosa
             fetchSummary.data = FormatFetchedBooks.Run(foundBooks);
             storeBooks(fetchSummary.data);
             setIsFromNetwork(true);

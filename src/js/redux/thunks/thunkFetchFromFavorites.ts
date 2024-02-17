@@ -4,11 +4,12 @@ import { AnyAction } from "redux";
 import { BookRecord, RootStateType } from "types";
 import { FilteredStorage, FormatFetchedBooks } from "js/utils";
 import { storeBooks, setIsFromNetwork, showError } from "../actionCreators";
+import { FAVORITE_BOOK_IDENTIFIER } from "config";
 
 export function thunkFetchFromFavorites(): ThunkAction<void, RootStateType, unknown, AnyAction> {
     return dispatch => {
         try {
-            const favorites = new FilteredStorage(item => item.kind === "books#volume");
+            const favorites = new FilteredStorage(item => item.kind === FAVORITE_BOOK_IDENTIFIER);
             console.log("favorites", favorites.getAll());
             const retrievedFromFavorites = FormatFetchedBooks.Run(favorites.getAll() as BookRecord[]); // tu nie będzie trzeba nic formatować. favorites.getAll zwróci co trzeba
             dispatch(storeBooks(retrievedFromFavorites));

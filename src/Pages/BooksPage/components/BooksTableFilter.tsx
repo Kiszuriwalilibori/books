@@ -37,7 +37,7 @@ const BooksTableFilter = () => {
     const { filterBooks } = useDispatchAction();
 
     if (!areFiltersVisible) return null;
-    const { headers, filterFields } = columns;
+    const { headers, fields: filterFields } = columns;
     return (
         <tr id="FiltrationArea">
             {filterFields.map((fieldName, index) => (

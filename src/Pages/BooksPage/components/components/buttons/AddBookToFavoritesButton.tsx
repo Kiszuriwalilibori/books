@@ -11,6 +11,7 @@ import { AppDispatch, Book, RootStateType } from "types";
 import { columns } from "models/columns";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
 import { FavoriteRecord } from "types/types";
+import { aryToObj } from "js/utils";
 
 interface OwnProps {
     bookID: string;
@@ -23,10 +24,7 @@ interface Props extends OwnProps {
 }
 
 function createFavorite(book: Book) {
-    const obj = {} as any;
-    book.forEach((item, index) => {
-        obj[columns.sourceFields[index]] = item;
-    });
+    const obj = aryToObj(book);
     return { ...obj, ...FAVORITE_BOOK_IDENTIFIER } as FavoriteRecord;
 }
 
@@ -39,8 +37,8 @@ export const AddBookToFavoritesButton = (props: Props) => {
     const AddBookToFavorites = React.useCallback(
         debounce(() => {
             if (book) {
-                const favoriteBook = createFavorite(book);
-                const result = favoriteBooks.add(bookID, favoriteBook);
+                const favorite = createFavorite(book);
+                const result = favoriteBooks.add(bookID, favorite);
                 setFoo(result); // that is only to force render and update favorites this way
             }
         }, 200),
