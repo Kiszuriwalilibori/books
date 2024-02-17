@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 
 import { selectCanAddToFavorites } from "js/redux/selectors";
 import { RootStateType } from "types";
-import { AddBookToFavoritesButton, GoToShopButton, RemoveBookButton, RemoveBookFromFavoritesButton, ShowBookDetailsButton } from "./buttons";
-import { ButtonStack, TableCellWithButtonsBox } from "./styles";
+import { AddBookToFavoritesButton, GoToShopButton, RemoveBookButton, RemoveBookFromFavoritesButton, ShowBookDetailsButton } from "../buttons";
+import { ButtonStack, TableCellWithButtonsBox } from "./TableCellWithButtons.styles";
 
 interface Props {
     index: number;
@@ -16,7 +16,7 @@ interface Props {
     title: string;
 }
 
-export const Cell = (props: Props) => {
+export function Cell(props: Props) {
     let { cellContent, bookID, isFromFavorites, title } = props;
     const canAddToFavorites = useSelector(selectCanAddToFavorites);
 
@@ -34,10 +34,11 @@ export const Cell = (props: Props) => {
             </TableCellWithButtonsBox>
         </td>
     );
-};
+}
 
 const mapStateToProps = (state: RootStateType) => ({
     isFromFavorites: !state.dataSource.isNetwork,
 });
 
 export const TableCellWithButtons = connect(mapStateToProps, {})(Cell);
+export default TableCellWithButtons;

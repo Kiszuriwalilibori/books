@@ -1,7 +1,7 @@
 import uuid from "react-uuid";
 
 import { TableCellRegular } from "./TableCellRegular";
-import { TableCellWithButtons } from "./TableCellWithButtons";
+import { TableCellWithButtons } from "./TableCellWithButtons/TableCellWithButtons";
 import { columns } from "models";
 import { FlatBookRecord } from "types/types";
 
