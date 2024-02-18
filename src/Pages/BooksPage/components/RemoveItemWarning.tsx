@@ -7,6 +7,7 @@ import { Button } from "components";
 import { AlertBox, PageContainer } from "pages/styled";
 import { BookID } from "types/types";
 import debounce from "lodash/debounce";
+
 /**
  * @description Renders modal component with two option buttons: confirming remove and cancelling remove
  * @returns modal component
@@ -33,7 +34,7 @@ const RemoveItemWarning = React.forwardRef((props, ref) => {
                 <AlertBox>
                     <p>Jesteś bliski usunięcia jednej z książek. Czy na pewno ?</p>
                 </AlertBox>
-                <div className="search__buttons">
+                <div>
                     <Button onClick={handleRemove} className="button--problem" type="submit">
                         Usuń
                     </Button>
