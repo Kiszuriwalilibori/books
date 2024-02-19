@@ -1,21 +1,15 @@
 import { isEmpty } from "lodash";
 
-import { BooksState } from "types";
+import { BooksState, FilteringCondition, FlatBookRecord, FlatBookRecordKey } from "types";
 
-import { aryToObj } from "js/utils";
-
-interface Args {
-    [key: string]: any;
-}
-
-function compare(filter: Args, data: Args) {
-    let reducedData = {} as Args;
+function compare(filter: FilteringCondition, data: FlatBookRecord) {
+    let reducedData = {} as any;
     let result = true;
     for (const property in filter) {
-        reducedData[property] = data[property];
+        reducedData[property] = data[property as FlatBookRecordKey];
     }
     for (const property in reducedData) {
-        if (!reducedData[property].toLowerCase().includes(filter[property].toLowerCase())) {
+        if (!reducedData[property].toLowerCase().includes(filter[property as FlatBookRecordKey]!.toLowerCase())) {
             result = false;
         }
     }
@@ -23,12 +17,12 @@ function compare(filter: Args, data: Args) {
 }
 
 export const filtrate = (data: BooksState["data"], filtr: BooksState["filter"]) => {
-    let filtrationResult: typeof data = [];
+    let filtrateResult: typeof data = [];
 
     if (!isEmpty(filtr)) {
         const temporaryData = [...data];
-        filtrationResult = temporaryData.filter(row => compare(filtr, aryToObj(row))); // będzie wystarczało wyrzucić arytoobj w tym miejscu
-        return filtrationResult;
+        filtrateResult = temporaryData.filter(row => compare(filtr, row));
+        return filtrateResult;
     } else {
         return data;
     }

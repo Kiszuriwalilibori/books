@@ -37,7 +37,7 @@ const BooksTableFilter = () => {
                         margin="none"
                         {...register(fieldName)}
                         onChange={e => {
-                            register(fieldName).onChange(e); /// tu się prosi jakaś refka
+                            register(fieldName).onChange(e);
                             filterBooks(removeEmptyFields(getValues()));
                         }}
                         onMouseEnter={e => {

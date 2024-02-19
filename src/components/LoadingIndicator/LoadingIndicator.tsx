@@ -10,11 +10,10 @@ interface Props {
 }
 const LoadingIndicator = (props: Props) => {
     const { isLoading, areDetailsLoading = false } = props;
-
     const shouldRender = useDelayedCondition(isLoading || areDetailsLoading);
 
-    // if (!isLoading && !areDetailsLoading) return null;
     if (!shouldRender) return null;
+
     return (
         <Container>
             <ProgressIndicator thickness={5} size={100} />

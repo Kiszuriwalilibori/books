@@ -1,4 +1,4 @@
-import { BookDetails, Book, BookRecord, Books, BooksState, ColumnHeaders, FavoriteRecord, ID, SearchableFields, NotSearchableFields, PathKeys, FilterObject, RoundButtons, FlatBookRecord } from "./types";
+import { AllFields, BookDetails, Book, BookRecord, Books, BooksState, ColumnHeaders, FavoriteRecord, ID, SearchableFields, NotSearchableFields, PathKeys, FilterObject, RoundButtons, FlatBookRecord, FilteringCondition, FlatBookRecordKey } from "./types";
 
 import { RootStateType, AppDispatch } from "components/AppProvider";
 
@@ -10,4 +10,4 @@ import { ShowMessage } from "hooks/useMessage";
 
 export { SearchableFields, NotSearchableFields };
 
-export type { AppDispatch, Book, BookDetails, Books, BookRecord, BooksState, ColumnHeaders, FavoriteRecord, FilterObject, FavoriteBooks, FlatBookRecord, ID, PathKeys, RootStateType, RoundButtons, ShowMessage, ThunkAddBookToFavoritesArgs };
+export type { AllFields, AppDispatch, Book, BookDetails, Books, BookRecord, BooksState, ColumnHeaders, FavoriteRecord, FilterObject, FilteringCondition, FavoriteBooks, FlatBookRecord, FlatBookRecordKey, ID, PathKeys, RootStateType, RoundButtons, ShowMessage, ThunkAddBookToFavoritesArgs };

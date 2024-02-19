@@ -48,6 +48,8 @@ export interface FlatBookRecord extends Pick<BookDetails["volumeInfo"], "title" 
     id: BookDetails["id"];
 }
 
+export type FlatBookRecordKey = keyof FlatBookRecord;
+
 export interface FavoriteRecord extends FlatBookRecord {
     kind: string;
 }
@@ -68,12 +70,10 @@ export enum NotSearchableFields {
     id = "id",
 }
 
-// type FilteringCondition = {
-//     [Item in ColumnHeaders]?: string;
-// };
+export type AllFields = SearchableFields | NotSearchableFields;
 
-type FilteringCondition = {
-    [Item in SearchableFields | NotSearchableFields]?: string;
+export type FilteringCondition = {
+    [Item in FlatBookRecordKey]?: string;
 };
 
 export type PathKeys = "not_found" | "error" | "data" | "details" | "books" | "search" | "load" | "landing" | "no_page";
@@ -85,17 +85,14 @@ export type RoundButtons = "removeBook" | "addToFavorites" | "showFullInfo" | "r
 export type BookID = { id: ID };
 
 export interface BooksState {
-    data: Books;
-    // data:FlatBookRecord[];
-    errorMessage: string;
-    books: Books;
-    // books: FlatBookRecord[];
-    filter: FilteringCondition;
+    books: FlatBookRecord[];
+    currentPageBooksData: FlatBookRecord[];
     currentPageNumber: number;
-    currentSortColumn: string | undefined;
+    currentSortColumn: FlatBookRecordKey | undefined;
+    data: FlatBookRecord[];
+    errorMessage: string;
+    filter: FilteringCondition;
     isSortOrderDescending: boolean;
     numberOfPages: number;
-    currentPageBooksData: Books;
-    // currentPageBooksData: FlatBookRecord[];
     sort: null;
 }

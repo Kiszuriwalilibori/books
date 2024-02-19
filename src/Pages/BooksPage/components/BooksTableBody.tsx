@@ -1,26 +1,24 @@
-import { connect } from "react-redux";
 import uuid from "react-uuid";
-import { RootStateType } from "types";
+
+import { connect } from "react-redux";
+
 import Cell from "./components/Cell";
-import { aryToObj } from "js/utils";
+
 import { columns } from "models/columns";
+import { RootStateType } from "types";
 
 interface Props {
     books: RootStateType["books"]["currentPageBooksData"];
 }
 
 export const BooksTableBody = (props: Props) => {
-    const { books: booksRecords } = props;
+    const { books } = props;
 
-    if (!booksRecords || !booksRecords.length) return null;
-
-    const bookObjects = booksRecords.map(book => {
-        return aryToObj(book);
-    });
+    if (!books || !books.length) return null;
 
     return (
         <tbody>
-            {bookObjects.map(book => (
+            {books.map(book => (
                 <tr key={uuid()}>
                     {columns.fields.map((item, index) => {
                         return <Cell textContent={book[item] as string} index={index} book={book} key={uuid()} />;

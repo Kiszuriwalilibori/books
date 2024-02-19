@@ -23,5 +23,3 @@ export const useGoToShop = () => {
     return goToShop;
 };
 export default useGoToShop;
-
-// type GotoShop = (obj: { navigate: NavigateFunction; bookID: string }) => void;

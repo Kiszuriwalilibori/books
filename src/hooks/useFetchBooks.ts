@@ -12,8 +12,7 @@ import { formatBooks } from "js/utils/formatFetchedBooks";
 
 interface FetchSummary {
     isError: boolean;
-    data: Books;
-    // data:FlatBookRecord[];
+    data: FlatBookRecord[];
     errorMessage: string;
 }
 
@@ -50,8 +49,7 @@ export const useFetchBooks = () => {
 
         const handleSuccess = (foundBooks: BookRecord[]) => {
             controller?.abort();
-            const books = formatBooks(foundBooks); /// puścić to. Niewykluczone, że można by to preformatowanie wepchnąc do axiosa
-            fetchSummary.data = FormatFetchedBooks.Run(foundBooks);
+            fetchSummary.data = formatBooks(foundBooks);
             storeBooks(fetchSummary.data);
             setIsFromNetwork(true);
             setIsLoading(false);

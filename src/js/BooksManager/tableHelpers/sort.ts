@@ -1,4 +1,4 @@
-import { BooksState, NotSearchableFields, SearchableFields } from "types";
+import { AllFields, BooksState } from "types";
 
 import { columns, ContentCategoryEnum } from "models/columns";
 
@@ -8,59 +8,40 @@ type TrimFunctions = {
 };
 
 const trimFunctions: TrimFunctions = {
-    /**
-     * trims other then number-like strings
-     * @param str given string
-     * @returns trimmed string
-     */
     [ContentCategoryEnum.string]: (str: string) => {
         while (str.charCodeAt(0) <= 64 && str.length > 1) {
             str = str.slice(1);
         }
         return str;
     },
-    /**
-     * trims number-like strings
-     * @param str given string
-     * @returns trimmed string
-     */
+
     [ContentCategoryEnum.numericalString]: (str: string) => {
         while (str.charCodeAt(0) < 48 || str.charCodeAt(0) > 57) {
             str = str.slice(1);
         }
-
         return str;
     },
 };
 
 const sorts = {
-    /**
-     * performs sort on strings - general and number-like
-     * @param data
-     * @param isSortOrderDescending
-     * @param key
-     * @param trim
-     */
-
-    general: (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>, trim: TrimFunction) => {
-        data.sort((leftHand, rightHand) => {
-            const numericalKey = columns.sourceFields.indexOf(key as SearchableFields.authors | SearchableFields.title | NotSearchableFields);
-            const trimmedLeftHand = trim(leftHand[numericalKey]);
-            const trimmedRightHand = trim(rightHand[numericalKey]);
+    stringAndNumericalStringSortFunction: (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>, trim: TrimFunction) => {
+        data.sort((OneBook, OtherBook) => {
+            const trimmedOneBook = trim(OneBook[key] as string);
+            const trimmedOtherBook = trim(OtherBook[key] as string);
             if (isSortOrderDescending) {
-                if (trimmedLeftHand < trimmedRightHand) {
+                if (trimmedOneBook < trimmedOtherBook) {
                     return 1;
                 }
-                if (trimmedLeftHand > trimmedRightHand) {
+                if (trimmedOneBook > trimmedOtherBook) {
                     return -1;
                 }
 
                 return 0;
             }
-            if (trimmedLeftHand < trimmedRightHand) {
+            if (trimmedOneBook < trimmedOtherBook) {
                 return -1;
             }
-            if (trimmedLeftHand > trimmedRightHand) {
+            if (trimmedOneBook > trimmedOtherBook) {
                 return 1;
             }
 
@@ -69,19 +50,12 @@ const sorts = {
     },
 };
 
-/**
- * Sorts table
- * @param table array to be sorted.It is array of string arrays
- * @param isSortOrderDescending indicates order of sorting (true: decrasing false: increasing)
- * @param key index by which array will be sorted
- * @returns sorted array or same array in case of errors
- */
 export const sort = (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>) => {
     try {
         if (key) {
-            const numericalKey = columns.sourceFields.indexOf(key as SearchableFields.authors | SearchableFields.title | NotSearchableFields);
+            const numericalKey = columns.sourceFields.indexOf(key as Exclude<AllFields, "subject">);
             const trim = trimFunctions[columns.contentCategories[numericalKey] as ContentCategoryEnum];
-            sorts.general(data, isSortOrderDescending, key, trim);
+            sorts.stringAndNumericalStringSortFunction(data, isSortOrderDescending, key, trim);
         }
     } catch (err) {
         return data;

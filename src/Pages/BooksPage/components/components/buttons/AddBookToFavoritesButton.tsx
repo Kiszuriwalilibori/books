@@ -7,10 +7,8 @@ import RoundIconButton from "./RoundIconButton";
 
 import { useFavoriteBooks } from "hooks";
 import { thunkAddBookToFavorites, ThunkAddBookToFavoritesArgs } from "js/redux/thunks";
-import { AppDispatch, Book, RootStateType } from "types";
+import { AppDispatch, FlatBookRecord, RootStateType } from "types";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
-import { FavoriteRecord } from "types/types";
-import { aryToObj } from "js/utils";
 
 interface OwnProps {
     bookID: string;
@@ -18,13 +16,12 @@ interface OwnProps {
 
 interface Props extends OwnProps {
     thunkAddBookToFavorites: (arg0: ThunkAddBookToFavoritesArgs) => void;
-    book: Book | undefined;
+    book: FlatBookRecord | undefined;
     isLoading: RootStateType["loading"]["isLoading"];
 }
 
-function createFavorite(book: Book) {
-    const obj = aryToObj(book);
-    return { ...obj, ...FAVORITE_BOOK_IDENTIFIER } as FavoriteRecord;
+function createFavorite(book: FlatBookRecord) {
+    return { ...book, ...FAVORITE_BOOK_IDENTIFIER };
 }
 
 export const AddBookToFavoritesButton = (props: Props) => {
@@ -50,10 +47,9 @@ export const AddBookToFavoritesButton = (props: Props) => {
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
     thunkAddBookToFavorites: ({ bookID, favorites, navigate, showMessage }: ThunkAddBookToFavoritesArgs) => dispatch(thunkAddBookToFavorites({ bookID, favorites, navigate, showMessage })),
 });
-
 const mapStateToProps = (state: RootStateType, ownProps: OwnProps) => {
     return {
-        book: state.books.books.find(book => book[book.length - 1] === ownProps.bookID),
+        book: state.books.books.find(book => (book as FlatBookRecord).id === ownProps.bookID),
         isLoading: state.loading.isLoading,
     };
 };

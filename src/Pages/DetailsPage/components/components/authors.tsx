@@ -15,7 +15,6 @@ const Authors = (props: Props) => {
             <p id="authors" className="details__header details__strong">
                 {label + ":\xa0"}
             </p>
-            {/* <p className="details__item list__item">{stringifiedAuthors}</p> */}
             <ul>
                 {authors.map((author, index, authors) => (
                     <li className="details__item list__item " key={uuid()}>
