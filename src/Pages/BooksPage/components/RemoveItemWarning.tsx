@@ -2,7 +2,7 @@ import * as React from "react";
 import { Modal } from "@mui/material";
 
 import { useRemoveBookModalVisibilityContext } from "contexts";
-import { useDebouncedCallback, useDispatchAction } from "hooks";
+import { useDebouncedCallback, useDispatchAction, useInitialFocus } from "hooks";
 import { Button } from "components";
 import { AlertBox, PageContainer } from "pages/styled";
 import { BookID } from "types/types";
@@ -27,6 +27,7 @@ const RemoveItemWarning = React.forwardRef((props, ref) => {
     );
 
     const handleCancel = useDebouncedCallback<HTMLButtonElement>(closeModal);
+    const modalRef = React.useRef<any>(undefined);
 
     return (
         <Modal open={isRemoveBookModalVisible} aria-label={"remove warning modal"} role="dialog">

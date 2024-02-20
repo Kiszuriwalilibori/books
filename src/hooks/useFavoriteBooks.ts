@@ -16,7 +16,7 @@ export interface FavoriteBooks extends FilteredStorage<FavoriteRecord[]> {
 const useFavoriteBooks = () => {
     const { cacheSupported } = useDispatchAction();
     const showMessage = useMessage();
-    const favoriteBooks = new FilteredStorage(item => item.hasOwnProperty("kind") && item.kind === FAVORITE_BOOK_IDENTIFIER.kind) as FavoriteBooks;
+    const favoriteBooks = new FilteredStorage(item => item.hasOwnProperty("kind") && item.kind === FAVORITE_BOOK_IDENTIFIER) as FavoriteBooks;
 
     const showSize: typeof favoriteBooks.showSize = () => {
         const length = favoriteBooks.getLength();

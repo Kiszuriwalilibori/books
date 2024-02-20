@@ -47,6 +47,7 @@ const sorts = {
 
             return 0;
         });
+        return data; //
     },
 };
 
@@ -55,7 +56,9 @@ export const sort = (data: BooksState["books"], isSortOrderDescending: BooksStat
         if (key) {
             const numericalKey = columns.sourceFields.indexOf(key as Exclude<AllFields, "subject">);
             const trim = trimFunctions[columns.contentCategories[numericalKey] as ContentCategoryEnum];
-            sorts.stringAndNumericalStringSortFunction(data, isSortOrderDescending, key, trim);
+            // sorts.stringAndNumericalStringSortFunction(data, isSortOrderDescending, key, trim);
+            data = sorts.stringAndNumericalStringSortFunction(data, isSortOrderDescending, key, trim);
+            return data; // nowa linia
         }
     } catch (err) {
         return data;

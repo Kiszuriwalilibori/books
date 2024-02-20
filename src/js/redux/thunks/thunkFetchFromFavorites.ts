@@ -9,7 +9,7 @@ import { FAVORITE_BOOK_IDENTIFIER } from "config";
 export function thunkFetchFromFavorites(): ThunkAction<void, RootStateType, unknown, AnyAction> {
     return dispatch => {
         try {
-            const favorites = new FilteredStorage(item => item.kind === FAVORITE_BOOK_IDENTIFIER.kind);
+            const favorites = new FilteredStorage(item => item.kind === FAVORITE_BOOK_IDENTIFIER);
             const booksRetrievedFromFavorites = favorites.getAll();
             dispatch(storeBooks(booksRetrievedFromFavorites));
             dispatch(setIsFromNetwork(false));
