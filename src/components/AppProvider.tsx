@@ -1,6 +1,6 @@
 import React from "react";
 import thunk from "redux-thunk";
-import createSagaMiddleware from "redux-saga";
+// import createSagaMiddleware from "redux-saga";
 
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -11,14 +11,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SnackbarProvider } from "notistack";
 
-import { rootSaga } from "js/utils";
+// import { rootSaga } from "js/utils";
 import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, loadingReducer, onlineReducer } from "js/redux/reducers";
 import { FiltersVisibilityContextProvider, RemoveBookModalVisibilityContextProvider } from "contexts";
 
 import "../styles/App.css";
 
 const queryClient = new QueryClient();
-const saga = createSagaMiddleware();
+// const saga = createSagaMiddleware();
 
 const rootReducer = combineReducers({
     books: booksReducer,
@@ -32,7 +32,9 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
     reducer: rootReducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(saga).concat(thunk),
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware() /*.concat(saga)*/
+            .concat(thunk),
 });
 
 const AppProvider: React.FC = ({ children }) => {
@@ -59,7 +61,7 @@ const AppProvider: React.FC = ({ children }) => {
     );
 };
 
-saga.run(rootSaga);
+// saga.run(rootSaga);
 register();
 
 export default AppProvider;

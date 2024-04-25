@@ -1,7 +1,6 @@
 import { FavoriteRecord } from "types/types";
 import { LocalStorage, FilteredStorage } from "../js/utils";
-import useDispatchAction from "./useDispatchAction";
-import useMessage from "./useMessage";
+import { useDispatchAction, useMessage } from "hooks";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
 
 export interface FavoriteBooks extends FilteredStorage<FavoriteRecord[]> {

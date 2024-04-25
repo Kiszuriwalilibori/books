@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import Paths from "routing/Paths";
 import useMessage from "./useMessage";
-import useDispatchAction from "./useDispatchAction";
 
+import { useDispatchAction } from "hooks";
 import { BookRecord, FlatBookRecord } from "types";
 import { formatFetchedDataAsBooks, getValue, isErrorCode } from "js/utils";
 

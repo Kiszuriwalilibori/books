@@ -5,24 +5,24 @@ import { useDispatch, shallowEqual } from "react-redux";
 
 import { columns } from "models";
 import { Tooltip } from "components";
-import { useTypedSelector } from "hooks";
+import { useTypedSelector, useDispatchAction } from "hooks";
 
 const createMarker = (isSortOrderDescending: boolean) => (isSortOrderDescending ? " \u2193" : " \u2191");
 
 const BooksTableHeader = () => {
-    const dispatch = useDispatch();
     const isSortOrderDescending = useTypedSelector(state => state.books.isSortOrderDescending, shallowEqual);
     const sortColumn = useTypedSelector(state => state.books.currentSortColumn, shallowEqual);
+    const { sortBooks } = useDispatchAction();
 
-    const sortBooks = React.useCallback(
+    const handleSortClicked = React.useCallback(
         debounce(e => {
             const payload = columns.sourceFields[e.target.cellIndex];
-            dispatch({ type: "THROTTLED_SORT", payload });
+            sortBooks(payload);
         }, 200),
-        [dispatch]
+        []
     );
     return (
-        <tr onClick={sortBooks}>
+        <tr onClick={handleSortClicked}>
             {columns.headers.map((item, index) => (
                 <Tooltip title={"Sortuj po " + item} key={uuid()} placement="top-start">
                     <th role="columnheader" className={`header__cell ${columns.classes[index]}`}>
