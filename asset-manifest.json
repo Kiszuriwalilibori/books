@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/css/main.eb242c11.css",
-    "main.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/main.e317a199.js",
-    "static/js/689.810c978b.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/689.810c978b.chunk.js",
-    "static/js/820.c9f9be1d.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/820.c9f9be1d.chunk.js",
-    "static/js/508.83580dd1.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/508.83580dd1.chunk.js",
-    "static/js/720.c52ece93.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/720.c52ece93.chunk.js",
-    "static/js/682.196a14dc.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/682.196a14dc.chunk.js",
-    "static/js/23.39bcafb4.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/23.39bcafb4.chunk.js",
-    "static/js/284.e29339c6.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/284.e29339c6.chunk.js",
+    "main.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/main.9ac2ab22.js",
+    "static/js/689.6fd49176.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/689.6fd49176.chunk.js",
+    "static/js/820.0254fc78.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/820.0254fc78.chunk.js",
+    "static/js/508.6a884eee.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/508.6a884eee.chunk.js",
+    "static/js/720.dbee3eef.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/720.dbee3eef.chunk.js",
+    "static/js/858.d319ae9e.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/858.d319ae9e.chunk.js",
+    "static/js/23.49f1e20e.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/23.49f1e20e.chunk.js",
+    "static/js/284.16cf8a78.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/284.16cf8a78.chunk.js",
     "static/js/785.bcdbfcab.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/785.bcdbfcab.chunk.js",
     "static/js/529.b579a3e4.chunk.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/529.b579a3e4.chunk.js",
     "static/media/background.jpg": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/media/background.c0aaf140e426dc57da6a.jpg",
@@ -19,19 +19,19 @@
     "service-worker.js": "https://kiszuriwalilibori.github.io/google_books_router_redux/service-worker.js",
     "index.html": "https://kiszuriwalilibori.github.io/google_books_router_redux/index.html",
     "main.eb242c11.css.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/css/main.eb242c11.css.map",
-    "main.e317a199.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/main.e317a199.js.map",
-    "689.810c978b.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/689.810c978b.chunk.js.map",
-    "820.c9f9be1d.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/820.c9f9be1d.chunk.js.map",
-    "508.83580dd1.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/508.83580dd1.chunk.js.map",
-    "720.c52ece93.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/720.c52ece93.chunk.js.map",
-    "682.196a14dc.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/682.196a14dc.chunk.js.map",
-    "23.39bcafb4.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/23.39bcafb4.chunk.js.map",
-    "284.e29339c6.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/284.e29339c6.chunk.js.map",
+    "main.9ac2ab22.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/main.9ac2ab22.js.map",
+    "689.6fd49176.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/689.6fd49176.chunk.js.map",
+    "820.0254fc78.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/820.0254fc78.chunk.js.map",
+    "508.6a884eee.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/508.6a884eee.chunk.js.map",
+    "720.dbee3eef.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/720.dbee3eef.chunk.js.map",
+    "858.d319ae9e.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/858.d319ae9e.chunk.js.map",
+    "23.49f1e20e.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/23.49f1e20e.chunk.js.map",
+    "284.16cf8a78.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/284.16cf8a78.chunk.js.map",
     "785.bcdbfcab.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/785.bcdbfcab.chunk.js.map",
     "529.b579a3e4.chunk.js.map": "https://kiszuriwalilibori.github.io/google_books_router_redux/static/js/529.b579a3e4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eb242c11.css",
-    "static/js/main.e317a199.js"
+    "static/js/main.9ac2ab22.js"
   ]
 }
