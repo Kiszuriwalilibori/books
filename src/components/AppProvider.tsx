@@ -1,11 +1,14 @@
 import React from "react";
 import thunk from "redux-thunk";
+import storage from "redux-persist/lib/storage";
 // import createSagaMiddleware from "redux-saga";
 
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { HashRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 import { register } from "serviceWorkerRegistration";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -20,6 +23,12 @@ import "../styles/App.css";
 const queryClient = new QueryClient();
 // const saga = createSagaMiddleware();
 
+const persistConfig = {
+    key: "root",
+    storage,
+    whitelist: ["books", "details"],
+};
+
 const rootReducer = combineReducers({
     books: booksReducer,
     details: detailsReducer,
@@ -30,12 +39,19 @@ const rootReducer = combineReducers({
     online: onlineReducer,
 });
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-    reducer: rootReducer,
+    reducer: persistedReducer,
     middleware: getDefaultMiddleware =>
-        getDefaultMiddleware() /*.concat(saga)*/
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }) /*.concat(saga)*/
             .concat(thunk),
 });
+let persistor = persistStore(store);
 
 const AppProvider: React.FC = ({ children }) => {
     return (
@@ -49,11 +65,13 @@ const AppProvider: React.FC = ({ children }) => {
         >
             <QueryClientProvider client={queryClient}>
                 <Provider store={store}>
-                    <FiltersVisibilityContextProvider>
-                        <RemoveBookModalVisibilityContextProvider>
-                            <Router>{children}</Router>
-                        </RemoveBookModalVisibilityContextProvider>
-                    </FiltersVisibilityContextProvider>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <FiltersVisibilityContextProvider>
+                            <RemoveBookModalVisibilityContextProvider>
+                                <Router>{children}</Router>
+                            </RemoveBookModalVisibilityContextProvider>
+                        </FiltersVisibilityContextProvider>
+                    </PersistGate>
                 </Provider>
                 {process.env.NODE_ENV === "development" && <ReactQueryDevtools />}
             </QueryClientProvider>

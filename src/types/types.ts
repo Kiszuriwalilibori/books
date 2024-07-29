@@ -96,3 +96,9 @@ export interface BooksState {
     numberOfPages: number;
     sort: null;
 }
+
+export interface FetchSummary {
+    isError: boolean;
+    data: FlatBookRecord[];
+    errorMessage: string;
+}

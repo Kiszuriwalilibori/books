@@ -12,14 +12,18 @@ import { useFetchBooks } from "hooks/useFetchBooks";
 import { BookForm, PageContainer, SearchButtons, SearchInputs } from "pages/styled";
 import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initialValues, initialValidationState } from "./utils/model";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
+import createTotalNumberURL from "./utils/createTotalNumberURL";
+import { useGetTotalNumberOfBooks } from "hooks/useGetTotalNumber";
 
 export const SearchPage = () => {
     const [validated, setValidated] = React.useState(initialValidationState);
     const [URL, setURL] = React.useState("");
+    const [totalNumberURL, setTotalNumberURL] = React.useState("");
 
     const isLoading = useTypedSelector(state => state.loading.isLoading, shallowEqual);
     const isOnline = useSelector(isOnlineSelector);
     const fetchBooksFromAPI = useFetchBooks();
+    const getTotalNumberOfBooks = useGetTotalNumberOfBooks();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
@@ -30,6 +34,8 @@ export const SearchPage = () => {
             setValidated(isValidated);
             if (isValidated.isValid) {
                 setURL(createURL(formValues));
+                setTotalNumberURL(createTotalNumberURL(formValues));
+                console.log("totalnumber endpoint", createTotalNumberURL(formValues));
             }
         },
     });
@@ -43,6 +49,14 @@ export const SearchPage = () => {
         handleReset(null);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    // React.useEffect(() => {
+    //     let controller = new AbortController();
+    //     if (totalNumberURL) {
+    //         const x = getTotalNumberOfBooks(totalNumberURL, controller);
+    //         console.log("x", x);
+    //     }
+    //     return () => controller?.abort();
+    // }, [totalNumberURL]);
 
     React.useEffect(() => {
         let controller = new AbortController();
