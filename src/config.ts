@@ -8,4 +8,6 @@ export const BOOK_FIELDS = "&fields= items(id, volumeInfo/title, volumeInfo/auth
 export const FAVORITE_FIELDS = "?fields= id,kind, volumeInfo/title, volumeInfo/authors, volumeInfo/publishedDate, volumeInfo/language, volumeInfo/categories,volumeInfo/subtitle";
 
 export const FAVORITE_BOOK_IDENTIFIER = "books#volume";
+
+export const MAX_RESULTS = 40;
 // export const FAVORITE_BOOK_IDENTIFIER = { kind: "books#volume" };
