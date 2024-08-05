@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import Pagination from "./Pagination";
 import FiltersVisibilityToggler from "./FiltersVisibilityToggler";
 import LinkButton from "./LinkButton";
-import Paths from "routing/Paths";
+import Paths from "routing";
 
 import { useDispatchAction } from "hooks";
 import { Button } from "components";

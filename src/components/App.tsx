@@ -2,7 +2,7 @@ import loadable from "@loadable/component";
 
 import { Routes, Route } from "react-router-dom";
 
-import Paths from "routing/Paths";
+import Paths from "routing";
 
 import { WithCheckSupportForLocalStorage, WithLoadingIndicatorHOC } from "hocs";
 import { useHandleConnectionStatus } from "hooks";

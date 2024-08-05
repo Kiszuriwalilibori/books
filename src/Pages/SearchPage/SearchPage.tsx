@@ -15,8 +15,8 @@ import createTotalNumberURL from "./utils/createTotalNumberURL";
 
 export const SearchPage = () => {
     const [validated, setValidated] = React.useState(initialValidationState);
-    const [URL, setURL] = React.useState("");
-    const [totalNumberURL, setTotalNumberURL] = React.useState("");
+    const [BooksURL, setBooksURL] = React.useState("");
+    const [totalBooksNumberURL, setTotalBooksNumberURL] = React.useState("");
     const isLoading = useTypedSelector(state => state.loading.isLoading, shallowEqual);
     const isOnline = useSelector(isOnlineSelector);
     const getBooks = useGetBooks();
@@ -29,8 +29,8 @@ export const SearchPage = () => {
             const isValidated = validateInput(formValues);
             setValidated(isValidated);
             if (isValidated.isValid) {
-                setURL(createURL(formValues));
-                setTotalNumberURL(createTotalNumberURL(formValues));
+                setBooksURL(createURL(formValues));
+                setTotalBooksNumberURL(createTotalNumberURL(formValues));
             }
         },
     });
@@ -46,11 +46,11 @@ export const SearchPage = () => {
     }, []);
     React.useEffect(() => {
         let controller = new AbortController();
-        if (totalNumberURL && URL) {
-            getBooks(totalNumberURL, URL, controller);
+        if (totalBooksNumberURL && BooksURL) {
+            getBooks(totalBooksNumberURL, BooksURL, controller);
         }
         return () => controller?.abort();
-    }, [totalNumberURL, URL]);
+    }, [totalBooksNumberURL, BooksURL]);
 
     return (
         <>

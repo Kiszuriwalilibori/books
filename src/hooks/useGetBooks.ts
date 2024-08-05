@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import useDispatchAction from "./useDispatchAction";
-import useMessage from "./useMessage";
-import { BookRecord, FetchSummary } from "types/types";
-import Paths from "routing/Paths";
+
+import Paths from "routing";
+
+import { useMessage, useDispatchAction } from "hooks";
+import { BookRecord } from "types";
 import { formatFetchedDataAsBooks, getValue } from "js/utils";
 import { MAX_RESULTS } from "config";
-
-const INITIAL_FETCH_SUMMARY: FetchSummary = { isError: false, errorMessage: "", data: [] };
 
 const createEndpoints = (path: string, totalNumber: number) => {
     const numberOfPages = Math.ceil(totalNumber / MAX_RESULTS);
@@ -21,26 +20,19 @@ const createEndpoints = (path: string, totalNumber: number) => {
 
 export const useGetBooks = () => {
     const showMessage = useMessage();
-    const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
-    let fetchSummary = INITIAL_FETCH_SUMMARY;
-
     const navigate = useNavigate();
+    const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
 
     async function getBooks(path: string, URL: string, controller: AbortController) {
         const handleNotFound = () => {
             setIsLoading(false);
-            fetchSummary.isError = true;
-            fetchSummary.errorMessage = "Nie znaleziono książek spełniających podane kryteria";
-            showError(fetchSummary);
+            showError({ isError: true, errorMessage: "Nie znaleziono książek spełniających podane kryteria" });
             navigate(Paths.error);
         };
         const handleError = (response: any) => {
             setIsLoading(false);
             controller?.abort();
-            const message = getValue(response, "message") || "Unknown error";
-            fetchSummary.isError = true;
-            fetchSummary.errorMessage = message;
-            showError(fetchSummary);
+            showError({ isError: true, errorMessage: getValue(response, "message") || "Unknown error" });
             navigate(Paths.error);
         };
 

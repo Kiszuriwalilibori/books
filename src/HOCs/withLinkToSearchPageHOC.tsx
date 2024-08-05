@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Paths from "routing/Paths";
+import Paths from "routing";
 
 export function withLinkToSearchPageHOC<T>(Component: React.ComponentType<T>) {
     return (props: React.PropsWithChildren<T>) => (

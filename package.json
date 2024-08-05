@@ -1,7 +1,7 @@
 {
     "name": "books",
     "homepage": "http://kiszuriwalilibori.github.io/books",
-    "version": "1.5.3",
+    "version": "1.5.4",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.11.3",

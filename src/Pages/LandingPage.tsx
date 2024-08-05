@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import Paths from "routing/Paths";
+import Paths from "routing";
 
 import { LogoFactory } from "components";
 import { useDebouncedCallback } from "hooks";

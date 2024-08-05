@@ -1,5 +1,5 @@
-import createURL from "./createURL";
+import createBooksURL from "./createURL";
 import searchFields from "./searchFields";
 import validateInput from "./validateInput";
 
-export { createURL, searchFields, validateInput };
+export { createBooksURL as createURL, searchFields, validateInput };

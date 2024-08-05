@@ -28,7 +28,7 @@ const createTotalNumberURL = (fields: SearchFormValues): string => {
         fp.join("+")
     );
 
-    return PATH + stringifyKeys(searchKeys);
+    return PATH + stringifyKeys(searchKeys) + "&maxResults=1";
 };
 
 export default createTotalNumberURL;

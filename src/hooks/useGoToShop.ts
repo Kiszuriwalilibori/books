@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import Paths from "routing/Paths";
+import Paths from "routing";
 import useDispatchAction from "./useDispatchAction";
 
 const SHOP_URL = "https://books.google.pl/books?id=";

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import RoundIconButton from "./RoundIconButton";
-import Paths from "routing/Paths";
+import Paths from "routing";
 
 import { useDispatchAction } from "hooks";
 import { DETAILS_FIELDS, GOOGLE_API } from "config";

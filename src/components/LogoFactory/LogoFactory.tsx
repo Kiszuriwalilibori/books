@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useLocation } from "react-router-dom";
 
-import Paths from "routing/Paths";
+import Paths from "routing";
 import HiddenH1 from "./HiddenH1";
 import Logo from "./Logo";
 

@@ -195,6 +195,14 @@ removed withstyles in favor of styled
 junk files removed
 link to fetch details stored for re-fetch after page refresh
 
+### 1.5.3
+
+promise.allSettled for better fetching performance applied
+
+### 1.5.4
+
+When getting number of books, now only data for 1 is taken to limit transfer. Also, some redundant code is removed
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę

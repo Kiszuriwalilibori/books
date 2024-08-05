@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-import Paths from "routing/Paths";
+import Paths from "routing";
 
 import { Button } from "components";
 import { useFavoriteBooks } from "hooks";
