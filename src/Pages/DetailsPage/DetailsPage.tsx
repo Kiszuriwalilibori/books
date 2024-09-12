@@ -16,7 +16,6 @@ import { usePersistDetailsURL } from "hooks";
 const DetailsPage = () => {
     const URL = useSelector(currentURL);
     const storedURL = usePersistDetailsURL(URL);
-
     const { isLoading, error, data } = useQuery([storedURL], () => axios(storedURL), {
         staleTime: 60000,
         cacheTime: 60000,

@@ -207,92 +207,32 @@ When getting number of books, now only data for 1 is taken to limit transfer. Al
 
 ----001 convertToPolish pewnie trza by przerobić na mapę
 
--- 002 okazuje się, żo można dwukrotnie dodać książkę do pokaż pełne informacje co nie jest właściwe
-
--- 003 confirmation modal for deleting item
-
--- 004 To: <Grow in={true} timeout={1000}> <table className="table"> przerobić na 1 komponent
-
--- 005 SingleBook could be rendered with ReactQuery
-
--- 006 Do rozważenia czy nie przerobić switcha w tablebody na fabrykę funkcji. mógłby się nadać the commaqnd
-pattern z learning Java Script Design patterns wzrorzec fajny carmanagerexecute do powyższego.
-
-007 ewentualnie errory przez portal a nie podstronę
+----007 błędy przez notistacka a nie podstronę
 
 ----008 set or map instead of object in case of sorting/filtering
 
--- 009 niejasne dlaczego nie łapię błędu kiedy strona detailed info niedostępna z powodu braku internetu ale
-sprawdzić dokładniej czy napewno idzie proc błędu
+----010 Use the React-Redux Hooks API# -właściwie łapanie errora w fetch dziwnie wygląda czy nie prościej z ajaxem to zrobić
 
-010 Use the React-Redux Hooks API# -właściwie łapanie errora w fetch dziwnie wygląda czy nie prościej z ajaxem
-to zrobić
+----015 przyjrzeć sie remove i removefromfavorites dokładnie w kontekście usuwania z ulubionych bo wygląda dziwnie. Później: nie stwierdzono
 
---011 fetchsinglebook nie łapie errora kiedy dam do wyszukania jakiś dziwny adres
+---- 018 podczas walidacji po np. wyczyszczeniu nie znika informacja o błędzie a powinna,poza tym wywala tylko jedne błąd pola. Zawalczyć o yupa a przynajmniej poprawić
+Poza tym okienko walidacji przesuwa resztę w dół
 
-----012 w SearchSection pewenie by lepie useRef niż odwołania bezp do dom. Pózniej:nie stwierdzono.
-
-----w chrome w sytuacji kiedy było otwarte w ff jednoczesnie przy wpisywaniu tytułu pojawiają się jakies
-dziwne podpowiedzi. póxniej:nie stwierdzono
-
---013 <FullPageCenteredContainer> <CustomBox> <span className="notfound__item">Ojejku! coś poszło nie
-tak:</span> <br /> <span className="notfound__item">{errorMessage}</span> </CustomBox>
-</FullPageCenteredContainer> pojawia się dwa razy trzbe zrobić komponent z tego
-
---014 strony BooksNotFoundMessage i ConnectionErrorMessage importują podobną strukturę, przepisać z HOC
-
-----015 przyjrzeć sie remove i removefromfavorites dokładnie w kontekście usuwania z ulubionych bo wygląda
-dziwnie. Później: nie stwierdzono
-
---016 singlebook przeskakuje podczas używania klawisza do 'nastepny'.
-
---017 The problem is that someRef.current is mutable, so by the time the cleanup function runs, it may have
-been set to null. The solution is to capture any mutable values inside the effect - stwierdzono podczas próby
-upgradu do react 17.2
-
---018 podczas walidacji po np. wyczyszczeniu nie znika informacja o błędzie a powinna,poza tym wywala tylko
-jedne błąd pola. Zawalczyć o yupa a przynajmniej poprawić
-
---019 przywalidacji jeżeli mamy jedno pole dobrze a jedno źle ogólnie mamy dobrze - do rozważenia
-
---020 nazwy błędnych pól zwracane przez walidację nie odpowiadają podpisom
+----019 przywalidacji jeżeli mamy jedno pole dobrze a jedno źle ogólnie mamy dobrze - do rozważenia
 
 --021 bookstablefilter mógłby być z Formikiem albo React Form Hooks
 
---022 po naciśnięciu Wyczyść powinien znikać komunikat o błędzie walidacji
-
---023 informacja o items in storage powinna w jakimś modalu a nie w konsoli
-
---024 prawdopodobnie jedynym sensem dalszego istnienia tablic placeholdersArray oraz
-searchableFieldsNamesArray jest przerobienie ich na enumy, wziąć też pod uwagę nazwy wszystkich pól i zrobić
-to raz a dobrze.
-
 ----025 strona indywidualnej książki po wybraniu na scho jest
 pusta.<http://localhost:3000/books#/books/individual_book> Czy tak ma być czy komunikat o braku ksiązki do
-wyświetlenia.
+wyświetlenia. Nie jest pusta. Jest komunikat, że nie dostarczono adresu.
 
-026 problem, co pojawi się na podstronie po wybraniu jej z palca na sucho bez żadnych danych. Zdaje się że to
+----026 problem, co pojawi się na podstronie po wybraniu jej z palca na sucho bez żadnych danych. Zdaje się że to
 przekrojowe zagadnienie wszystkich projektów do ogarnięcia przez referencje albo local storage. W
 rzecyzwistości sprowadza się to do decyzji co do <http://localhost:3000/books#/books/books> czy ma być tabelka
-pusta, czy nie.
+pusta, czy nie. Byłbym chyba za komunikatem, że nie wybrano książek.
 
-----028 paginacja: kiedy usuwamy książki z widoku i dochodzi do jednej strony nadal widać guzik 'poprzedni' i
+--028 paginacja: kiedy usuwamy książki z widoku i dochodzi do jednej strony nadal widać guzik 'poprzedni' i
 tak zostanie, tak to przyszło z materialUI
-
-----030 Pagination przepisać na składnię funkcyjną albo inną z wyraźnym return i function dla testowania.
-Chyba jednak nie, to jest Material a materiala nie testujemy.
-
-031 To zwraca tabelę obiektów a apka jest przystosowana do tabeli tabel. Zadanie na daleką przyszłość to
-przepisac na obiekty
-
---032 rzuca błąd po kliknięciu na tabeli ale NIE w guzik
-
---033 manipulator na function chaining
-
-----034 nie działa persist, czy nie da się przerobić useLocalStorage z pakietu tak, żeby brało jak persist.
-Raczej nie były próby liczne. Saga coś tu wnosi nie właściwego
-
---035 typy BookRecord i BookRecordsArray prawdopodobnie dublują się z TableDataType i TableRow
 
 --36 tableHelpers pewnie by lepiej było bardziej zintegrować z BooksManagerem
 
@@ -300,11 +240,6 @@ Raczej nie były próby liczne. Saga coś tu wnosi nie właściwego
 czy to tak ma właśnie być. Jeżeli tak to robi Google Books to nie poradzę
 
 --38 Do przepisania na usedispatch: SnackBar/ToggleSnackbar
-
---39 naprawić działanie tooltipa przy guziku remove
-
---40 apka źle reaguje na błąd braku internetu, conajmniej przy pobieraniu detali oraz przy poczatkowym
-wyszukiwaniu
 
 41 poprawić test sortowania bo jest zmiana w metodzie sortowania (jest tabela którą trzeba by zmockować
 zamiast używać magicznych wartości)
@@ -314,10 +249,23 @@ domyslnymi wartościami albo zrobić opcjonalne albo jedno i drugie.
 
 43 dograć extended assertions i przejrzeć testy
 
-----44 przemysleć Action Button w połaczeniu z useGotoshop czy podobnymi konstrukcjami i podjąc decyzję czy
-idziemy w tę stronę. Wtedy ewentualnie dopisac testy Nie idziemy w tę stronę
-
 45 Ze względu na zmiany w konstrukcji sprawdzanie pod kątem IE nie jest realizowane, czy da się to obejść.
+
+----046 modal ostrzegający przed uwunięciem maniebieską ramkę wskazującą na focusa Czy to musi być bo wygląda psakudnie a normalnie tego nie widuje się w modalach w modalu ostrzegającym przed usunięciem initial focus powinien być na pozostaw BYła próba ale chyba najpierw trzeba przerowbić cały modal. Na dzieńdobry modal jako całość ma focus. Żaden myk z initialfocus tego nie zmienia Aczkolwiek nawigacja wewnątrz działa.
+
+----047 Sprawdzić czy takie uzycie getBooks w useEffect nie powoduje przepełnienia. Ogólnie tam, gdzie są pobierane i używane dane. Cofnąć się do artykułu na temat
+
+----048 dziwna sytuacja z logiką po stronie API:
+
+https://www.googleapis.com/books/v1/volumes?q=john
+powyższe zwraca niby 773 rekordy
+https://www.googleapis.com/books/v1/volumes?q=intitle:john
+zwraca tylko 200. I każde gdzie jest intitle itd zwraca nie więcej niż 200
+jeżeli tak będzie to trza by doać opcję keyword do wyszukiwania
+
+----049 dwa razy zdarzył się przypadek, że po pobraniu z favorites i przesortowaniu zwracało pustą tabelę. Może sort wymaga uproszczenia w sensie wywalenia try catch
+
+---- 050 jeżeli paginacja nie zawiera stron nie powinna być wogóle widoczna. Tyle, że nie bardzo jest jak to zrobić - propsy do pagination przekazywane są niejawnie.
 
 ### License
 

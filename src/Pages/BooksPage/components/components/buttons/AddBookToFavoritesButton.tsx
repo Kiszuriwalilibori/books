@@ -5,7 +5,7 @@ import { debounce } from "lodash";
 
 import RoundIconButton from "./RoundIconButton";
 
-import { useFavoriteBooks } from "hooks";
+import { useFavoriteBooks, useForceRender } from "hooks";
 
 import { FlatBookRecord, RootStateType } from "types";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
@@ -26,7 +26,7 @@ function createFavorite(book: FlatBookRecord) {
 export const AddBookToFavoritesButton = (props: Props) => {
     const { bookID, isLoading, book } = props;
     const { favoriteBooks } = useFavoriteBooks();
-    const [foo, setFoo] = useState(false);
+    const forceRender = useForceRender();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const AddBookToFavorites = React.useCallback(
@@ -34,7 +34,7 @@ export const AddBookToFavoritesButton = (props: Props) => {
             if (book) {
                 const favorite = createFavorite(book);
                 const result = favoriteBooks.add(bookID, favorite);
-                setFoo(result); // that is only to force render and update favorites this way
+                forceRender(result);
             }
         }, 200),
         [favoriteBooks, bookID]
