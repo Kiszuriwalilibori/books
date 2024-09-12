@@ -203,6 +203,11 @@ promise.allSettled for better fetching performance applied
 
 When getting number of books, now only data for 1 is taken to limit transfer. Also, some redundant code is removed
 
+### 1.5.5
+
+050 fixed
+better logic for updating component after localstorage change
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę
@@ -265,7 +270,7 @@ jeżeli tak będzie to trza by doać opcję keyword do wyszukiwania
 
 ----049 dwa razy zdarzył się przypadek, że po pobraniu z favorites i przesortowaniu zwracało pustą tabelę. Może sort wymaga uproszczenia w sensie wywalenia try catch
 
----- 050 jeżeli paginacja nie zawiera stron nie powinna być wogóle widoczna. Tyle, że nie bardzo jest jak to zrobić - propsy do pagination przekazywane są niejawnie.
+--050 jeżeli paginacja nie zawiera stron nie powinna być wogóle widoczna.
 
 ### License
 
