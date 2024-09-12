@@ -14,7 +14,7 @@ export const ErrorPage = () => {
     }, [navigate]);
 
     useEffect(() => {
-        let timer = setTimeout(() => gotoPreviousPage(), 10000);
+        let timer = setTimeout(() => gotoPreviousPage(), 3000);
         return () => {
             clearTimeout(timer);
         };
