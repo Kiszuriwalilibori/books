@@ -6,7 +6,18 @@ import { changePage } from "js/redux/actionCreators";
 import { AppDispatch, RootStateType } from "types/index";
 import { StyledPagination } from "./Pagination.styles";
 import { PaginationProps } from "@mui/material/Pagination";
-
+interface Props {
+    page: number;
+    count: number;
+    variant: PaginationProps["variant"];
+    color: PaginationProps["color"];
+    onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
+}
+const X = (props: Props) => {
+    const { page, count, variant, color, onChange } = props;
+    if (count === 0) return null;
+    return <StyledPagination page={page} count={count} variant={variant} color={color} onChange={onChange} />;
+};
 const mapStateToProps = (state: RootStateType) => ({
     page: state.books.currentPageNumber,
     count: state.books.numberOfPages,
@@ -21,6 +32,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     },
 });
 
-const Pagination = connect(mapStateToProps, mapDispatchToProps)(StyledPagination);
+const Pagination = connect(mapStateToProps, mapDispatchToProps)(X);
 
 export default Pagination;
