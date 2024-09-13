@@ -5,18 +5,24 @@ import { shallowEqual, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
 import { FavoriteButton, SearchField } from "./components";
-import { validateInput, createURL } from "./utils";
+import { createFilter, createTotalNumberURL, createURL, validateInput } from "./utils";
 import { Alert, Button, LogoFactory } from "components";
-import { useGetBooks, useTypedSelector } from "hooks";
+import { useEnhancedState, useGetBooks, useTypedSelector } from "hooks";
 import { BookForm, PageContainer, SearchButtons, SearchInputs } from "pages/styled";
 import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initialValues, initialValidationState } from "./utils/model";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
-import createTotalNumberURL from "./utils/createTotalNumberURL";
+
+import { BooksState } from "types/index";
 
 export const SearchPage = () => {
+    const formID = uuid();
+
     const [validated, setValidated] = React.useState(initialValidationState);
+
     const [BooksURL, setBooksURL] = React.useState("");
     const [totalBooksNumberURL, setTotalBooksNumberURL] = React.useState("");
+    const [filter, setFilter] = useEnhancedState<undefined | BooksState["filter"]>(undefined);
+
     const isLoading = useTypedSelector(state => state.loading.isLoading, shallowEqual);
     const isOnline = useSelector(isOnlineSelector);
     const getBooks = useGetBooks();
@@ -31,6 +37,7 @@ export const SearchPage = () => {
             if (isValidated.isValid) {
                 setBooksURL(createURL(formValues));
                 setTotalBooksNumberURL(createTotalNumberURL(formValues));
+                setFilter(createFilter(formValues as Partial<SearchFormValues>));
             }
         },
     });
@@ -46,25 +53,26 @@ export const SearchPage = () => {
     }, []);
     React.useEffect(() => {
         let controller = new AbortController();
+
         if (totalBooksNumberURL && BooksURL) {
-            getBooks(totalBooksNumberURL, BooksURL, controller);
+            getBooks(totalBooksNumberURL, BooksURL, controller, filter);
         }
         return () => controller?.abort();
-    }, [totalBooksNumberURL, BooksURL]);
+    }, [totalBooksNumberURL, BooksURL, filter]);
 
     return (
         <>
             <PageContainer maxWidth={false} disableGutters={true} sx={{ alignItems: "unset" }}>
                 <LogoFactory />
                 <Alert shouldRender={!validated.isValid} alertMessage={validated.message} />
-                <BookForm id="search__form">
+                <BookForm id={formID}>
                     <SearchInputs>
                         {Object.values(SearchPageField).map((fieldName: SearchPageField) => (
                             <SearchField key={uuid()} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
                         ))}
                     </SearchInputs>
                     <SearchButtons>
-                        <Button form="search__form" disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
+                        <Button form={formID} disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
                             Szukaj
                         </Button>
 

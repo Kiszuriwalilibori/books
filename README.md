@@ -208,6 +208,10 @@ When getting number of books, now only data for 1 is taken to limit transfer. Al
 050 fixed
 better logic for updating component after localstorage change
 
+### 1.5.6
+
+043 fixed
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę
@@ -260,7 +264,7 @@ domyslnymi wartościami albo zrobić opcjonalne albo jedno i drugie.
 
 ----047 Sprawdzić czy takie uzycie getBooks w useEffect nie powoduje przepełnienia. Ogólnie tam, gdzie są pobierane i używane dane. Cofnąć się do artykułu na temat
 
-----048 dziwna sytuacja z logiką po stronie API:
+--048 dziwna sytuacja z logiką po stronie API:
 
 https://www.googleapis.com/books/v1/volumes?q=john
 powyższe zwraca niby 773 rekordy

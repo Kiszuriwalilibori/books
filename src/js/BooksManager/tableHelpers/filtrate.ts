@@ -16,7 +16,8 @@ function compare(filter: FilteringCondition, data: FlatBookRecord) {
     return result;
 }
 
-export const filtrate = (data: BooksState["data"], filtr: BooksState["filter"]) => {
+export const filtrate = (data: BooksState["data"], filtr: BooksState["filter"] | undefined) => {
+    if (filtr === undefined) return data;
     let filtrateResult: typeof data = [];
 
     if (!isEmpty(filtr)) {

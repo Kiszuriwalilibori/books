@@ -20,7 +20,6 @@ function areDeeplyEqual(x: any, y: any): boolean {
         if (keys1.length !== keys2.length || !keys1.every(key => keys2.includes(key))) return false;
 
         for (let key in x) {
-            console.log(x[key], y[key]);
             let isEqual = areDeeplyEqual(x[key], y[key]);
             if (!isEqual) {
                 return false;

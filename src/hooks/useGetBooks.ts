@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Paths from "routing";
 
 import { useMessage, useDispatchAction } from "hooks";
-import { BookRecord } from "types";
+import { BookRecord, FilteringCondition } from "types";
 import { formatFetchedDataAsBooks, getValue } from "js/utils";
 import { MAX_RESULTS } from "config";
+import { filtrate } from "../js/BooksManager/tableHelpers/filtrate";
 
 const createEndpoints = (path: string, totalNumber: number) => {
     const numberOfPages = Math.ceil(totalNumber / MAX_RESULTS);
@@ -23,7 +24,7 @@ export const useGetBooks = () => {
     const navigate = useNavigate();
     const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
 
-    async function getBooks(path: string, URL: string, controller: AbortController) {
+    async function getBooks(path: string, URL: string, controller: AbortController, filter: FilteringCondition | undefined = undefined) {
         const handleNotFound = () => {
             setIsLoading(false);
             showError({ isError: true, errorMessage: "Nie znaleziono książek spełniających podane kryteria" });
@@ -39,7 +40,7 @@ export const useGetBooks = () => {
         const handleSuccess = (foundBooks: BookRecord[]) => {
             setIsLoading(false);
             controller?.abort();
-            storeBooks(formatFetchedDataAsBooks(foundBooks));
+            storeBooks(filtrate(formatFetchedDataAsBooks(foundBooks), filter));
             setIsFromNetwork(true);
             showMessage.success(`Poprawnie pobrano dane, łącznie pobrano ${foundBooks.length.toString()} książek`);
             navigate(Paths.books);
