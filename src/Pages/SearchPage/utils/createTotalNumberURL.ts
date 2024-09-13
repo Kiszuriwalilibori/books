@@ -16,7 +16,7 @@ export interface BookSearchPattern {
 
 const createTotalNumberURL = (fields: SearchFormValues): string => {
     const PATH = "https://www.googleapis.com/books/v1/volumes?q=";
-
+    const MAX_RESULTS = "&maxResults=1";
     const searchKeys = { inauthor: fields.authors, intitle: fields.title, subject: fields.subject };
 
     const stringifyKeys = fp.flow(
@@ -28,7 +28,7 @@ const createTotalNumberURL = (fields: SearchFormValues): string => {
         fp.join("+")
     );
 
-    return PATH + stringifyKeys(searchKeys) + "&maxResults=1";
+    return fields.keyword ? PATH + fields.keyword + MAX_RESULTS : PATH + stringifyKeys(searchKeys) + MAX_RESULTS;
 };
 
 export default createTotalNumberURL;
