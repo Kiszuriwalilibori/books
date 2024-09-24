@@ -8,7 +8,7 @@ import { ITEMS_PER_PAGE } from "config";
  * @param limit number of pages in the array
  * @returns array with rows being content of current page
  */
-export const sliceSinglePageData = (index: number, dataArray: BooksState["books"], limit: number): BooksState["books"] => {
+export const getSinglePageData = (index: number, dataArray: BooksState["books"], limit: number): BooksState["books"] => {
     if (index > limit) index = limit;
     const first = ITEMS_PER_PAGE * (index - 1);
     const last = first + ITEMS_PER_PAGE > dataArray.length ? dataArray.length : first + ITEMS_PER_PAGE;
@@ -16,4 +16,4 @@ export const sliceSinglePageData = (index: number, dataArray: BooksState["books"
     return dataArray.slice(first, last);
 };
 
-export default sliceSinglePageData;
+export default getSinglePageData;

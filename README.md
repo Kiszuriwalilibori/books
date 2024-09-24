@@ -262,7 +262,7 @@ domyslnymi wartościami albo zrobić opcjonalne albo jedno i drugie.
 
 ----046 modal ostrzegający przed uwunięciem maniebieską ramkę wskazującą na focusa Czy to musi być bo wygląda psakudnie a normalnie tego nie widuje się w modalach w modalu ostrzegającym przed usunięciem initial focus powinien być na pozostaw BYła próba ale chyba najpierw trzeba przerowbić cały modal. Na dzieńdobry modal jako całość ma focus. Żaden myk z initialfocus tego nie zmienia Aczkolwiek nawigacja wewnątrz działa.
 
-----047 Sprawdzić czy takie uzycie getBooks w useEffect nie powoduje przepełnienia. Ogólnie tam, gdzie są pobierane i używane dane. Cofnąć się do artykułu na temat
+--047 Sprawdzić czy takie uzycie getBooks w useEffect nie powoduje przepełnienia. Ogólnie tam, gdzie są pobierane i używane dane. Cofnąć się do artykułu na temat
 
 --048 dziwna sytuacja z logiką po stronie API:
 
