@@ -12,8 +12,8 @@ type Filter = {
 };
 
 const removeEmptyFields = (obj: Filter): Filter => {
-    for (const x in obj) {
-        if (obj[x] === "") delete obj[x];
+    for (const field in obj) {
+        if (obj[field] === "") delete obj[field];
     }
     return obj;
 };

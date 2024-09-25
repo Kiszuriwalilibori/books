@@ -9,11 +9,11 @@ interface Props {
     ISBNData: ISBNNumber[];
 }
 
-const insertComa = (x: number, arry: { type: string; identifier: string }[]) => {
-    return x === arry.length - 1 ? "\xa0" : ",\xa0";
+const insertComa = (index: number, arry: { type: string; identifier: string }[]) => {
+    return index === arry.length - 1 ? "\xa0" : ",\xa0";
 };
-const insertColon = (x: number, arry: string[]) => {
-    return x === arry.length - 1 ? "" : ":\xa0";
+const insertColon = (index: number, arry: string[]) => {
+    return index === arry.length - 1 ? "" : ":\xa0";
 };
 
 const stringifyISBN = (ISBNData: ISBNNumber[]) => {

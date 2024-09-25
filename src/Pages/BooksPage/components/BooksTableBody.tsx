@@ -6,19 +6,22 @@ import Cell from "./components/Cell";
 
 import { columns } from "models/columns";
 import { RootStateType } from "types";
+import getSinglePageData from "js/BooksManager/tableHelpers/getSinglePageData";
 
 interface Props {
-    thisPageBooks: RootStateType["books"]["currentPageBooksData"];
+    books: RootStateType["books"]["books"];
+    pageNumber: RootStateType["books"]["currentPageNumber"];
+    numberOfPages: RootStateType["books"]["numberOfPages"];
 }
 
 export const BooksTableBody = (props: Props) => {
-    const { thisPageBooks } = props;
-
-    if (!thisPageBooks || !thisPageBooks.length) return null;
+    const { books, pageNumber, numberOfPages } = props;
+    const data = getSinglePageData(pageNumber, books, numberOfPages);
+    if (!data || !data.length) return null;
 
     return (
         <tbody>
-            {thisPageBooks.map(book => (
+            {data.map(book => (
                 <tr key={uuid()}>
                     {columns.fields.map((item, index) => {
                         return <Cell textContent={book[item] as string} index={index} book={book} key={uuid()} />;
@@ -30,7 +33,9 @@ export const BooksTableBody = (props: Props) => {
 };
 
 const mapStateToProps = (state: RootStateType) => ({
-    thisPageBooks: state.books.currentPageBooksData,
+    books: state.books.books,
+    pageNumber: state.books.currentPageNumber,
+    numberOfPages: state.books.numberOfPages,
 });
 
 export default connect(mapStateToProps, {})(BooksTableBody);

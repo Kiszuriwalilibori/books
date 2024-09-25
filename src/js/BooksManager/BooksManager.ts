@@ -47,25 +47,24 @@ export class BooksManager extends Manager {
             this.state.currentSortColumn = column;
         }
         if (Array.isArray(this.state.data) && this.state.data.length) {
-            this.state.data = this.helpers.sort(this.state.data, this.state.isSortOrderDescending, this.state.currentSortColumn as NonNullable<BooksState["currentSortColumn"]>);
+            this.state.books = this.helpers.sort(this.state.books, this.state.isSortOrderDescending, this.state.currentSortColumn as NonNullable<BooksState["currentSortColumn"]>);
         }
 
         return this;
     }
     protected _filter(payload?: BooksState["filter"]) {
         if (payload) this.state.filter = payload;
-        this.state.data = this.helpers.filtrate([...this.state.data], this.state.filter);
+        this.state.books = this.helpers.filtrate([...this.state.data], this.state.filter);
 
         return this;
     }
     protected _changePage(newPage?: BooksState["currentPageNumber"]) {
         if (newPage) this.state.currentPageNumber = newPage;
-        this.state.currentPageBooksData = this.helpers.getSinglePageData(this.state.currentPageNumber, this.state.data, this.helpers.getNumberOfPages(this.state.data));
 
         return this;
     }
     protected _setNumberOfPages() {
-        this.state.numberOfPages = this.helpers.getNumberOfPages(this.state.data);
+        this.state.numberOfPages = this.helpers.getNumberOfPages(this.state.books);
 
         return this;
     }
@@ -75,6 +74,6 @@ export class BooksManager extends Manager {
         this.state.data = data;
         this.state.books = data;
         this.state.numberOfPages = this.helpers.getNumberOfPages(data);
-        this.state.currentPageBooksData = this.helpers.getSinglePageData(1, data, this.helpers.getNumberOfPages(data));
+        this.state.currentPageNumber = 1;
     }
 }

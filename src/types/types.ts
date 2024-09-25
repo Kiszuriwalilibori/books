@@ -86,7 +86,6 @@ export type BookID = { id: ID };
 
 export interface BooksState {
     books: FlatBookRecord[];
-    currentPageBooksData: FlatBookRecord[];
     currentPageNumber: number;
     currentSortColumn: FlatBookRecordKey | undefined;
     data: FlatBookRecord[];
@@ -94,5 +93,4 @@ export interface BooksState {
     filter: FilteringCondition;
     isSortOrderDescending: boolean;
     numberOfPages: number;
-    sort: null;
 }

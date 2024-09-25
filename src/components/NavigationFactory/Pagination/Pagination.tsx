@@ -3,7 +3,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import { changePage } from "js/redux/actionCreators";
-import { AppDispatch, RootStateType } from "types/index";
+import { AppDispatch, RootStateType } from "types";
 import { StyledPagination } from "./Pagination.styles";
 import { PaginationProps } from "@mui/material/Pagination";
 interface Props {
@@ -13,8 +13,9 @@ interface Props {
     color: PaginationProps["color"];
     onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
-const X = (props: Props) => {
+const PaginationWithProps = (props: Props) => {
     const { page, count, variant, color, onChange } = props;
+
     if (count === 0) return null;
     return <StyledPagination page={page} count={count} variant={variant} color={color} onChange={onChange} />;
 };
@@ -32,6 +33,6 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     },
 });
 
-const Pagination = connect(mapStateToProps, mapDispatchToProps)(X);
+const Pagination = connect(mapStateToProps, mapDispatchToProps)(PaginationWithProps);
 
 export default Pagination;

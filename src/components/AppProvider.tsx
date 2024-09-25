@@ -22,16 +22,10 @@ import "../styles/App.css";
 
 const queryClient = new QueryClient();
 
-// const persistConfig = {
-//     key: "root",
-//     storage,
-//     whitelist: ["books", "details"],
-// };
-
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: [],
+    whitelist: ["books", "details"],
 };
 
 const rootReducer = combineReducers({
