@@ -21,12 +21,17 @@ import { FiltersVisibilityContextProvider, RemoveBookModalVisibilityContextProvi
 import "../styles/App.css";
 
 const queryClient = new QueryClient();
-// const saga = createSagaMiddleware();
+
+// const persistConfig = {
+//     key: "root",
+//     storage,
+//     whitelist: ["books", "details"],
+// };
 
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["books", "details"],
+    whitelist: [],
 };
 
 const rootReducer = combineReducers({

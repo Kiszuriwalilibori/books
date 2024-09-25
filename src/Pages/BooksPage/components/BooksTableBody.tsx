@@ -8,17 +8,17 @@ import { columns } from "models/columns";
 import { RootStateType } from "types";
 
 interface Props {
-    books: RootStateType["books"]["currentPageBooksData"];
+    thisPageBooks: RootStateType["books"]["currentPageBooksData"];
 }
 
 export const BooksTableBody = (props: Props) => {
-    const { books } = props;
+    const { thisPageBooks } = props;
 
-    if (!books || !books.length) return null;
+    if (!thisPageBooks || !thisPageBooks.length) return null;
 
     return (
         <tbody>
-            {books.map(book => (
+            {thisPageBooks.map(book => (
                 <tr key={uuid()}>
                     {columns.fields.map((item, index) => {
                         return <Cell textContent={book[item] as string} index={index} book={book} key={uuid()} />;
@@ -30,7 +30,7 @@ export const BooksTableBody = (props: Props) => {
 };
 
 const mapStateToProps = (state: RootStateType) => ({
-    books: state.books.currentPageBooksData,
+    thisPageBooks: state.books.currentPageBooksData,
 });
 
 export default connect(mapStateToProps, {})(BooksTableBody);
