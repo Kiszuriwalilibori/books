@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import { connect } from "react-redux";
 
 import Cell from "./components/Cell";
-import useGetTableData from "./useGetTableData";
+import { useGetTableData } from "hooks";
 import getSinglePageData from "js/BooksManager/tableHelpers/getSinglePageData";
 
 import { columns } from "models/columns";
