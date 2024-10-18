@@ -1,3 +1,5 @@
+import { RootStateType } from ".";
+
 export type Book = string[];
 
 export type Books = Book[];
@@ -93,4 +95,10 @@ export interface BooksState {
     filter: FilteringCondition;
     isSortOrderDescending: boolean;
     numberOfPages: number;
+}
+
+export interface GetTableData {
+    books: RootStateType["books"]["books"];
+    pageNumber: RootStateType["books"]["currentPageNumber"];
+    numberOfPages: RootStateType["books"]["numberOfPages"];
 }
