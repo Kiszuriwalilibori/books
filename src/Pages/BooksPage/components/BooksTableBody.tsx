@@ -7,6 +7,7 @@ import Cell from "./components/Cell";
 import { columns } from "models/columns";
 import { RootStateType } from "types";
 import getSinglePageData from "js/BooksManager/tableHelpers/getSinglePageData";
+import { useEffect, useMemo, useState } from "react";
 
 interface Props {
     books: RootStateType["books"]["books"];
@@ -17,6 +18,27 @@ interface Props {
 export const BooksTableBody = (props: Props) => {
     const { books, pageNumber, numberOfPages } = props;
     const data = getSinglePageData(pageNumber, books, numberOfPages);
+
+    const getBooks: Worker = useMemo(() => new Worker(new URL("./newWorker.ts", import.meta.url)), []);
+    const [newBooks, setNewBooks] = useState<number>(0);
+
+    useEffect(() => {
+        if (window.Worker) {
+            getBooks.postMessage(2);
+        }
+    }, [getBooks]);
+
+    useEffect(() => {
+        if (window.Worker) {
+            getBooks.onmessage = (e: MessageEvent<number>) => {
+                setNewBooks((prev: any) => e.data);
+            };
+        }
+    }, [getBooks]);
+    useEffect(() => {
+        console.log("newBooks", newBooks);
+    }, [newBooks]);
+
     if (!data || !data.length) return null;
 
     return (
