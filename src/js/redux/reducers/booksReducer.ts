@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 
 import { BooksManager } from "../../BooksManager";
 import { filterBooks, removeBook, changePage, storeBooks, sortBooks } from "../actionCreators";
-import { BooksState } from "types";
+import { BooksState, RootStateType } from "types";
 
 export const initialState: BooksState = {
     data: [],
@@ -67,3 +67,7 @@ export const booksReducer = createReducer(initialState, builder => {
 });
 
 export default booksReducer;
+
+export const books = (state: RootStateType) => state.books.books;
+export const currentPageNumber = (state: RootStateType) => state.books.currentPageNumber;
+export const numberOfPages = (state: RootStateType) => state.books.numberOfPages;

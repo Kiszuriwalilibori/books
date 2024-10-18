@@ -2,6 +2,8 @@ import { createSelector } from "@reduxjs/toolkit";
 import { currentIndex, URLs } from "../reducers/detailsReducer";
 import { isNetwork } from "../reducers/dataSourceReducer";
 import { isCacheSupported } from "../reducers/cacheReducer";
+import { currentPageNumber, numberOfPages } from "../reducers/booksReducer";
+import { RootStateType } from "types";
 
 /****/
 function setPreviousButtonVisible(currentIndex: number) {
@@ -32,3 +34,12 @@ const setCanAddToFavorites = (isNetwork: boolean, isCacheSupported: boolean) => 
     return isNetwork && isCacheSupported;
 };
 export const selectCanAddToFavorites = createSelector(isNetwork, isCacheSupported, setCanAddToFavorites);
+
+/****/
+
+const setGetTableDataArgs = (pageNumber: RootStateType["books"]["currentPageNumber"], numberOfPages: RootStateType["books"]["numberOfPages"]) => {
+    return { pageNumber, numberOfPages };
+};
+export const selectGetTableDataArgs = createSelector(currentPageNumber, numberOfPages, setGetTableDataArgs);
+
+/*** */

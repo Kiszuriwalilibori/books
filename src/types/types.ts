@@ -97,7 +97,7 @@ export interface BooksState {
     numberOfPages: number;
 }
 
-export interface GetTableData {
+export interface GetTableDataParams {
     books: RootStateType["books"]["books"];
     pageNumber: RootStateType["books"]["currentPageNumber"];
     numberOfPages: RootStateType["books"]["numberOfPages"];

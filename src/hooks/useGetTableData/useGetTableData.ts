@@ -1,25 +1,35 @@
 import { useMemo, useState, useEffect } from "react";
-import { GetTableData, FlatBookRecord } from "types";
+import { shallowEqual, useSelector } from "react-redux";
+import { FlatBookRecord } from "types";
 
-const useGetTableData = (params: GetTableData) => {
-    const getBooks: Worker = useMemo(() => new Worker(new URL("./getTableDataWorker.ts", import.meta.url)), []);
+import { useTypedSelector } from "hooks/useTypedSelector";
+import { selectGetTableDataArgs } from "js/redux/selectors";
+
+const useGetTableData = () => {
     const [newBooks, setNewBooks] = useState<FlatBookRecord[]>([] as FlatBookRecord[]);
 
-    useEffect(() => {
-        if (window.Worker) {
-            getBooks.postMessage(params);
-        }
-    }, [getBooks, JSON.stringify(params)]);
+    const getTableDataWorker: Worker = useMemo(() => new Worker(new URL("./getTableDataWorker.ts", import.meta.url)), []);
+    const books = useTypedSelector(state => state.books.books, shallowEqual);
+    const args = useSelector(selectGetTableDataArgs);
+
+    const params = { ...args, books };
 
     useEffect(() => {
         if (window.Worker) {
-            getBooks.onmessage = (e: MessageEvent<FlatBookRecord[]>) => {
+            getTableDataWorker.postMessage(params);
+        }
+    }, [getTableDataWorker, JSON.stringify(params)]);
+
+    useEffect(() => {
+        if (window.Worker) {
+            getTableDataWorker.onmessage = (e: MessageEvent<FlatBookRecord[]>) => {
                 setNewBooks((prev: any) => e.data);
             };
         }
-    }, [getBooks]);
+    }, [getTableDataWorker]);
 
     return newBooks;
 };
 
 export default useGetTableData;
+//todo jaka jest róxnica między window.Worker a getTableDataWorker
