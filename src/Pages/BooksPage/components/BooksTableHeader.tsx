@@ -1,7 +1,7 @@
 import * as React from "react";
 import uuid from "react-uuid";
 import debounce from "lodash/debounce";
-import { useDispatch, shallowEqual } from "react-redux";
+import { shallowEqual } from "react-redux";
 
 import { columns } from "models";
 import { Tooltip } from "components";

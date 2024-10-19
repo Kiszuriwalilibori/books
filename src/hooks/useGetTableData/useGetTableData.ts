@@ -1,12 +1,12 @@
 import { useMemo, useState, useEffect } from "react";
 import { shallowEqual, useSelector } from "react-redux";
-import { FlatBookRecord } from "types";
+import { Books } from "types";
 
 import { useTypedSelector } from "hooks/useTypedSelector";
 import { selectGetTableDataArgs } from "js/redux/selectors";
 
 const useGetTableData = () => {
-    const [newBooks, setNewBooks] = useState<FlatBookRecord[]>([] as FlatBookRecord[]);
+    const [newBooks, setNewBooks] = useState<Books>([] as Books);
 
     const getTableDataWorker: Worker = useMemo(() => new Worker(new URL("./getTableDataWorker.ts", import.meta.url)), []);
     const books = useTypedSelector(state => state.books.books, shallowEqual);
@@ -22,7 +22,7 @@ const useGetTableData = () => {
 
     useEffect(() => {
         if (window.Worker) {
-            getTableDataWorker.onmessage = (e: MessageEvent<FlatBookRecord[]>) => {
+            getTableDataWorker.onmessage = (e: MessageEvent<Books>) => {
                 setNewBooks((prev: any) => e.data);
             };
         }

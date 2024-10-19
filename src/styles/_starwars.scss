@@ -127,19 +127,19 @@ p#start {
         opacity: 0;
     }
 }
-@-moz-keyframes logo {
-    0% {
-        -moz-transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        -moz-transform: scale(0.1);
-        opacity: 0;
-    }
-}
+// @-moz-keyframes logo {
+//     0% {
+//         -moz-transform: scale(1);
+//         opacity: 1;
+//     }
+//     50% {
+//         opacity: 1;
+//     }
+//     100% {
+//         -moz-transform: scale(0.1);
+//         opacity: 0;
+//     }
+// }
 @-ms-keyframes logo {
     0% {
         -ms-transform: scale(1);

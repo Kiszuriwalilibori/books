@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { RootStateType } from "types/index";
+import { RootStateType } from "types";
 
 import { showPreviousDetails, showNextDetails, fetchDetails } from "../actionCreators";
 

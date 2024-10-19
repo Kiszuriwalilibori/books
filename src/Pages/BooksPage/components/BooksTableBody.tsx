@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import Cell from "./components/Cell";
 
 import { useGetTableData } from "hooks";
-import { columns } from "models/columns";
+import { columns } from "models";
 
 export const BooksTableBody = () => {
     const tableData = useGetTableData();

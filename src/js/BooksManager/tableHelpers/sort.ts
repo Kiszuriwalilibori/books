@@ -1,5 +1,4 @@
 import { AllFields, BooksState } from "types";
-
 import { columns, ContentCategoryEnum } from "models/columns";
 
 type TrimFunction = (arg0: string) => string;

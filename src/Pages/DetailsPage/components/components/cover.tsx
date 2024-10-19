@@ -1,4 +1,4 @@
-import { BookDetails } from "types/types";
+import { BookDetails } from "types";
 
 interface Props {
     linkToCover: BookDetails["volumeInfo"]["imageLinks"]["smallThumbnail"]["linkToCover"];

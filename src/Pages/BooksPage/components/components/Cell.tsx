@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import { TableCellRegular } from "./TableCellRegular";
 import { TableCellWithButtons } from "./TableCellWithButtons/TableCellWithButtons";
 import { columns } from "models";
-import { FlatBookRecord } from "types/types";
+import { Book } from "types";
 
 /**
  * creates cell in table with books
@@ -16,7 +16,7 @@ import { FlatBookRecord } from "types/types";
 interface Props {
     textContent: string;
     index: number;
-    book: FlatBookRecord;
+    book: Book;
 }
 
 const Cell = (props: Props) => {

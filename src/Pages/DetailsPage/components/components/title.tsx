@@ -1,4 +1,4 @@
-import { BookDetails } from "types/types";
+import { BookDetails } from "types";
 
 interface Props {
     title: BookDetails["volumeInfo"]["title"];

@@ -11,8 +11,7 @@ import { useEnhancedState, useGetBooks, useTypedSelector } from "hooks";
 import { BookForm, PageContainer, SearchButtons, SearchInputs } from "pages/styled";
 import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initialValues, initialValidationState } from "./utils/model";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
-
-import { BooksState } from "types/index";
+import { BooksState } from "types";
 
 export const SearchPage = () => {
     const formID = uuid();

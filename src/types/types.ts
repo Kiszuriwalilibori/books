@@ -1,9 +1,5 @@
 import { RootStateType } from ".";
 
-export type Book = string[];
-
-export type Books = Book[];
-
 export interface BookDetails {
     id: string;
     volumeInfo: {
@@ -46,13 +42,14 @@ export interface BookRecord {
     volumeInfo: Pick<BookDetails["volumeInfo"], "title" | "authors" | "subtitle" | "publishedDate" | "language" | "categories">;
 }
 
-export interface FlatBookRecord extends Pick<BookDetails["volumeInfo"], "title" | "authors" | "subtitle" | "publishedDate" | "language" | "categories"> {
+export interface Book extends Pick<BookDetails["volumeInfo"], "title" | "authors" | "subtitle" | "publishedDate" | "language" | "categories"> {
     id: BookDetails["id"];
 }
+export type Books = Book[];
 
-export type FlatBookRecordKey = keyof FlatBookRecord;
+export type KeyOfBook = keyof Book;
 
-export interface FavoriteRecord extends FlatBookRecord {
+export interface FavoriteRecord extends Book {
     kind: string;
 }
 
@@ -75,7 +72,7 @@ export enum NotSearchableFields {
 export type AllFields = SearchableFields | NotSearchableFields;
 
 export type FilteringCondition = {
-    [Item in FlatBookRecordKey]?: string;
+    [Item in KeyOfBook]?: string;
 };
 
 export type PathKeys = "not_found" | "error" | "data" | "details" | "books" | "search" | "load" | "landing" | "no_page";
@@ -87,10 +84,10 @@ export type RoundButtons = "removeBook" | "addToFavorites" | "showFullInfo" | "r
 export type BookID = { id: ID };
 
 export interface BooksState {
-    books: FlatBookRecord[];
+    books: Books;
     currentPageNumber: number;
-    currentSortColumn: FlatBookRecordKey | undefined;
-    data: FlatBookRecord[];
+    currentSortColumn: KeyOfBook | undefined;
+    data: Books;
     errorMessage: string;
     filter: FilteringCondition;
     isSortOrderDescending: boolean;
@@ -100,5 +97,4 @@ export interface BooksState {
 export interface GetTableDataParams {
     books: RootStateType["books"]["books"];
     pageNumber: RootStateType["books"]["currentPageNumber"];
-    numberOfPages: RootStateType["books"]["numberOfPages"];
 }

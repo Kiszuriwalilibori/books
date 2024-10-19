@@ -37,9 +37,9 @@ export const selectCanAddToFavorites = createSelector(isNetwork, isCacheSupporte
 
 /****/
 
-const setGetTableDataArgs = (pageNumber: RootStateType["books"]["currentPageNumber"], numberOfPages: RootStateType["books"]["numberOfPages"]) => {
-    return { pageNumber, numberOfPages };
+const setGetTableDataArgs = (pageNumber: RootStateType["books"]["currentPageNumber"]) => {
+    return { pageNumber };
 };
-export const selectGetTableDataArgs = createSelector(currentPageNumber, numberOfPages, setGetTableDataArgs);
+export const selectGetTableDataArgs = createSelector(currentPageNumber, setGetTableDataArgs);
 
 /*** */
