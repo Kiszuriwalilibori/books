@@ -1,0 +1,2 @@
+!function(){"use strict";var e=function(e){return Math.ceil(e.length/5)},t=function(t,n){var a=e(n);t>a&&(t=a);var s=5*(t-1),r=s+5>n.length?n.length:s+5;return n.slice(s,r)};self.onmessage=function(e){var n=t(e.data.pageNumber,e.data.books);self.postMessage(n)}}();
+//# sourceMappingURL=244.34341116.chunk.js.map
