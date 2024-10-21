@@ -39,11 +39,8 @@ export const booksReducer = createReducer(initialState, builder => {
         })
 
         .addCase(sortBooks, (state, action) => {
-            const manager = new BooksManager(state);
-            manager.Sort(action.payload);
-            state.currentSortColumn = manager.state.currentSortColumn;
-            state.isSortOrderDescending = manager.state.isSortOrderDescending;
-            state.books = manager.state.books;
+            if (state.currentSortColumn && state.currentSortColumn === action.payload) state.isSortOrderDescending = !state.isSortOrderDescending;
+            state.currentSortColumn = action.payload;
         })
 
         .addCase(filterBooks, (state, action) => {

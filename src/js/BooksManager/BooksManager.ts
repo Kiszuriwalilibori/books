@@ -4,22 +4,19 @@ import { BooksState, ID } from "types";
 abstract class Manager {
     protected abstract _remove(id: ID): typeof this;
     protected abstract _filter(payload?: BooksState["filter"]): typeof this;
-    protected abstract _sort(column?: NonNullable<BooksState["currentSortColumn"]>): typeof this;
     protected abstract _changePage(newPage?: BooksState["currentPageNumber"]): typeof this;
     protected abstract _setNumberOfPages(): typeof this;
     protected abstract _storeBooks(payload: BooksState["data"]): void;
 
     Remove(payload: ID) {
-        this._remove(payload)._filter()._sort()._changePage()._setNumberOfPages();
+        this._remove(payload)._filter()._changePage()._setNumberOfPages();
     }
     Filter(payload: BooksState["filter"]) {
-        this._filter(payload)._sort()._setNumberOfPages();
+        this._filter(payload)._setNumberOfPages();
     }
-    Sort(payload: NonNullable<BooksState["currentSortColumn"]>) {
-        this._filter()._sort(payload)._setNumberOfPages();
-    }
+
     ChangePage(payload: BooksState["currentPageNumber"]) {
-        this._filter()._sort();
+        this._filter();
     }
     StoreBooks(payload: BooksState["data"]) {
         this._storeBooks(payload);
@@ -41,14 +38,6 @@ export class BooksManager extends Manager {
         return this;
     }
 
-    protected _sort(column?: NonNullable<BooksState["currentSortColumn"]>) {
-        if (column) {
-            if (this.state.currentSortColumn && this.state.currentSortColumn === column) this.state.isSortOrderDescending = !this.state.isSortOrderDescending;
-            this.state.currentSortColumn = column;
-        }
-
-        return this;
-    }
     protected _filter(payload?: BooksState["filter"]) {
         if (payload) this.state.filter = payload;
         this.state.books = this.helpers.filtrate([...this.state.data], this.state.filter);
