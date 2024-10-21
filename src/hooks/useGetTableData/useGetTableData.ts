@@ -6,6 +6,7 @@ import { useTypedSelector } from "hooks";
 
 import { selectGetTableDataArgs } from "js/redux/selectors";
 import getNumberOfPages from "js/BooksManager/tableHelpers/getNumberOfPages";
+
 import { useUpdatePageNumber } from "./useUpdatePageNumber";
 
 const useGetTableData = () => {
@@ -13,7 +14,9 @@ const useGetTableData = () => {
 
     const getTableDataWorker: Worker = useMemo(() => new Worker(new URL("./getTableDataWorker.ts", import.meta.url)), []);
     const books = useTypedSelector(state => state.books.books, shallowEqual);
+
     const args = useSelector(selectGetTableDataArgs);
+
     useUpdatePageNumber(args.pageNumber, getNumberOfPages(books));
     const params = { ...args, books };
 

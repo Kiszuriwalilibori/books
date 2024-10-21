@@ -70,3 +70,5 @@ export default booksReducer;
 export const books = (state: RootStateType) => state.books.books;
 export const currentPageNumber = (state: RootStateType) => state.books.currentPageNumber;
 export const numberOfPages = (state: RootStateType) => state.books.numberOfPages;
+export const currentSortColumn = (state: RootStateType) => state.books.currentSortColumn;
+export const isSortOrderDescending = (state: RootStateType) => state.books.isSortOrderDescending;

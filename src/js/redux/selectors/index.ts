@@ -2,7 +2,8 @@ import { createSelector } from "@reduxjs/toolkit";
 import { currentIndex, URLs } from "../reducers/detailsReducer";
 import { isNetwork } from "../reducers/dataSourceReducer";
 import { isCacheSupported } from "../reducers/cacheReducer";
-import { currentPageNumber } from "../reducers/booksReducer";
+import { currentPageNumber, currentSortColumn, isSortOrderDescending } from "../reducers/booksReducer";
+
 import { RootStateType } from "types";
 
 /****/
@@ -37,9 +38,9 @@ export const selectCanAddToFavorites = createSelector(isNetwork, isCacheSupporte
 
 /****/
 
-const setGetTableDataArgs = (pageNumber: RootStateType["books"]["currentPageNumber"]) => {
-    return { pageNumber };
+const setGetTableDataArgs = (pageNumber: RootStateType["books"]["currentPageNumber"], currentSortColumn: RootStateType["books"]["currentSortColumn"], isSortOrderDescending: RootStateType["books"]["isSortOrderDescending"]) => {
+    return { pageNumber, currentSortColumn, isSortOrderDescending };
 };
-export const selectGetTableDataArgs = createSelector(currentPageNumber, setGetTableDataArgs);
+export const selectGetTableDataArgs = createSelector(currentPageNumber, currentSortColumn, isSortOrderDescending, setGetTableDataArgs);
 
 /*** */

@@ -97,4 +97,6 @@ export interface BooksState {
 export interface GetTableDataParams {
     books: RootStateType["books"]["books"];
     pageNumber: RootStateType["books"]["currentPageNumber"];
+    isSortOrderDescending: boolean;
+    currentSortColumn: KeyOfBook | undefined;
 }
