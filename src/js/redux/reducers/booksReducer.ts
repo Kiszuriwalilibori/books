@@ -33,10 +33,9 @@ export const booksReducer = createReducer(initialState, builder => {
         })
 
         .addCase(changePage, (state, action) => {
-            const manager = new BooksManager(state);
-            manager.ChangePage(action.payload);
-            state.currentPageNumber = manager.state.currentPageNumber;
-            state.books = manager.state.books;
+            if (action.payload && action.payload !== state.currentPageNumber) {
+                state.currentPageNumber = action.payload;
+            }
         })
 
         .addCase(sortBooks, (state, action) => {

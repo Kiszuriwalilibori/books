@@ -13,13 +13,13 @@ abstract class Manager {
         this._remove(payload)._filter()._sort()._changePage()._setNumberOfPages();
     }
     Filter(payload: BooksState["filter"]) {
-        this._filter(payload)._sort()._changePage()._setNumberOfPages();
+        this._filter(payload)._sort()._setNumberOfPages();
     }
     Sort(payload: NonNullable<BooksState["currentSortColumn"]>) {
-        this._filter()._sort(payload)._changePage()._setNumberOfPages();
+        this._filter()._sort(payload)._setNumberOfPages();
     }
     ChangePage(payload: BooksState["currentPageNumber"]) {
-        this._filter()._sort()._changePage(payload);
+        this._filter()._sort();
     }
     StoreBooks(payload: BooksState["data"]) {
         this._storeBooks(payload);

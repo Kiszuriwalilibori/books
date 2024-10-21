@@ -2,7 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import { currentIndex, URLs } from "../reducers/detailsReducer";
 import { isNetwork } from "../reducers/dataSourceReducer";
 import { isCacheSupported } from "../reducers/cacheReducer";
-import { currentPageNumber, numberOfPages } from "../reducers/booksReducer";
+import { currentPageNumber } from "../reducers/booksReducer";
 import { RootStateType } from "types";
 
 /****/
