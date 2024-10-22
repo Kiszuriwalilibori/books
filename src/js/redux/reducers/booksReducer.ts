@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 import { BooksManager } from "../../BooksManager";
-import { filterBooks, removeBook, changePage, storeBooks, sortBooks } from "../actionCreators";
+import { filterBooks, removeBook, changePage, setNumberOfPages, storeBooks, sortBooks } from "../actionCreators";
 import { BooksState, RootStateType } from "types";
 
 export const initialState: BooksState = {
@@ -47,7 +47,6 @@ export const booksReducer = createReducer(initialState, builder => {
             const manager = new BooksManager({ ...state });
             manager.Filter(action.payload);
             state.filter = manager.state.filter;
-            state.numberOfPages = manager.state.numberOfPages;
             state.books = manager.state.books;
         })
 
@@ -55,8 +54,11 @@ export const booksReducer = createReducer(initialState, builder => {
             const manager = new BooksManager(state);
             manager.Remove(action.payload);
             state.data = manager.state.data;
-            state.numberOfPages = manager.state.numberOfPages;
+
             state.books = manager.state.books;
+        })
+        .addCase(setNumberOfPages, (state, action) => {
+            state.numberOfPages = action.payload;
         })
 
         .addDefaultCase(() => {});

@@ -5,14 +5,13 @@ abstract class Manager {
     protected abstract _remove(id: ID): typeof this;
     protected abstract _filter(payload?: BooksState["filter"]): typeof this;
     protected abstract _changePage(newPage?: BooksState["currentPageNumber"]): typeof this;
-    protected abstract _setNumberOfPages(): typeof this;
     protected abstract _storeBooks(payload: BooksState["data"]): void;
 
     Remove(payload: ID) {
-        this._remove(payload)._filter()._changePage()._setNumberOfPages();
+        this._remove(payload)._filter()._changePage();
     }
     Filter(payload: BooksState["filter"]) {
-        this._filter(payload)._setNumberOfPages();
+        this._filter(payload);
     }
 
     ChangePage(payload: BooksState["currentPageNumber"]) {

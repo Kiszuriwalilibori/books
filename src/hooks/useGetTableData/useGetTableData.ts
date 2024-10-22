@@ -7,7 +7,8 @@ import { useTypedSelector } from "hooks";
 import { selectGetTableDataArgs } from "js/redux/selectors";
 import getNumberOfPages from "js/BooksManager/tableHelpers/getNumberOfPages";
 
-import { useUpdatePageNumber } from "./useUpdatePageNumber";
+import { useUpdateCurrentPageNumber } from "./useUpdateCurrentPageNumber";
+import { useUpdateNumberOfPages } from "./useUpdateNumberOfPages";
 
 const useGetTableData = () => {
     const [newBooks, setNewBooks] = useState<Books>([] as Books);
@@ -17,7 +18,8 @@ const useGetTableData = () => {
 
     const args = useSelector(selectGetTableDataArgs);
 
-    useUpdatePageNumber(args.pageNumber, getNumberOfPages(books));
+    useUpdateCurrentPageNumber(args.pageNumber, getNumberOfPages(books)); //todo prawdopodobnie już ni trzeba w getnumberofopages tego modyfikowac
+    useUpdateNumberOfPages(getNumberOfPages(books));
     const params = { ...args, books };
 
     useEffect(() => {
