@@ -4,18 +4,13 @@ import { BooksState, ID } from "types";
 abstract class Manager {
     protected abstract _remove(id: ID): typeof this;
     protected abstract _filter(payload?: BooksState["filter"]): typeof this;
-    protected abstract _changePage(newPage?: BooksState["currentPageNumber"]): typeof this;
     protected abstract _storeBooks(payload: BooksState["data"]): void;
 
     Remove(payload: ID) {
-        this._remove(payload)._filter()._changePage();
+        this._remove(payload)._filter() /*._changePage()*/;
     }
     Filter(payload: BooksState["filter"]) {
         this._filter(payload);
-    }
-
-    ChangePage(payload: BooksState["currentPageNumber"]) {
-        this._filter();
     }
     StoreBooks(payload: BooksState["data"]) {
         this._storeBooks(payload);
@@ -33,7 +28,6 @@ export class BooksManager extends Manager {
 
     protected _remove(id: ID) {
         this.state.data = this.helpers.remove([...this.state.data], id);
-
         return this;
     }
 
@@ -43,16 +37,12 @@ export class BooksManager extends Manager {
 
         return this;
     }
-    protected _changePage(newPage?: BooksState["currentPageNumber"]) {
-        if (newPage) this.state.currentPageNumber = newPage;
 
-        return this;
-    }
-    protected _setNumberOfPages() {
-        this.state.numberOfPages = this.helpers.getNumberOfPages(this.state.books);
+    // protected _setNumberOfPages() {
+    //     this.state.numberOfPages = this.helpers.getNumberOfPages(this.state.books);
 
-        return this;
-    }
+    //     return this;
+    // }
 
     protected _storeBooks(payload: BooksState["data"]) {
         const data = payload;
