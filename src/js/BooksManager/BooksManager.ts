@@ -7,7 +7,7 @@ abstract class Manager {
     protected abstract _storeBooks(payload: BooksState["data"]): void;
 
     Remove(payload: ID) {
-        this._remove(payload)._filter() /*._changePage()*/;
+        this._remove(payload)._filter();
     }
     Filter(payload: BooksState["filter"]) {
         this._filter(payload);
@@ -37,12 +37,6 @@ export class BooksManager extends Manager {
 
         return this;
     }
-
-    // protected _setNumberOfPages() {
-    //     this.state.numberOfPages = this.helpers.getNumberOfPages(this.state.books);
-
-    //     return this;
-    // }
 
     protected _storeBooks(payload: BooksState["data"]) {
         const data = payload;
