@@ -13,5 +13,25 @@ import usePersistDetailsURL from "./usePersistDetailsURL";
 import { useAppDispatch } from "./useAppDispatch";
 import { useTypedSelector } from "./useTypedSelector";
 import { useCreateDebouncedCallback } from "./useCreateDebouncedCallback";
+import useGetTableData from "./useGetTableData";
+import useGetEndpoints from "./useGetEndpoints";
 
-export { useAppDispatch, useCreateDebouncedCallback, useDebouncedCallback, useDelayedCondition, useDispatchAction, useEnhancedState, useFavoriteBooks, useGetBooks, useForceRender, useGoToShop, useHandleConnectionStatus, useInitialFocus, useMessage, usePersistDetailsURL, useTypedSelector };
+export {
+    useAppDispatch,
+    useCreateDebouncedCallback,
+    useDebouncedCallback,
+    useDelayedCondition,
+    useDispatchAction,
+    useEnhancedState,
+    useFavoriteBooks,
+    useGetBooks,
+    useGetEndpoints,
+    useGetTableData,
+    useForceRender,
+    useGoToShop,
+    useHandleConnectionStatus,
+    useInitialFocus,
+    useMessage,
+    usePersistDetailsURL,
+    useTypedSelector,
+};

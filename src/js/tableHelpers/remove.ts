@@ -1,4 +1,4 @@
-import { BooksState, FlatBookRecord, ID } from "types";
+import { BooksState, Book, ID } from "types";
 
 /**
  * removes row from array of rows
@@ -6,10 +6,10 @@ import { BooksState, FlatBookRecord, ID } from "types";
  * @param bookID string identifying row
  * @returns  array without subject row
  */
-export const remove = (books: BooksState["data"], bookID: ID) => {
+export const remove = (books: BooksState["books"], bookID: ID) => {
     let remainingBooks = [...books];
 
-    const comparator = (item: FlatBookRecord) => {
+    const comparator = (item: Book) => {
         return item.id !== bookID;
     };
 

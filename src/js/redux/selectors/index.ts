@@ -2,6 +2,9 @@ import { createSelector } from "@reduxjs/toolkit";
 import { currentIndex, URLs } from "../reducers/detailsReducer";
 import { isNetwork } from "../reducers/dataSourceReducer";
 import { isCacheSupported } from "../reducers/cacheReducer";
+import { currentPageNumber /*, currentSortColumn, isSortOrderDescending*/, filter, sort } from "../reducers/booksReducer";
+
+import { RootStateType } from "types";
 
 /****/
 function setPreviousButtonVisible(currentIndex: number) {
@@ -32,3 +35,16 @@ const setCanAddToFavorites = (isNetwork: boolean, isCacheSupported: boolean) => 
     return isNetwork && isCacheSupported;
 };
 export const selectCanAddToFavorites = createSelector(isNetwork, isCacheSupported, setCanAddToFavorites);
+
+/****/
+
+const setGetTableDataArgs = (
+    pageNumber: RootStateType["books"]["currentPageNumber"],
+    /*currentSortColumn: RootStateType["books"]["currentSortColumn"], isSortOrderDescending: RootStateType["books"]["isSortOrderDescending"],*/ filter: RootStateType["books"]["filter"],
+    sort: RootStateType["books"]["sort"]
+) => {
+    return { pageNumber, /*currentSortColumn, isSortOrderDescending,*/ filter, sort };
+};
+export const selectGetTableDataArgs = createSelector(currentPageNumber /*, currentSortColumn, isSortOrderDescending*/, filter, sort, setGetTableDataArgs);
+
+/*** */

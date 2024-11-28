@@ -1,9 +1,9 @@
-import { columns } from "models/columns";
-import { FlatBookRecord } from "types";
+import { columns } from "models";
+import { Book } from "types";
 
-export const aryToObj = (book: string[] | FlatBookRecord) => {
+export const aryToObj = (book: string[] | Book) => {
     if (Array.isArray(book)) {
-        const obj = {} as FlatBookRecord;
+        const obj = {} as Book;
         const fields = [...columns.sourceFields];
 
         book.forEach((item: any, index: number) => {

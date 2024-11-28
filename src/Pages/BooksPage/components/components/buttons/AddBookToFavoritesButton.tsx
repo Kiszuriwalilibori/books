@@ -7,7 +7,7 @@ import RoundIconButton from "./RoundIconButton";
 
 import { useFavoriteBooks, useForceRender } from "hooks";
 
-import { FlatBookRecord, RootStateType } from "types";
+import { Book, RootStateType } from "types";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
 
 interface OwnProps {
@@ -15,11 +15,11 @@ interface OwnProps {
 }
 
 interface Props extends OwnProps {
-    book: FlatBookRecord | undefined;
+    book: Book | undefined;
     isLoading: RootStateType["loading"]["isLoading"];
 }
 
-function createFavorite(book: FlatBookRecord) {
+function createFavorite(book: Book) {
     return { ...book, ...{ kind: FAVORITE_BOOK_IDENTIFIER } };
 }
 
@@ -45,7 +45,7 @@ export const AddBookToFavoritesButton = (props: Props) => {
 
 const mapStateToProps = (state: RootStateType, ownProps: OwnProps) => {
     return {
-        book: state.books.books.find(book => (book as FlatBookRecord).id === ownProps.bookID),
+        book: state.books.books.find(book => (book as Book).id === ownProps.bookID),
         isLoading: state.loading.isLoading,
     };
 };

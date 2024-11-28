@@ -10,8 +10,9 @@ interface ShowError {
 export const filterBooks = createAction<BooksState["filter"]>("BOOKS_FILTER");
 export const removeBook = createAction<string>("BOOK_REMOVE");
 export const changePage = createAction<BooksState["currentPageNumber"]>("PAGE_CHANGE");
-export const storeBooks = createAction<BooksState["data"]>("BOOKS_STORE");
-export const sortBooks = createAction<NonNullable<BooksState["currentSortColumn"]>>("BOOKS_SORT");
+export const storeBooks = createAction<BooksState["books"]>("BOOKS_STORE");
+export const sortBooks = createAction<NonNullable<BooksState["sort"]["currentSortColumn"]>>("BOOKS_SORT");
+export const setNumberOfPages = createAction<BooksState["numberOfPages"]>("SET_NUMBER_OF_PAGES");
 
 /**booksReducer actions end **/
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import uuid from "react-uuid";
 import debounce from "lodash/debounce";
-import { useDispatch, shallowEqual } from "react-redux";
+import { shallowEqual } from "react-redux";
 
 import { columns } from "models";
 import { Tooltip } from "components";
@@ -10,8 +10,8 @@ import { useTypedSelector, useDispatchAction } from "hooks";
 const createMarker = (isSortOrderDescending: boolean) => (isSortOrderDescending ? " \u2193" : " \u2191");
 
 const BooksTableHeader = () => {
-    const isSortOrderDescending = useTypedSelector(state => state.books.isSortOrderDescending, shallowEqual);
-    const sortColumn = useTypedSelector(state => state.books.currentSortColumn, shallowEqual);
+    const isSortOrderDescending = useTypedSelector(state => state.books.sort.isSortOrderDescending, shallowEqual);
+    const sortColumn = useTypedSelector(state => state.books.sort.currentSortColumn, shallowEqual);
     const { sortBooks } = useDispatchAction();
 
     const handleSortClicked = React.useCallback(

@@ -1,12 +1,13 @@
 import * as React from "react";
+import debounce from "lodash/debounce";
+
 import { Modal } from "@mui/material";
 
 import { useRemoveBookModalVisibilityContext } from "contexts";
-import { useDebouncedCallback, useDispatchAction, useInitialFocus } from "hooks";
+import { useDebouncedCallback, useDispatchAction } from "hooks";
 import { Button } from "components";
 import { AlertBox, PageContainer } from "pages/styled";
-import { BookID } from "types/types";
-import debounce from "lodash/debounce";
+import { BookID } from "types";
 
 /**
  * @description Renders modal component with two option buttons: confirming remove and cancelling remove

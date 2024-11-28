@@ -1,20 +1,15 @@
 import { createReducer } from "@reduxjs/toolkit";
-
-import { BooksManager } from "../../BooksManager";
-import { filterBooks, removeBook, changePage, storeBooks, sortBooks } from "../actionCreators";
-import { BooksState } from "types";
+import { filterBooks, removeBook, changePage, setNumberOfPages, storeBooks, sortBooks } from "../actionCreators";
+import { BooksState, RootStateType } from "types";
+import { getNumberOfPages, remove } from "js/tableHelpers";
 
 export const initialState: BooksState = {
-    data: [],
     errorMessage: "",
     books: [],
     filter: {},
     currentPageNumber: 1,
-    currentSortColumn: undefined,
-    isSortOrderDescending: false,
     numberOfPages: 0,
-    currentPageBooksData: [],
-    sort: null,
+    sort: { currentSortColumn: undefined, isSortOrderDescending: false },
 };
 
 export const booksReducer = createReducer(initialState, builder => {
@@ -22,47 +17,45 @@ export const booksReducer = createReducer(initialState, builder => {
 
         .addCase(storeBooks, (state, action) => {
             if (action.payload) {
-                const manager = new BooksManager(state);
-                manager.StoreBooks(action.payload);
-                state.data = manager.state.data;
-                state.books = manager.state.books;
-                state.numberOfPages = manager.state.numberOfPages;
-                state.currentPageBooksData = manager.state.currentPageBooksData;
+                state.books = action.payload;
+                state.numberOfPages = getNumberOfPages(action.payload);
+                state.currentPageNumber = initialState.currentPageNumber;
+                state.filter = initialState.filter;
+                state.sort = initialState.sort;
             }
         })
 
         .addCase(changePage, (state, action) => {
-            const manager = new BooksManager(state);
-            manager.ChangePage(action.payload);
-            state.currentPageNumber = manager.state.currentPageNumber;
-            state.currentPageBooksData = manager.state.currentPageBooksData;
+            if (action.payload && action.payload !== state.currentPageNumber) {
+                state.currentPageNumber = action.payload;
+            }
         })
 
         .addCase(sortBooks, (state, action) => {
-            const manager = new BooksManager(state);
-            manager.Sort(action.payload);
-            state.currentSortColumn = manager.state.currentSortColumn;
-            state.isSortOrderDescending = manager.state.isSortOrderDescending;
-            state.currentPageBooksData = manager.state.currentPageBooksData;
+            if (state.sort.currentSortColumn && state.sort.currentSortColumn === action.payload) state.sort.isSortOrderDescending = !state.sort.isSortOrderDescending;
+            state.sort.currentSortColumn = action.payload;
         })
 
         .addCase(filterBooks, (state, action) => {
-            const manager = new BooksManager({ ...state });
-            manager.Filter(action.payload);
-            state.filter = manager.state.filter;
-            state.currentPageBooksData = manager.state.currentPageBooksData;
-            state.numberOfPages = manager.state.numberOfPages;
+            if (action.payload && JSON.stringify(action.payload) !== JSON.stringify(state.filter)) {
+                state.filter = { ...action.payload };
+            }
         })
 
         .addCase(removeBook, (state, action) => {
-            const manager = new BooksManager(state);
-            manager.Remove(action.payload);
-            state.data = manager.state.data;
-            state.currentPageBooksData = manager.state.currentPageBooksData;
-            state.numberOfPages = manager.state.numberOfPages;
+            state.books = remove([...state.books], action.payload);
+        })
+        .addCase(setNumberOfPages, (state, action) => {
+            state.numberOfPages = action.payload;
         })
 
         .addDefaultCase(() => {});
 });
 
 export default booksReducer;
+
+export const books = (state: RootStateType) => state.books.books;
+export const currentPageNumber = (state: RootStateType) => state.books.currentPageNumber;
+export const numberOfPages = (state: RootStateType) => state.books.numberOfPages;
+export const filter = (state: RootStateType) => state.books.filter;
+export const sort = (state: RootStateType) => state.books.sort;

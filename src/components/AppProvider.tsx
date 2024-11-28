@@ -1,7 +1,6 @@
 import React from "react";
 import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
-// import createSagaMiddleware from "redux-saga";
 
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -13,8 +12,6 @@ import { register } from "serviceWorkerRegistration";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SnackbarProvider } from "notistack";
-
-// import { rootSaga } from "js/utils";
 import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, loadingReducer, onlineReducer } from "js/redux/reducers";
 import { FiltersVisibilityContextProvider, RemoveBookModalVisibilityContextProvider } from "contexts";
 
@@ -22,16 +19,10 @@ import "../styles/App.css";
 
 const queryClient = new QueryClient();
 
-// const persistConfig = {
-//     key: "root",
-//     storage,
-//     whitelist: ["books", "details"],
-// };
-
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: [],
+    whitelist: ["books", "details"],
 };
 
 const rootReducer = combineReducers({
@@ -84,7 +75,6 @@ const AppProvider: React.FC = ({ children }) => {
     );
 };
 
-// saga.run(rootSaga);
 register();
 
 export default AppProvider;

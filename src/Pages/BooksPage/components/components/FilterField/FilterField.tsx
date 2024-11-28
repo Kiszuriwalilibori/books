@@ -6,6 +6,7 @@ const FilterField = styled(TextField)(({ theme }) => ({
     backgroundColor: "#FFDD40",
     "& input": { color: theme.palette.common.black },
     "& input:focus": { outline: "2px solid #1076AB", outlineOffset: theme.spacing(-1) },
+    "& [data-shrink=true]": { display: "none" },
     "& .MuiFormLabel-root": {
         fontSize: "11px",
         color: "#C04604",

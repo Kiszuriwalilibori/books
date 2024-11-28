@@ -1,1 +1,0 @@
-export { BooksManager } from "./BooksManager";

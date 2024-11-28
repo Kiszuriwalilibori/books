@@ -1,4 +1,4 @@
-import { FavoriteRecord } from "types/types";
+import { FavoriteRecord } from "types";
 import { LocalStorage, FilteredStorage } from "../js/utils";
 import { useDispatchAction, useMessage } from "hooks";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";

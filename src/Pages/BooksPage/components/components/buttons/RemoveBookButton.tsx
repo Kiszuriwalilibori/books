@@ -2,7 +2,7 @@ import RoundIconButton from "./RoundIconButton";
 
 import { useCreateDebouncedCallback } from "hooks";
 import { useRemoveBookModalVisibilityContext } from "contexts";
-import { BookID } from "types/types";
+import { BookID } from "types";
 
 interface Props {
     bookID: BookID["id"];

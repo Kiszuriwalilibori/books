@@ -1,24 +1,18 @@
 import uuid from "react-uuid";
 
-import { connect } from "react-redux";
-
 import Cell from "./components/Cell";
 
-import { columns } from "models/columns";
-import { RootStateType } from "types";
+import { useGetTableData } from "hooks";
+import { columns } from "models";
 
-interface Props {
-    thisPageBooks: RootStateType["books"]["currentPageBooksData"];
-}
+export const BooksTableBody = () => {
+    const tableData = useGetTableData();
 
-export const BooksTableBody = (props: Props) => {
-    const { thisPageBooks } = props;
-
-    if (!thisPageBooks || !thisPageBooks.length) return null;
+    if (!tableData || !tableData.length) return null;
 
     return (
         <tbody>
-            {thisPageBooks.map(book => (
+            {tableData.map(book => (
                 <tr key={uuid()}>
                     {columns.fields.map((item, index) => {
                         return <Cell textContent={book[item] as string} index={index} book={book} key={uuid()} />;
@@ -29,8 +23,4 @@ export const BooksTableBody = (props: Props) => {
     );
 };
 
-const mapStateToProps = (state: RootStateType) => ({
-    thisPageBooks: state.books.currentPageBooksData,
-});
-
-export default connect(mapStateToProps, {})(BooksTableBody);
+export default BooksTableBody;

@@ -1,4 +1,4 @@
-import { BookSearchPattern } from "./createURL";
+import { BookSearchPattern } from "./createBooksURL";
 import { SearchFormValues } from "./model";
 
 /**

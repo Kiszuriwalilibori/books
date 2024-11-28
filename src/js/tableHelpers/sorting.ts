@@ -1,5 +1,4 @@
 import { AllFields, BooksState } from "types";
-
 import { columns, ContentCategoryEnum } from "models/columns";
 
 type TrimFunction = (arg0: string) => string;
@@ -24,7 +23,7 @@ const trimFunctions: TrimFunctions = {
 };
 
 const sorts = {
-    stringAndNumericalStringSortFunction: (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>, trim: TrimFunction) => {
+    stringAndNumericalStringSortFunction: (data: BooksState["books"], isSortOrderDescending: BooksState["sort"]["isSortOrderDescending"], key: NonNullable<BooksState["sort"]["currentSortColumn"]>, trim: TrimFunction) => {
         data.sort((OneBook, OtherBook) => {
             const trimmedOneBook = trim(OneBook[key] as string);
             const trimmedOtherBook = trim(OtherBook[key] as string);
@@ -47,18 +46,17 @@ const sorts = {
 
             return 0;
         });
-        return data; //
+        return data;
     },
 };
 
-export const sort = (data: BooksState["books"], isSortOrderDescending: BooksState["isSortOrderDescending"], key: NonNullable<BooksState["currentSortColumn"]>) => {
+export const sorting = (data: BooksState["books"], isSortOrderDescending: BooksState["sort"]["isSortOrderDescending"], key: NonNullable<BooksState["sort"]["currentSortColumn"]>) => {
     try {
         if (key) {
             const numericalKey = columns.sourceFields.indexOf(key as Exclude<AllFields, "subject">);
             const trim = trimFunctions[columns.contentCategories[numericalKey] as ContentCategoryEnum];
-            // sorts.stringAndNumericalStringSortFunction(data, isSortOrderDescending, key, trim);
             data = sorts.stringAndNumericalStringSortFunction(data, isSortOrderDescending, key, trim);
-            return data; // nowa linia
+            return data;
         }
     } catch (err) {
         return data;
@@ -67,4 +65,4 @@ export const sort = (data: BooksState["books"], isSortOrderDescending: BooksStat
     }
 };
 
-export default sort;
+export default sorting;

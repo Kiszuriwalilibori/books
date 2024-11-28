@@ -1,4 +1,4 @@
-import { Grow } from "@mui/material";
+import { Fade } from "@mui/material";
 
 import { withTableContainerHOC, withNavigationHOC, WithRemoveItemWarningHOC } from "hocs";
 import { BooksTableBody, BooksTableHeader, BooksTableFilter } from "./components";
@@ -9,7 +9,7 @@ const Books = () => {
         <WithRemoveItemWarningHOC>
             <>
                 <LogoFactory />
-                <Grow in={true} timeout={1000}>
+                <Fade in={true} timeout={700}>
                     <table className="table" aria-label="Table of Books">
                         <thead className="table__header">
                             <BooksTableHeader />
@@ -17,7 +17,7 @@ const Books = () => {
                         </thead>
                         <BooksTableBody />
                     </table>
-                </Grow>
+                </Fade>
             </>
         </WithRemoveItemWarningHOC>
     );

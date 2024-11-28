@@ -5,27 +5,29 @@ import { shallowEqual, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
 import { FavoriteButton, SearchField } from "./components";
-import { createFilter, createTotalNumberURL, createURL, validateInput } from "./utils";
+import { createFilter, createTotalNumberURL, createBooksURL, validateInput } from "./utils";
 import { Alert, Button, LogoFactory } from "components";
-import { useEnhancedState, useGetBooks, useTypedSelector } from "hooks";
+import { useEnhancedState, useGetBooks, useGetEndpoints, useTypedSelector } from "hooks";
 import { BookForm, PageContainer, SearchButtons, SearchInputs } from "pages/styled";
 import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initialValues, initialValidationState } from "./utils/model";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
-
-import { BooksState } from "types/index";
+import { BooksState } from "types";
+import useFetchBooks from "hooks/useFetchBooks.ts";
 
 export const SearchPage = () => {
     const formID = uuid();
 
     const [validated, setValidated] = React.useState(initialValidationState);
-
-    const [BooksURL, setBooksURL] = React.useState("");
-    const [totalBooksNumberURL, setTotalBooksNumberURL] = React.useState("");
+    const [booksURL, setBooksURL] = React.useState("");
+    const [countURL, setCountURL] = React.useState("");
     const [filter, setFilter] = useEnhancedState<undefined | BooksState["filter"]>(undefined);
 
     const isLoading = useTypedSelector(state => state.loading.isLoading, shallowEqual);
     const isOnline = useSelector(isOnlineSelector);
-    const getBooks = useGetBooks();
+    // const getBooks = useGetBooks();
+    const endpoints = useGetEndpoints(countURL, booksURL);
+    let controller = new AbortController();
+    useFetchBooks(endpoints, controller, filter);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
@@ -35,8 +37,8 @@ export const SearchPage = () => {
             const isValidated = validateInput(formValues);
             setValidated(isValidated);
             if (isValidated.isValid) {
-                setBooksURL(createURL(formValues));
-                setTotalBooksNumberURL(createTotalNumberURL(formValues));
+                setBooksURL(createBooksURL(formValues));
+                setCountURL(createTotalNumberURL(formValues));
                 setFilter(createFilter(formValues as Partial<SearchFormValues>));
             }
         },
@@ -51,14 +53,15 @@ export const SearchPage = () => {
         handleReset(null);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    React.useEffect(() => {
-        let controller = new AbortController();
+    // React.useEffect(() => {
+    //     let controller = new AbortController();
 
-        if (totalBooksNumberURL && BooksURL) {
-            getBooks(totalBooksNumberURL, BooksURL, controller, filter);
-        }
-        return () => controller?.abort();
-    }, [totalBooksNumberURL, BooksURL, filter]);
+    //     if (endpoints && endpoints.length) {
+    //         getBooks(endpoints, controller, filter);
+    //     }
+
+    //     return () => controller?.abort();
+    // }, [endpoints, filter]);
 
     return (
         <>

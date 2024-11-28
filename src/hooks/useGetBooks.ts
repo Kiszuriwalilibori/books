@@ -6,26 +6,16 @@ import { useMessage, useDispatchAction } from "hooks";
 import { BookRecord, FilteringCondition } from "types";
 import { formatFetchedDataAsBooks, getValue } from "js/utils";
 import { MAX_RESULTS } from "config";
-import { filtrate } from "../js/BooksManager/tableHelpers/filtrate";
-
-const createEndpoints = (path: string, totalNumber: number) => {
-    const numberOfPages = Math.ceil(totalNumber / MAX_RESULTS);
-    let index = 0;
-    let arrayOfEndpoints = [];
-    do {
-        arrayOfEndpoints.push(path + index * MAX_RESULTS);
-        index++;
-    } while (index < numberOfPages);
-    return arrayOfEndpoints;
-};
+import { filtrate } from "../js/tableHelpers";
 
 export const useGetBooks = () => {
     const showMessage = useMessage();
     const navigate = useNavigate();
     const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
 
-    async function getBooks(path: string, URL: string, controller: AbortController, filter: FilteringCondition | undefined = undefined) {
+    async function getBooks(endpoints: string[], controller: AbortController, filter: FilteringCondition | undefined = undefined) {
         const handleNotFound = () => {
+            controller?.abort();
             setIsLoading(false);
             showError({ isError: true, errorMessage: "Nie znaleziono książek spełniających podane kryteria" });
             navigate(Paths.error);
@@ -76,20 +66,13 @@ export const useGetBooks = () => {
             });
         }
         // here flow begins
-        setIsLoading(true);
-        const fetchResult = await fetch(path, { signal: controller.signal }).catch(error => {
-            handleError(error);
-        });
-        if (fetchResult) {
-            const response = await fetchResult.json();
-            const totalNumberOfBooks = getValue(response, "totalItems");
-            if (totalNumberOfBooks) {
-                const endpoints = createEndpoints(URL, totalNumberOfBooks);
-                endpoints && endpoints.length && fetchBooks(endpoints, controller);
-                return;
-            } else {
-                handleNotFound();
-            }
+
+        if (endpoints && endpoints.length) {
+            // setIsLoading(true);
+            fetchBooks(endpoints, controller);
+            return;
+        } else {
+            handleNotFound();
         }
     }
     return getBooks;
