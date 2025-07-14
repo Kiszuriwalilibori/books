@@ -6,6 +6,7 @@ import Paths from "routing";
 
 import { WithCheckSupportForLocalStorage, WithLoadingIndicatorHOC } from "hocs";
 import { useHandleConnectionStatus } from "hooks";
+import Paths from "routing/Paths";
 const Books = loadable(() => import("pages/BooksPage"));
 const Error = loadable(() => import("pages/ErrorPage"));
 const Details = loadable(() => import("pages/DetailsPage"));
