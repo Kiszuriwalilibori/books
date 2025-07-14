@@ -14,6 +14,7 @@ import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initi
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
 
 export const SearchPage = () => {
+    console.log("SearchPage render");
     const [validated, setValidated] = React.useState(initialValidationState);
     const [URL, setURL] = React.useState("");
 
@@ -60,7 +61,7 @@ export const SearchPage = () => {
                 <BookForm id="search__form">
                     <SearchInputs>
                         {Object.values(SearchPageField).map((fieldName: SearchPageField) => (
-                            <SearchField key={uuid()} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
+                            <SearchField key={fieldName} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
                         ))}
                     </SearchInputs>
                     <SearchButtons>

@@ -2,10 +2,9 @@ import loadable from "@loadable/component";
 
 import { Routes, Route } from "react-router-dom";
 
-import Paths from "routing/Paths";
-
 import { WithCheckSupportForLocalStorage, WithLoadingIndicatorHOC } from "hocs";
 import { useHandleConnectionStatus } from "hooks";
+import Paths from "routing/Paths";
 const Books = loadable(() => import("pages/BooksPage"));
 const Error = loadable(() => import("pages/ErrorPage"));
 const Details = loadable(() => import("pages/DetailsPage"));
