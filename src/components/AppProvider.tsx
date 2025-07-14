@@ -44,12 +44,11 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }) /*.concat(saga)*/
-            .concat(thunk),
+        }),
 });
 let persistor = persistStore(store);
 
-const AppProvider: React.FC = ({ children }) => {
+const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <SnackbarProvider
             maxSnack={3}

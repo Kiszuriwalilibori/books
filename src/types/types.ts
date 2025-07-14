@@ -103,3 +103,6 @@ export interface GetTableDataArgs {
     filter: FilteringCondition;
     sort: { isSortOrderDescending: boolean; currentSortColumn: KeyOfBook | undefined };
 }
+export interface FlatBookRecord extends Pick<BookDetails["volumeInfo"], "title" | "authors" | "subtitle" | "publishedDate" | "language" | "categories"> {
+    id: BookDetails["id"];
+}

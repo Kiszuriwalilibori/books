@@ -4,6 +4,7 @@ import useGetWorker from "./useGetWorker";
 import { useDispatchAction, useMessage } from "hooks";
 
 export const useGetEndpoints = (countURL: string, booksURL: string) => {
+    console.log("useGetEndpoints", countURL, booksURL);
     const showMessage = useMessage();
     const { setIsLoading } = useDispatchAction();
     const [endpoints, setEndpoints] = useState<string[]>([]);

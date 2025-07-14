@@ -11,6 +11,7 @@ import useGetWorker from "./useGetWorker";
 
 export const useFetchBooks = (arrayOfEndpoints: string[], controller: AbortController, filter: FilteringCondition | undefined) => {
     // let controller = new AbortController();
+    console.log("useFetchBooks", arrayOfEndpoints, controller, filter);
     const memoizedController: AbortController = useMemo(() => controller, []);
     const navigate = useNavigate();
 

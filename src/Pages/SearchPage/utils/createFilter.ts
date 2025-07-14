@@ -1,6 +1,7 @@
 import { SearchFormValues } from "./model";
 
 export const createFilter = (fields: Partial<SearchFormValues>) => {
+    console.log(fields);
     if (!fields.keyword) return undefined;
     const filter: any = { ...fields };
     delete filter.keyword;

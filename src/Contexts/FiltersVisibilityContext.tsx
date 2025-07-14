@@ -3,13 +3,18 @@ interface Props {
     areFiltersVisible: boolean;
     toggleFiltersVisibility: () => void;
 }
+
+interface ProviderProps {
+    children: React.ReactNode;
+}
+
 const initialState = {
     areFiltersVisible: true,
 };
 
 const FiltersVisibilityContext = React.createContext<Props>({} as Props);
 
-class FiltersVisibilityContextProvider extends React.Component {
+class FiltersVisibilityContextProvider extends React.Component<ProviderProps, { areVisible: boolean }> {
     state = {
         areVisible: initialState.areFiltersVisible,
     };

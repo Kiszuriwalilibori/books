@@ -1,33 +1,25 @@
 import * as React from "react";
-import uuid from "react-uuid";
 
 import { shallowEqual, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
+import { useTypedSelector } from "hooks/useTypedSelector";
 import { FavoriteButton, SearchField } from "./components";
-import { createFilter, createTotalNumberURL, createBooksURL, validateInput } from "./utils";
+import { validateInput, createURL } from "./utils";
 import { Alert, Button, LogoFactory } from "components";
-import { useEnhancedState, useGetBooks, useGetEndpoints, useTypedSelector } from "hooks";
+
 import { BookForm, PageContainer, SearchButtons, SearchInputs } from "pages/styled";
 import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initialValues, initialValidationState } from "./utils/model";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
-import { BooksState } from "types";
-import useFetchBooks from "hooks/useFetchBooks.ts";
+import { useFetchBooks } from "hooks";
 
 export const SearchPage = () => {
-    const formID = uuid();
-
     const [validated, setValidated] = React.useState(initialValidationState);
-    const [booksURL, setBooksURL] = React.useState("");
-    const [countURL, setCountURL] = React.useState("");
-    const [filter, setFilter] = useEnhancedState<undefined | BooksState["filter"]>(undefined);
+    const [URL, setURL] = React.useState("");
 
     const isLoading = useTypedSelector(state => state.loading.isLoading, shallowEqual);
     const isOnline = useSelector(isOnlineSelector);
-    // const getBooks = useGetBooks();
-    const endpoints = useGetEndpoints(countURL, booksURL);
-    let controller = new AbortController();
-    useFetchBooks(endpoints, controller, filter);
+    const fetchBooksFromAPI = useFetchBooks();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
@@ -37,9 +29,8 @@ export const SearchPage = () => {
             const isValidated = validateInput(formValues);
             setValidated(isValidated);
             if (isValidated.isValid) {
-                setBooksURL(createBooksURL(formValues));
-                setCountURL(createTotalNumberURL(formValues));
-                setFilter(createFilter(formValues as Partial<SearchFormValues>));
+                console.log(formValues);
+                setURL(createURL(formValues));
             }
         },
     });
@@ -53,29 +44,28 @@ export const SearchPage = () => {
         handleReset(null);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    // React.useEffect(() => {
-    //     let controller = new AbortController();
 
-    //     if (endpoints && endpoints.length) {
-    //         getBooks(endpoints, controller, filter);
-    //     }
-
-    //     return () => controller?.abort();
-    // }, [endpoints, filter]);
+    React.useEffect(() => {
+        let controller = new AbortController();
+        if (URL) {
+            fetchBooksFromAPI(URL, controller);
+        }
+        return () => controller?.abort();
+    }, [URL, fetchBooksFromAPI]);
 
     return (
         <>
             <PageContainer maxWidth={false} disableGutters={true} sx={{ alignItems: "unset" }}>
                 <LogoFactory />
                 <Alert shouldRender={!validated.isValid} alertMessage={validated.message} />
-                <BookForm id={formID}>
+                <BookForm id="search__form">
                     <SearchInputs>
                         {Object.values(SearchPageField).map((fieldName: SearchPageField) => (
-                            <SearchField key={uuid()} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
+                            <SearchField key={fieldName} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
                         ))}
                     </SearchInputs>
                     <SearchButtons>
-                        <Button form={formID} disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
+                        <Button form="search__form" disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
                             Szukaj
                         </Button>
 

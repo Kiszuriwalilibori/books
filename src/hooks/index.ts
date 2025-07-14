@@ -16,6 +16,8 @@ import { useCreateDebouncedCallback } from "./useCreateDebouncedCallback";
 import useGetTableData from "./useGetTableData";
 import useGetEndpoints from "./useGetEndpoints";
 
+import { useFetchBooks } from "./useFetchBooks ";
+
 export {
     useAppDispatch,
     useCreateDebouncedCallback,
@@ -24,6 +26,7 @@ export {
     useDispatchAction,
     useEnhancedState,
     useFavoriteBooks,
+    useFetchBooks,
     useGetBooks,
     useGetEndpoints,
     useGetTableData,
