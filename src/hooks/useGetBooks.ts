@@ -5,7 +5,6 @@ import Paths from "routing";
 import { useMessage, useDispatchAction } from "hooks";
 import { BookRecord, FilteringCondition } from "types";
 import { formatFetchedDataAsBooks, getValue } from "js/utils";
-import { MAX_RESULTS } from "config";
 import { filtrate } from "../js/tableHelpers";
 
 export const useGetBooks = () => {
@@ -14,29 +13,29 @@ export const useGetBooks = () => {
     const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
 
     async function getBooks(endpoints: string[], controller: AbortController, filter: FilteringCondition | undefined = undefined) {
-        const handleNotFound = () => {
-            controller?.abort();
+        const handleNotFound = (): void => {
+            controller.abort();
             setIsLoading(false);
             showError({ isError: true, errorMessage: "Nie znaleziono książek spełniających podane kryteria" });
             navigate(Paths.error);
         };
-        const handleError = (response: any) => {
+        const handleError = (response: any): void => {
             setIsLoading(false);
-            controller?.abort();
+            controller.abort();
             showError({ isError: true, errorMessage: getValue(response, "message") || "Unknown error" });
             navigate(Paths.error);
         };
 
-        const handleSuccess = (foundBooks: BookRecord[]) => {
+        const handleSuccess = (foundBooks: BookRecord[]): void => {
             setIsLoading(false);
-            controller?.abort();
+            controller.abort();
             storeBooks(filtrate(formatFetchedDataAsBooks(foundBooks), filter));
             setIsFromNetwork(true);
             showMessage.success(`Poprawnie pobrano dane, łącznie pobrano ${foundBooks.length.toString()} książek`);
             navigate(Paths.books);
         };
         /** this function really fetches books */
-        async function fetchBooks(arrayOfEndpoints: string[], controller: AbortController) {
+        async function fetchBooks(arrayOfEndpoints: string[], controller: AbortController): Promise<void> {
             const promises = arrayOfEndpoints.map(endpoint => fetch(endpoint, { signal: controller.signal }).then(res => res.json()));
             const books: BookRecord[] = [];
             const errors: string[] = [];
@@ -56,7 +55,7 @@ export const useGetBooks = () => {
                         }
                     });
 
-                    errors.length && showMessage.error("Podczas pobierania conajmniej jednej książki wystąpił błąd:" + errors[0] + " Łącznie błędów: " + errors.length);
+                    errors.length && showMessage.error("Podczas pobierania co najmniej jednej książki wystąpił błąd:" + errors[0] + " Łącznie błędów: " + errors.length);
                     if (books && books.length) {
                         handleSuccess(books);
                     } else {
@@ -68,7 +67,6 @@ export const useGetBooks = () => {
         // here flow begins
 
         if (endpoints && endpoints.length) {
-            // setIsLoading(true);
             fetchBooks(endpoints, controller);
             return;
         } else {

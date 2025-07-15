@@ -45,7 +45,7 @@ const useFavoriteBooks = () => {
             showMessage.success("Poprawnie dodano do ulubionych następującą książkę: " + item.title);
             return true;
         } catch (error) {
-            showMessage.error("Podczas próby dodania ksiązki do ulubionych wystapił błąd");
+            showMessage.error("Podczas próby dodania książki do ulubionych wystąpił błąd");
             return false;
         }
     };
@@ -62,11 +62,12 @@ const useFavoriteBooks = () => {
         LocalStorage.remove(id);
     };
     const areEmpty: typeof favoriteBooks.areEmpty = () => {
-        return favoriteBooks.getLength() === 0 ? true : false;
+        return favoriteBooks.getLength() === 0;
     };
     const areNotEmpty: typeof favoriteBooks.areNotEmpty = () => {
-        return favoriteBooks.getLength() === 0 ? false : true;
+        return favoriteBooks.getLength() !== 0;
     };
+
     favoriteBooks.showSize = showSize;
     favoriteBooks.manageSupport = manageSupport;
     favoriteBooks.add = add;

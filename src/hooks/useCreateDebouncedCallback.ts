@@ -15,3 +15,4 @@ export const useCreateDebouncedCallback = (callback: Function, args = {} as Args
 
     return debouncedCallback;
 };
+export default useCreateDebouncedCallback;

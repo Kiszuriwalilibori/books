@@ -2,6 +2,10 @@
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
+## Project Overview
+
+The Google Books Finder is a React-based web application that demonstrates proficiency in modern web development technologies. It allows users to search and explore books from the Google Books database.
+
 ## Objective of this project
 
 -   Demonstrate knowledge of React, Redux, Router, Material UI
@@ -10,25 +14,37 @@
 
 ### Features
 
--   Finds books in Google Books data base with the following keys -- author -- title -- subject/category
--   Filters results
--   Sorts results
--   stores chosen books as favorite on local computer
--   removes books
--   shows full information about books
--   redirects to online shop
+-   Search for books by author, title, keywords or category
+-   Filter and sort search results
+-   Save favorite books locally
+-   Remove books from the favorites list
+-   View detailed information about each book
+-   Redirect to an online bookstore for purchase
 
 ### Tech
 
-The following tools and resources has been used while developing Google Books
+-   **ReactJS**: User interface building
+-   **Redux Toolkit**: State management
+-   **React Router**: Navigation handling
+-   **Material UI**: Pre-designed UI components
+-   **TypeScript**: Static typing for improved code quality
+-   **Jest & React Testing Library**: Unit and integration testing
+-   **Webpack**: Asset bundling (managed by Create React App)
+-   **SASS/SCSS**: Enhanced styling capabilities
+-   **ESLint**: Code linting
+-   **Prettier**: Code formatting
+-   **Git**: Version control system
 
--   [ReactJS](https://reactjs.org/) - HTML enhanced for web apps!
--   [Visual Studio Code](https://code.visualstudio.com/) - awesome web-based text editor
--   [Webpack](https://webpack.js.org/) - bundles assets
--   [SASS/SCSS](https://sass-lang.com/) - CSS with superpowers
--   [Redux 4.0](https://redux.js.org/) - A Predictable State Container for JS Apps
--   [Material UI](https://material-ui.com/) - React components for faster and easier web development
--   [React Router](https://courses.reacttraining.com/p/react-router-5) - Declarative routing for React
+### Project Structure
+
+-   `/src`: Main source code directory
+    -   `/components`: Reusable UI components
+    -   `/hooks`: Custom React hooks
+    -   `/pages`: Page-level components
+    -   `/redux`: Redux store, slices, and actions
+    -   `/styles`: Global styles and theme configuration
+    -   `/types`: TypeScript type definitions
+    -   `/utils`: Utility functions and helpers
 
 ### Installation
 
@@ -208,9 +224,9 @@ When getting number of books, now only data for 1 is taken to limit transfer. Al
 050 fixed
 better logic for updating component after localstorage change
 
-### 1.5.6
+### 1.5.9
 
-043 fixed
+regression. As Google Books API has changed, there was a need to update the implementation accordingly.It means come back to recursive fetching of books data
 
 ### Todos
 
@@ -279,3 +295,5 @@ jeżeli tak będzie to trza by doać opcję keyword do wyszukiwania
 ### License
 
 This software is distributed under MIT license
+
+Copyright © 2023 [Piotr Maksymiuk](https://github.com/Kiszuriwalilibori). All rights reserved.

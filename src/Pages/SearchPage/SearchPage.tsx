@@ -14,7 +14,6 @@ import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
 import { useFetchBooks } from "hooks";
 
 export const SearchPage = () => {
-    console.log("SearchPage render");
     const [validated, setValidated] = React.useState(initialValidationState);
     const [URL, setURL] = React.useState("");
 

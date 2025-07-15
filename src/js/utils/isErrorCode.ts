@@ -1,4 +1,4 @@
-export const isErrorCode = (code: number) => {
+export const isErrorCode = (code: number): boolean => {
     return Boolean(code >= 400 && code <= 599);
 };
 

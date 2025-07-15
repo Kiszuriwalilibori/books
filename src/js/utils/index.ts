@@ -7,4 +7,4 @@ import { FilteredStorage, LocalStorage } from "./localStorage";
 import formatFetchedDataAsBooks from "./formatFetchedDataAsBooks";
 import isErrorCode from "./isErrorCode";
 
-export { aryToObj, breakWhenInternetExplorer, Buttons, formatFetchedDataAsBooks, getValue, isErrorCode, isOffline, FilteredStorage, LocalStorage /*, rootSaga*/ };
+export { aryToObj, breakWhenInternetExplorer, Buttons, formatFetchedDataAsBooks, getValue, isErrorCode, isOffline, FilteredStorage, LocalStorage };

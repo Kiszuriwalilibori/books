@@ -24,21 +24,21 @@ export const useFetchBooks = () => {
     const showMessage = useMessage();
     const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
 
-    const fetchBooksFromAPI = (path: string, controller: AbortController) => {
+    const fetchBooksFromAPI = (path: string, controller: AbortController): void => {
         let startIndex = 0;
         let foundBooks = INITIAL_FOUND_BOOKS;
         let fetchSummary = INITIAL_FETCH_SUMMARY;
         setIsLoading(true);
 
-        const handleError = (response: any) => {
+        const handleError = (response: any): void => {
             const message = getValue(response, "message");
             fetchSummary.isError = true;
-            fetchSummary.errorMessage = message || "nieznany błąd";
+            fetchSummary.errorMessage = message || "unknown error";
             showError(fetchSummary);
             setIsLoading(false);
             navigate(Paths.error);
         };
-        const handleNotFound = () => {
+        const handleNotFound = (): void => {
             fetchSummary.isError = true;
             fetchSummary.errorMessage = "Nie znaleziono książek spełniających podane kryteria";
             showError(fetchSummary);
@@ -46,8 +46,8 @@ export const useFetchBooks = () => {
             navigate(Paths.error);
         };
 
-        const handleSuccess = (foundBooks: BookRecord[]) => {
-            controller?.abort();
+        const handleSuccess = (foundBooks: BookRecord[]): void => {
+            controller.abort();
             fetchSummary.data = formatFetchedDataAsBooks(foundBooks);
             storeBooks(fetchSummary.data);
             setIsFromNetwork(true);
@@ -56,15 +56,15 @@ export const useFetchBooks = () => {
             navigate(Paths.books);
         };
 
-        const increaseCounter = () => {
+        const increaseCounter = (): void => {
             startIndex += STEP;
         };
 
-        const addBooks = (moreBooks: any) => {
+        const addBooks = (moreBooks: any): void => {
             foundBooks = foundBooks.concat(moreBooks);
         };
 
-        async function recursiveFetch() {
+        async function recursiveFetch(): Promise<void> {
             const fullPath = path + startIndex.toString();
             const fetchResult = await fetch(fullPath, { signal: controller.signal }).catch(error => {
                 handleError(error);

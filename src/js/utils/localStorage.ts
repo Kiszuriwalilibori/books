@@ -48,7 +48,7 @@ export class LocalStorage {
     static isSupported() {
         let storage;
         try {
-            storage = window["localStorage"];
+            storage = window.localStorage;
             const foo = "__storage_test__";
             storage.setItem(foo, foo);
             storage.removeItem(foo);
