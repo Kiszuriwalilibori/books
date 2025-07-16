@@ -16,9 +16,16 @@ export const searchPageFieldPlaceholderMap: {
 
 export type SearchFormValues = Readonly<{ [key in SearchPageField]: string }>;
 
+export interface FieldValidationError {
+    field: string;
+    value: string;
+    errors: string[];
+}
+
 export interface ValidationState {
     message: string;
     isValid: boolean;
+    fieldErrors?: FieldValidationError[];
 }
 
 export const initialValues: SearchFormValues = {

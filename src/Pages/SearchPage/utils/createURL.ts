@@ -3,12 +3,6 @@ import join from "lodash/join";
 import { SearchFormValues } from "./model";
 import { BOOK_FIELDS } from "config";
 
-interface BookSearchPattern {
-    inauthor: string;
-    intitle: string;
-    subject: string;
-}
-
 /**
  * builds full GoogleBooks API search link for certain book
  * @param searchKeys -  object with keys that further forms part of that link

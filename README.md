@@ -233,6 +233,19 @@ regression. As Google Books API has changed, there was a need to update the impl
 Rearrange SearchPage in order to follow single responsibility rule and make it more readable
 fixed sorting and sorting test
 
+### 1.5.11
+
+fix(ValidationAlert): improve styling and alignment consistency
+
+-   Remove blue background and text color from requirements section
+-   Change error text color from red to default black
+-   Fix vertical alignment to be consistent across all sections
+-   Align bullet points under Info icon in both middle and bottom sections
+-   Remove duplicate padding that caused misalignment in field errors section
+
+The validation alert now has uniform appearance with consistent spacing
+and professional black text throughout all sections.
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę

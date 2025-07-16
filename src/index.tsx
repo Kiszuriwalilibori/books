@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import { AppProvider, App } from "components";
 import { breakWhenInternetExplorer } from "js/utils";

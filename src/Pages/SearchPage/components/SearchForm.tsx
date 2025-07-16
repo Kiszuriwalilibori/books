@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useFormik } from "formik";
 import uuid from "react-uuid";
 
-import { Alert, Button } from "components";
+import { Button, ValidationAlert } from "components";
 import { BookForm, SearchButtons, SearchInputs } from "pages/styled";
 import { SearchField, FavoriteButton } from "./";
 import { SearchFormValues, SearchPageField, searchPageFieldPlaceholderMap, initialValues, initialValidationState, ValidationState } from "../utils/model";
@@ -18,6 +18,11 @@ interface SearchFormProps {
 export const SearchForm: React.FC<SearchFormProps> = ({ isLoading, isOnline, onSubmit, onValidationChange }) => {
     const formID = uuid();
     const [validated, setValidated] = React.useState(initialValidationState);
+
+    const handleCloseValidationAlert = () => {
+        setValidated(initialValidationState);
+        onValidationChange(initialValidationState);
+    };
 
     const { values, handleSubmit, getFieldProps, handleReset } = useFormik({
         initialValues,
@@ -44,11 +49,11 @@ export const SearchForm: React.FC<SearchFormProps> = ({ isLoading, isOnline, onS
 
     return (
         <>
-            <Alert shouldRender={!validated.isValid} alertMessage={validated.message} />
+            <ValidationAlert shouldRender={!validated.isValid} alertMessage={validated.message} fieldErrors={validated.fieldErrors} onClose={handleCloseValidationAlert} />
             <BookForm id={formID}>
                 <SearchInputs>
                     {Object.values(SearchPageField).map((fieldName: SearchPageField) => (
-                        <SearchField key={fieldName} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} {...getFieldProps(fieldName)} />
+                        <SearchField key={fieldName} isDisabled={isLoading} label={searchPageFieldPlaceholderMap[fieldName]} fieldErrors={validated.fieldErrors} {...getFieldProps(fieldName)} />
                     ))}
                 </SearchInputs>
                 <SearchButtons>
