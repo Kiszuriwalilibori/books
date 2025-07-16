@@ -16,7 +16,7 @@ export const booksReducer = createReducer(initialState, builder => {
     builder
 
         .addCase(storeBooks, (state, action) => {
-            if (action.payload) {
+            if (action.payload && Array.isArray(action.payload)) {
                 state.books = action.payload;
                 state.numberOfPages = getNumberOfPages(action.payload);
                 state.currentPageNumber = initialState.currentPageNumber;
@@ -43,7 +43,9 @@ export const booksReducer = createReducer(initialState, builder => {
         })
 
         .addCase(removeBook, (state, action) => {
-            state.books = remove([...state.books], action.payload);
+            if (Array.isArray(state.books) && action.payload) {
+                state.books = remove([...state.books], action.payload);
+            }
         })
         .addCase(setNumberOfPages, (state, action) => {
             state.numberOfPages = action.payload;

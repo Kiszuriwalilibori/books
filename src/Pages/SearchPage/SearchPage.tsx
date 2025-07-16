@@ -21,15 +21,12 @@ export const SearchPage = () => {
     const isOnline = useSelector(isOnlineSelector);
     const fetchBooksFromAPI = useFetchBooks();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
     const { values, handleSubmit, getFieldProps, handleReset } = useFormik({
         initialValues,
         onSubmit(formValues: SearchFormValues) {
             const isValidated = validateInput(formValues);
             setValidated(isValidated);
             if (isValidated.isValid) {
-                console.log(formValues);
                 setURL(createURL(formValues));
             }
         },

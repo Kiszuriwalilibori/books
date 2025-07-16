@@ -15,6 +15,23 @@ interface FetchSummary {
     errorMessage: string;
 }
 
+interface APIErrorResponse {
+    message?: string;
+    code?: number;
+    error?: {
+        message?: string;
+        code?: number;
+    };
+    [key: string]: unknown;
+}
+
+interface APISuccessResponse {
+    items?: BookRecord[];
+    [key: string]: unknown;
+}
+
+type APIResponse = APIErrorResponse | APISuccessResponse;
+
 const STEP = 40;
 const INITIAL_FETCH_SUMMARY: FetchSummary = { isError: false, errorMessage: "", data: [] };
 const INITIAL_FOUND_BOOKS: BookRecord[] = [];
@@ -30,7 +47,7 @@ export const useFetchBooks = () => {
         let fetchSummary = INITIAL_FETCH_SUMMARY;
         setIsLoading(true);
 
-        const handleError = (response: any): void => {
+        const handleError = (response: APIErrorResponse): void => {
             const message = getValue(response, "message");
             fetchSummary.isError = true;
             fetchSummary.errorMessage = message || "unknown error";
@@ -60,7 +77,7 @@ export const useFetchBooks = () => {
             startIndex += STEP;
         };
 
-        const addBooks = (moreBooks: any): void => {
+        const addBooks = (moreBooks: BookRecord[]): void => {
             foundBooks = foundBooks.concat(moreBooks);
         };
 

@@ -7,18 +7,10 @@ import { BooksState, Book, ID } from "types";
  * @returns  array without subject row
  */
 export const remove = (books: BooksState["books"], bookID: ID) => {
-    let remainingBooks = [...books];
-
     const comparator = (item: Book) => {
-        return item.id !== bookID;
+        return item && item.id !== bookID;
     };
 
-    try {
-        remainingBooks = books.filter(comparator);
-    } catch (err) {
-        return remainingBooks;
-    } finally {
-        return remainingBooks;
-    }
+    return books.filter(comparator);
 };
 export default remove;

@@ -22,47 +22,43 @@ const trimFunctions: TrimFunctions = {
     },
 };
 
-const sorts = {
-    stringAndNumericalStringSortFunction: (data: BooksState["books"], isSortOrderDescending: BooksState["sort"]["isSortOrderDescending"], key: NonNullable<BooksState["sort"]["currentSortColumn"]>, trim: TrimFunction) => {
-        data.sort((OneBook, OtherBook) => {
-            const trimmedOneBook = trim(OneBook[key] as string);
-            const trimmedOtherBook = trim(OtherBook[key] as string);
-            if (isSortOrderDescending) {
-                if (trimmedOneBook < trimmedOtherBook) {
-                    return 1;
-                }
-                if (trimmedOneBook > trimmedOtherBook) {
-                    return -1;
-                }
-
-                return 0;
-            }
-            if (trimmedOneBook < trimmedOtherBook) {
-                return -1;
-            }
-            if (trimmedOneBook > trimmedOtherBook) {
-                return 1;
-            }
-
-            return 0;
-        });
-        return data;
-    },
+const getValue = (item: any, key: string): string => {
+    const value = item[key];
+    if (Array.isArray(value)) {
+        return value.map(v => (typeof v === "object" ? Object.values(v).join(" ") : v)).join(", ");
+    }
+    return value ? String(value) : "";
 };
 
 export const sorting = (data: BooksState["books"], isSortOrderDescending: BooksState["sort"]["isSortOrderDescending"], key: NonNullable<BooksState["sort"]["currentSortColumn"]>) => {
+    if (!key) return data;
     try {
         if (key) {
             const numericalKey = columns.sourceFields.indexOf(key as Exclude<AllFields, "subject">);
             const trim = trimFunctions[columns.contentCategories[numericalKey] as ContentCategoryEnum];
-            data = sorts.stringAndNumericalStringSortFunction(data, isSortOrderDescending, key, trim);
+
+            data.sort((a, b) => {
+                const aValue = getValue(a, key);
+                const bValue = getValue(b, key);
+
+                if (typeof trim === "function") {
+                    return trim(aValue).localeCompare(trim(bValue));
+                }
+
+                return aValue.localeCompare(bValue);
+            });
+
+            if (isSortOrderDescending) {
+                data.reverse();
+            }
+
             return data;
         }
     } catch (err) {
-        return data;
-    } finally {
-        return data;
+        console.error("Error in sorting function:", err);
     }
+
+    return data;
 };
 
 export default sorting;
