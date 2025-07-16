@@ -96,6 +96,183 @@ describe("sorting function", () => {
         expect(result[result.length - 1].title).toBe("Incomplete Book");
     });
 
+    it("should fall back to sorting by authors when categories are empty", () => {
+        const booksWithEmptyCategories: Book[] = [
+            {
+                id: "1",
+                title: "Book A",
+                authors: ["Zoe Author"],
+                publishedDate: "2020",
+                language: "en",
+                categories: [], // Empty categories
+            },
+            {
+                id: "2",
+                title: "Book B",
+                authors: ["Alice Author"],
+                publishedDate: "2021",
+                language: "en",
+                categories: [], // Empty categories
+            },
+            {
+                id: "3",
+                title: "Book C",
+                authors: ["Bob Author"],
+                publishedDate: "2022",
+                language: "en",
+                categories: ["Programming"], // Has categories
+            },
+        ];
+
+        const result = sorting(booksWithEmptyCategories, false, "categories");
+        // Books with empty categories should be sorted by authors (Alice, Zoe)
+        // Book with categories should come first (sorted by category value)
+        expect(result.map(book => book.authors[0])).toEqual(["Bob Author", "Alice Author", "Zoe Author"]);
+    });
+
+    it("should fall back to sorting by authors when subtitle is empty", () => {
+        const booksWithEmptySubtitles: Book[] = [
+            {
+                id: "1",
+                title: "Book A",
+                authors: ["Zoe Author"],
+                publishedDate: "2020",
+                language: "en",
+                categories: ["Programming"],
+                subtitle: "", // Empty subtitle
+            },
+            {
+                id: "2",
+                title: "Book B",
+                authors: ["Alice Author"],
+                publishedDate: "2021",
+                language: "en",
+                categories: ["Programming"],
+                subtitle: "", // Empty subtitle
+            },
+            {
+                id: "3",
+                title: "Book C",
+                authors: ["Bob Author"],
+                publishedDate: "2022",
+                language: "en",
+                categories: ["Programming"],
+                subtitle: "A Great Subtitle", // Has subtitle
+            },
+        ];
+
+        const result = sorting(booksWithEmptySubtitles, false, "subtitle");
+        // Books with empty subtitles should be sorted by authors (Alice, Zoe)
+        // Book with subtitle should come first (sorted by subtitle value)
+        expect(result.map(book => book.authors[0])).toEqual(["Bob Author", "Alice Author", "Zoe Author"]);
+    });
+
+    it("should fall back to sorting by authors when subtitle is undefined", () => {
+        const booksWithUndefinedSubtitles: Book[] = [
+            {
+                id: "1",
+                title: "Book A",
+                authors: ["Zoe Author"],
+                publishedDate: "2020",
+                language: "en",
+                categories: ["Programming"],
+                // subtitle is undefined
+            },
+            {
+                id: "2",
+                title: "Book B",
+                authors: ["Alice Author"],
+                publishedDate: "2021",
+                language: "en",
+                categories: ["Programming"],
+                // subtitle is undefined
+            },
+            {
+                id: "3",
+                title: "Book C",
+                authors: ["Bob Author"],
+                publishedDate: "2022",
+                language: "en",
+                categories: ["Programming"],
+                subtitle: "A Great Subtitle", // Has subtitle
+            },
+        ];
+
+        const result = sorting(booksWithUndefinedSubtitles, false, "subtitle");
+        // Books with undefined subtitles should be sorted by authors (Alice, Zoe)
+        // Book with subtitle should come first (sorted by subtitle value)
+        expect(result.map(book => book.authors[0])).toEqual(["Bob Author", "Alice Author", "Zoe Author"]);
+    });
+
+    it("should fall back to sorting by authors when publishedDate is empty", () => {
+        const booksWithEmptyPublishedDate: Book[] = [
+            {
+                id: "2",
+                title: "Book B",
+                authors: ["Alice Author"],
+                publishedDate: "", // Empty publishedDate
+                language: "en",
+                categories: ["Programming"],
+            },
+            {
+                id: "1",
+                title: "Book A",
+                authors: ["Zoe Author"],
+                publishedDate: "", // Empty publishedDate
+                language: "en",
+                categories: ["Programming"],
+            },
+            {
+                id: "3",
+                title: "Book C",
+                authors: ["Bob Author"],
+                publishedDate: "2022", // Has publishedDate
+                language: "en",
+                categories: ["Programming"],
+            },
+        ];
+
+        const result = sorting(booksWithEmptyPublishedDate, false, "publishedDate");
+
+        // Books with empty publishedDate should be sorted by authors (Alice, Zoe)
+        // Book with publishedDate should come first
+        expect(result.map(book => book.authors[0])).toEqual(["Bob Author", "Alice Author", "Zoe Author"]);
+    });
+
+    it("should fall back to sorting by authors when language is empty", () => {
+        const booksWithEmptyLanguage: Book[] = [
+            {
+                id: "1",
+                title: "Book A",
+                authors: ["Zoe Author"],
+                publishedDate: "2020",
+                language: "", // Empty language
+                categories: ["Programming"],
+            },
+            {
+                id: "2",
+                title: "Book B",
+                authors: ["Alice Author"],
+                publishedDate: "2021",
+                language: "", // Empty language
+                categories: ["Programming"],
+            },
+            {
+                id: "3",
+                title: "Book C",
+                authors: ["Bob Author"],
+                publishedDate: "2022",
+                language: "en", // Has language
+                categories: ["Programming"],
+            },
+        ];
+
+        const result = sorting(booksWithEmptyLanguage, false, "language");
+        // Books with empty language should be sorted by authors (Alice, Zoe)
+        // Book with language should come first
+        expect(result.map(book => book.authors[0])).toEqual(["Bob Author", "Alice Author", "Zoe Author"]);
+    });
+
     it("should handle empty array", () => {
         const result = sorting([], false, "title");
         expect(result).toEqual([]);

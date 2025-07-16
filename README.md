@@ -228,6 +228,11 @@ better logic for updating component after localstorage change
 
 regression. As Google Books API has changed, there was a need to update the implementation accordingly.It means come back to recursive fetching of books data
 
+### 1.5.10
+
+Rearrange SearchPage in order to follow single responsibility rule and make it more readable
+fixed sorting and sorting test
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę

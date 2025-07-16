@@ -6,7 +6,7 @@ export enum SearchPageField {
 }
 
 export const searchPageFieldPlaceholderMap: {
-    [key in SearchPageField]: string;
+    readonly [key in SearchPageField]: string;
 } = {
     [SearchPageField.AUTHORS]: "Autor",
     [SearchPageField.TITLE]: "Tytuł",
@@ -14,7 +14,7 @@ export const searchPageFieldPlaceholderMap: {
     [SearchPageField.KEYWORD]: "Słowo kluczowe",
 };
 
-export type SearchFormValues = { [key in SearchPageField]: string };
+export type SearchFormValues = Readonly<{ [key in SearchPageField]: string }>;
 
 export interface ValidationState {
     message: string;
@@ -28,4 +28,6 @@ export const initialValues: SearchFormValues = {
     [SearchPageField.KEYWORD]: "",
 };
 
-export const initialValidationState: ValidationState = { isValid: true, message: "" };
+export const initialValidationState: ValidationState = { isValid: true, message: "" } as const;
+
+// src/Pages/SearchPage/utils/index.ts
