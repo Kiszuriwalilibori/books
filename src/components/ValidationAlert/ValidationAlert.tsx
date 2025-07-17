@@ -1,10 +1,23 @@
 import { useState } from "react";
 import { AlertTitle, Collapse, IconButton, Box, Typography } from "@mui/material";
-import { ExpandMore, ExpandLess, Info, Close } from "@mui/icons-material";
+import { ExpandMore, ExpandLess, Close } from "@mui/icons-material";
 
 import renderConditionally from "hocs/renderConditionally";
-import StyledAlert from "../Alert/Alert.styles";
+
 import { FieldValidationError, SearchPageField, searchPageFieldPlaceholderMap } from "pages/SearchPage/utils/model";
+import StyledAlert, {
+  AlertContainer,
+  FieldValueTypography,
+  ErrorListItem,
+  SectionDivider,
+  FlexBox,
+  FlexGrowBox,
+  FlexGapBox,
+  MarginBottomTypography,
+  PaddedBox,
+  MarginBottomBox,
+  StyledInfoIcon
+} from "./ValidationAlert.styles";
 
 interface Props {
     alertMessage: string;
@@ -27,28 +40,17 @@ const ValidationAlert = (props: Props) => {
     };
 
     return (
-        <Box
-            sx={{
-                position: "fixed",
-                top: "20px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                zIndex: 1300,
-                maxWidth: "600px",
-                width: "90%",
-                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12)",
-            }}
-        >
+        <AlertContainer>
             <StyledAlert severity="error" role="alert">
-                <Box display="flex" alignItems="flex-start" width="100%">
-                    <Box flexGrow={1}>
+                <FlexBox>
+                    <FlexGrowBox>
                         <AlertTitle>Błędy walidacji</AlertTitle>
                         <Typography variant="body2" component="div">
                             {alertMessage}
                         </Typography>
-                    </Box>
+                    </FlexGrowBox>
 
-                    <Box display="flex" gap={0.5}>
+                    <FlexGapBox>
                         {hasDetailedErrors && (
                             <IconButton size="small" onClick={handleToggleExpanded} aria-label={expanded ? "Ukryj szczegóły" : "Pokaż szczegóły"}>
                                 {expanded ? <ExpandLess /> : <ExpandMore />}
@@ -59,135 +61,64 @@ const ValidationAlert = (props: Props) => {
                                 <Close />
                             </IconButton>
                         )}
-                    </Box>
-                </Box>
+                    </FlexGapBox>
+                </FlexBox>
 
                 {hasDetailedErrors && (
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <Box mt={2} pt={2} borderTop="1px solid rgba(0,0,0,0.12)">
+                        <SectionDivider>
                             <Typography variant="subtitle2" gutterBottom>
-                                <Info fontSize="small" sx={{ verticalAlign: "middle", mr: 1 }} />
+                                <StyledInfoIcon fontSize="small" />
                                 Szczegóły błędów:
                             </Typography>
 
                             <Box>
                                 {fieldErrors!.map((fieldError, index) => (
-                                    <Box key={`${fieldError.field}-${index}`} sx={{ mb: 2 }}>
-                                        <Typography variant="body2" component="div" sx={{ mb: 1 }}>
+                                    <MarginBottomBox key={`${fieldError.field}-${index}`}>
+                                        <MarginBottomTypography variant="body2">
                                             <strong>Pole "{getFieldLabel(fieldError.field)}"</strong>
                                             {fieldError.value && (
-                                                <Typography
-                                                    variant="caption"
-                                                    component="span"
-                                                    sx={{
-                                                        ml: 1,
-                                                        fontFamily: "monospace",
-                                                        backgroundColor: "rgba(0,0,0,0.05)",
-                                                        padding: "2px 4px",
-                                                        borderRadius: "3px",
-                                                    }}
-                                                >
+                                                <FieldValueTypography component="span">
                                                     "{fieldError.value.length > 30 ? `${fieldError.value.substring(0, 30)}...` : fieldError.value}"
-                                                </Typography>
+                                                </FieldValueTypography>
                                             )}
-                                        </Typography>
-                                        <Box sx={{ pl: 1 }}>
+                                        </MarginBottomTypography>
+                                        <PaddedBox>
                                             {fieldError.errors.map((error, errorIndex) => (
-                                                <Typography
-                                                    key={errorIndex}
-                                                    variant="caption"
-                                                    component="div"
-                                                    sx={{
-                                                        display: "flex",
-                                                        alignItems: "flex-start",
-                                                        "&:before": {
-                                                            content: '"•"',
-                                                            marginRight: "8px",
-                                                            flexShrink: 0,
-                                                        },
-                                                    }}
-                                                >
+                                                <ErrorListItem key={errorIndex}>
                                                     {error}
-                                                </Typography>
+                                                </ErrorListItem>
                                             ))}
-                                        </Box>
-                                    </Box>
+                                        </PaddedBox>
+                                    </MarginBottomBox>
                                 ))}
                             </Box>
 
-                            <Box mt={2} pt={2} borderTop="1px solid rgba(0,0,0,0.12)">
+                            <SectionDivider>
                                 <Typography variant="subtitle2" gutterBottom>
-                                    <Info fontSize="small" sx={{ verticalAlign: "middle", mr: 1 }} />
+                                    <StyledInfoIcon fontSize="small" />
                                     Wymagania dla wszystkich pól:
                                 </Typography>
-                                <Box sx={{ pl: 1 }}>
-                                    <Typography
-                                        variant="caption"
-                                        component="div"
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "flex-start",
-                                            "&:before": {
-                                                content: '"•"',
-                                                marginRight: "8px",
-                                                flexShrink: 0,
-                                            },
-                                        }}
-                                    >
+                                <PaddedBox>
+                                    <ErrorListItem>
                                         Minimum 2 znaki
-                                    </Typography>
-                                    <Typography
-                                        variant="caption"
-                                        component="div"
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "flex-start",
-                                            "&:before": {
-                                                content: '"•"',
-                                                marginRight: "8px",
-                                                flexShrink: 0,
-                                            },
-                                        }}
-                                    >
+                                    </ErrorListItem>
+                                    <ErrorListItem>
                                         Co najmniej jedna litera lub cyfra
-                                    </Typography>
-                                    <Typography
-                                        variant="caption"
-                                        component="div"
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "flex-start",
-                                            "&:before": {
-                                                content: '"•"',
-                                                marginRight: "8px",
-                                                flexShrink: 0,
-                                            },
-                                        }}
-                                    >
+                                    </ErrorListItem>
+                                    <ErrorListItem>
                                         Bez spacji na początku i końcu
-                                    </Typography>
-                                    <Typography
-                                        variant="caption"
-                                        component="div"
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "flex-start",
-                                            "&:before": {
-                                                content: '"•"',
-                                                marginRight: "8px",
-                                                flexShrink: 0,
-                                            },
-                                        }}
-                                    >
+                                    </ErrorListItem>
+                                    <ErrorListItem>
                                         Bez niedozwolonych znaków specjalnych
-                                    </Typography>
-                                </Box>
-                            </Box>
-                        </Box>
+                                    </ErrorListItem>
+                                </PaddedBox>
+                            </SectionDivider>
+                        </SectionDivider>
                     </Collapse>
                 )}
             </StyledAlert>
-        </Box>
+        </AlertContainer>
     );
 };
 
