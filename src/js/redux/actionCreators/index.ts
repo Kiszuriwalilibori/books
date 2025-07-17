@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { BooksState, RootStateType } from "types";
+import { BooksState, RootStateType, BookID } from "types";
 interface ShowError {
     isError: boolean;
     errorMessage: string;
@@ -29,3 +29,8 @@ export const setIsOnline = createAction<RootStateType["online"]["isOnline"]>("IS
 /** filtersVisibilityReducer actions begin **/
 export const toggleFiltersVisibility = createAction("FILTERS_VISIBILITY_TOGGLE");
 /** filtersVisibilityReducer actions end **/
+
+/** removeBookModalReducer actions begin **/
+export const showRemoveBookModal = createAction<BookID>("REMOVE_BOOK_MODAL_SHOW");
+export const closeRemoveBookModal = createAction("REMOVE_BOOK_MODAL_CLOSE");
+/** removeBookModalReducer actions end **/

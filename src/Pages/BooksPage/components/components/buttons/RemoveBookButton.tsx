@@ -1,7 +1,7 @@
 import RoundIconButton from "./RoundIconButton";
 
-import { useCreateDebouncedCallback } from "hooks";
-import { useRemoveBookModalVisibilityContext } from "contexts";
+import { useCreateDebouncedCallback, useAppDispatch } from "hooks";
+import { showRemoveBookModal } from "js/redux/actionCreators";
 import { BookID } from "types";
 
 interface Props {
@@ -9,7 +9,8 @@ interface Props {
 }
 const RemoveBookButton = (props: Props) => {
     const { bookID } = props;
-    const { showWarningModal } = useRemoveBookModalVisibilityContext();
+    const dispatch = useAppDispatch();
+    const showWarningModal = (bookID: BookID) => dispatch(showRemoveBookModal(bookID));
     const RemoveBook = useCreateDebouncedCallback(showWarningModal, { id: bookID });
 
     return <RoundIconButton type="removeBook" ID={bookID} clickHandler={RemoveBook} />;

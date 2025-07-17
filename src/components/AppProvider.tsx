@@ -11,8 +11,7 @@ import { register } from "serviceWorkerRegistration";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SnackbarProvider } from "notistack";
-import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, filtersVisibilityReducer, loadingReducer, onlineReducer } from "js/redux/reducers";
-import { RemoveBookModalVisibilityContextProvider } from "contexts";
+import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, filtersVisibilityReducer, loadingReducer, onlineReducer, removeBookModalReducer } from "js/redux/reducers";
 
 import "../styles/App.css";
 
@@ -33,6 +32,7 @@ const rootReducer = combineReducers({
     filtersVisibility: filtersVisibilityReducer,
     loading: loadingReducer,
     online: onlineReducer,
+    removeBookModal: removeBookModalReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -61,9 +61,7 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <QueryClientProvider client={queryClient}>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
-                        <RemoveBookModalVisibilityContextProvider>
-                            <Router>{children}</Router>
-                        </RemoveBookModalVisibilityContextProvider>
+                        <Router>{children}</Router>
                     </PersistGate>
                 </Provider>
                 {process.env.NODE_ENV === "development" && <ReactQueryDevtools />}

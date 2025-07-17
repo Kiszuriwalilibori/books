@@ -1,12 +1,20 @@
 import * as React from "react";
 import debounce from "lodash/debounce";
 import { useDispatchAction } from "hooks";
-import { useRemoveBookModalVisibilityContext } from "contexts";
+import { useSelector, useDispatch } from "react-redux";
+import { selectIsRemoveBookModalVisible, selectRemoveBookModalBook } from "js/redux/reducers/removeBookModalReducer";
+import { closeRemoveBookModal } from "js/redux/actionCreators";
 import { BookID } from "types";
 
 export const useRemoveBook = () => {
     const { removeBook } = useDispatchAction();
-    const { closeModal, book, isRemoveBookModalVisible } = useRemoveBookModalVisibilityContext();
+    const dispatch = useDispatch();
+    const isRemoveBookModalVisible = useSelector(selectIsRemoveBookModalVisible);
+    const book = useSelector(selectRemoveBookModalBook);
+
+    const closeModal = React.useCallback(() => {
+        dispatch(closeRemoveBookModal());
+    }, [dispatch]);
 
     const debouncedRemoveBook = React.useMemo(
         () =>
