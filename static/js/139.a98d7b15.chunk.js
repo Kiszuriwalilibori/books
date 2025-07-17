@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkbooks=self.webpackChunkbooks||[]).push([[139],{8139:function(e,n,s){s.r(n),s.d(n,{NotFoundPage:function(){return u}});var o=s(5043),r=s(7063),a=s(9688),t=s(579),u=function(){return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(r.M9,{}),(0,t.jsx)(r.Kw,{errorMessage:"Nie znaleziono ksi\u0105\u017cek spe\u0142niaj\u0105cych podane kryteria"})]})};n.default=o.memo((0,a.nQ)(u))}}]);
-//# sourceMappingURL=139.a98d7b15.chunk.js.map
