@@ -11,8 +11,8 @@ import { register } from "serviceWorkerRegistration";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SnackbarProvider } from "notistack";
-import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, loadingReducer, onlineReducer } from "js/redux/reducers";
-import { FiltersVisibilityContextProvider, RemoveBookModalVisibilityContextProvider } from "contexts";
+import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, filtersVisibilityReducer, loadingReducer, onlineReducer } from "js/redux/reducers";
+import { RemoveBookModalVisibilityContextProvider } from "contexts";
 
 import "../styles/App.css";
 
@@ -30,6 +30,7 @@ const rootReducer = combineReducers({
     error: errorReducer,
     cache: cacheReducer,
     dataSource: dataSourceReducer,
+    filtersVisibility: filtersVisibilityReducer,
     loading: loadingReducer,
     online: onlineReducer,
 });
@@ -60,11 +61,9 @@ const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <QueryClientProvider client={queryClient}>
                 <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
-                        <FiltersVisibilityContextProvider>
-                            <RemoveBookModalVisibilityContextProvider>
-                                <Router>{children}</Router>
-                            </RemoveBookModalVisibilityContextProvider>
-                        </FiltersVisibilityContextProvider>
+                        <RemoveBookModalVisibilityContextProvider>
+                            <Router>{children}</Router>
+                        </RemoveBookModalVisibilityContextProvider>
                     </PersistGate>
                 </Provider>
                 {process.env.NODE_ENV === "development" && <ReactQueryDevtools />}

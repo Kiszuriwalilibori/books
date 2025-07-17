@@ -2,10 +2,11 @@ import uuid from "react-uuid";
 import { useForm } from "react-hook-form";
 
 import { FilterField } from "./components";
-import { useFiltersVisibilityContext } from "contexts";
 import { useDispatchAction } from "hooks";
 import { columns } from "models";
 import { NotSearchableFields, SearchableFields } from "types";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { selectAreFiltersVisible } from "js/redux/selectors";
 
 type Filter = {
     [key in SearchableFields | NotSearchableFields as string]: string;
@@ -19,7 +20,7 @@ const removeEmptyFields = (obj: Filter): Filter => {
 };
 
 const BooksTableFilter = () => {
-    const { areFiltersVisible } = useFiltersVisibilityContext();
+    const areFiltersVisible = useSelector(selectAreFiltersVisible);
     const { register, getValues } = useForm();
     const { filterBooks } = useDispatchAction();
 

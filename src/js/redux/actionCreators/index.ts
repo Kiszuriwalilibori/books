@@ -25,3 +25,7 @@ export const setIsFromNetwork = createAction<RootStateType["dataSource"]["isNetw
 export const showError = createAction<ShowError>("ERROR_SHOW");
 export const setIsLoading = createAction<RootStateType["loading"]["isLoading"]>("IS_LOADING");
 export const setIsOnline = createAction<RootStateType["online"]["isOnline"]>("IS_ONLINE");
+
+/** filtersVisibilityReducer actions begin **/
+export const toggleFiltersVisibility = createAction("FILTERS_VISIBILITY_TOGGLE");
+/** filtersVisibilityReducer actions end **/

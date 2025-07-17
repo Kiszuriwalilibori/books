@@ -6,13 +6,12 @@ import { createURL } from "./utils";
 import { LogoFactory } from "components";
 
 import { PageContainer } from "pages/styled";
-import { SearchFormValues, /*initialValidationState,*/ ValidationState } from "./utils/model";
+import { SearchFormValues, ValidationState } from "./utils/model";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
 import { isLoadingSelector } from "js/redux/reducers/loadingReducer";
 import { useFetchBooks } from "hooks";
 
 export const SearchPage = () => {
-    // const [validated, setValidated] = useState(initialValidationState);
     const [URL, setURL] = useState("");
 
     const isLoading = useSelector(isLoadingSelector);
@@ -23,9 +22,7 @@ export const SearchPage = () => {
         setURL(createURL(formValues));
     }, []);
 
-    const handleValidationChange = useCallback((validation: ValidationState) => {
-        // setValidated(validation);
-    }, []);
+    const handleValidationChange = useCallback((validation: ValidationState) => {}, []);
 
     useEffect(() => {
         const controller = new AbortController();

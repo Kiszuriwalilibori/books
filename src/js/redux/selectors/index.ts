@@ -3,6 +3,7 @@ import { currentIndex, URLs } from "../reducers/detailsReducer";
 import { isNetwork } from "../reducers/dataSourceReducer";
 import { isCacheSupported } from "../reducers/cacheReducer";
 import { currentPageNumber /*, currentSortColumn, isSortOrderDescending*/, filter, sort } from "../reducers/booksReducer";
+import { selectAreFiltersVisible } from "../reducers/filtersVisibilityReducer";
 
 import { RootStateType } from "types";
 
@@ -38,13 +39,10 @@ export const selectCanAddToFavorites = createSelector(isNetwork, isCacheSupporte
 
 /****/
 
-const setGetTableDataArgs = (
-    pageNumber: RootStateType["books"]["currentPageNumber"],
-    /*currentSortColumn: RootStateType["books"]["currentSortColumn"], isSortOrderDescending: RootStateType["books"]["isSortOrderDescending"],*/ filter: RootStateType["books"]["filter"],
-    sort: RootStateType["books"]["sort"]
-) => {
-    return { pageNumber, /*currentSortColumn, isSortOrderDescending,*/ filter, sort };
+const setGetTableDataArgs = (pageNumber: RootStateType["books"]["currentPageNumber"], filter: RootStateType["books"]["filter"], sort: RootStateType["books"]["sort"]) => {
+    return { pageNumber, filter, sort };
 };
-export const selectGetTableDataArgs = createSelector(currentPageNumber /*, currentSortColumn, isSortOrderDescending*/, filter, sort, setGetTableDataArgs);
+export const selectGetTableDataArgs = createSelector(currentPageNumber, filter, sort, setGetTableDataArgs);
 
 /*** */
+export { selectAreFiltersVisible };

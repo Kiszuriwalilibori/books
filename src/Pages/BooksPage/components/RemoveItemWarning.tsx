@@ -1,13 +1,9 @@
 import * as React from "react";
-import debounce from "lodash/debounce";
-
 import { Modal } from "@mui/material";
-
-import { useRemoveBookModalVisibilityContext } from "contexts";
-import { useDebouncedCallback, useDispatchAction } from "hooks";
+import { useDebouncedCallback } from "hooks";
 import { Button } from "components";
 import { AlertBox, PageContainer } from "pages/styled";
-import { BookID } from "types";
+import { useRemoveBook } from "hooks/useRemoveBook";
 
 /**
  * @description Renders modal component with two option buttons: confirming remove and cancelling remove
@@ -15,18 +11,7 @@ import { BookID } from "types";
  */
 
 const RemoveItemWarning = React.forwardRef((props, ref) => {
-    const { removeBook } = useDispatchAction();
-    const { closeModal, book, isRemoveBookModalVisible } = useRemoveBookModalVisibilityContext();
-
-    const handleRemove: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(
-        debounce(() => {
-            const { id } = book as BookID;
-            book && removeBook(id);
-            closeModal();
-        }, 200),
-        [book, closeModal, removeBook]
-    );
-
+    const { handleRemove, isRemoveBookModalVisible, closeModal } = useRemoveBook();
     const handleCancel = useDebouncedCallback<HTMLButtonElement>(closeModal);
 
     return (
