@@ -1,21 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
-import { shallowEqual, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { useTypedSelector } from "hooks/useTypedSelector";
 import { SearchForm } from "./components/SearchForm";
 import { createURL } from "./utils";
 import { LogoFactory } from "components";
 
 import { PageContainer } from "pages/styled";
-import { SearchFormValues, initialValidationState, ValidationState } from "./utils/model";
+import { SearchFormValues, /*initialValidationState,*/ ValidationState } from "./utils/model";
 import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
+import { isLoadingSelector } from "js/redux/reducers/loadingReducer";
 import { useFetchBooks } from "hooks";
 
 export const SearchPage = () => {
-    const [validated, setValidated] = useState(initialValidationState);
+    // const [validated, setValidated] = useState(initialValidationState);
     const [URL, setURL] = useState("");
 
-    const isLoading = useTypedSelector(state => state.loading.isLoading, shallowEqual);
+    const isLoading = useSelector(isLoadingSelector);
     const isOnline = useSelector(isOnlineSelector);
     const fetchBooksFromAPI = useFetchBooks();
 
@@ -24,7 +24,7 @@ export const SearchPage = () => {
     }, []);
 
     const handleValidationChange = useCallback((validation: ValidationState) => {
-        setValidated(validation);
+        // setValidated(validation);
     }, []);
 
     useEffect(() => {

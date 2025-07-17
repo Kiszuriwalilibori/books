@@ -1,10 +1,10 @@
-import { shallowEqual } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useEffect } from "react";
 
 import { ErrorMessage, LogoFactory } from "components";
 import { withLinkToSearchPageHOC } from "hocs";
-import { useTypedSelector } from "hooks";
+import { errorMessageSelector } from "js/redux/reducers/errorReducer";
 
 export const ErrorPage = () => {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ export const ErrorPage = () => {
         };
     }, [gotoPreviousPage]);
 
-    const errorMessage = useTypedSelector(state => state.error.errorMessage, shallowEqual);
+    const errorMessage = useSelector(errorMessageSelector);
 
     return (
         <>

@@ -1,7 +1,7 @@
 {
     "name": "books",
     "homepage": "http://kiszuriwalilibori.github.io/books",
-    "version": "1.5.11",
+    "version": "1.5.12",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.11.3",
@@ -70,7 +70,8 @@
         "version-sync": "node scripts/version-sync.js sync",
         "version-check": "node scripts/version-sync.js check",
         "version-watch": "node scripts/version-sync.js watch",
-        "prebuild": "npm run update-version"
+        "prebuild": "npm run update-version",
+        "depcheck": "depcheck"
     },
     "devDependencies": {
         "@types/enzyme": "^3.10.11",
@@ -83,6 +84,7 @@
         "@types/react-redux": "^7.1.22",
         "@types/react-router-dom": "^5.3.2",
         "babel-jest": "^27.4.6",
+        "depcheck": "^1.4.7",
         "enzyme": "^3.11.0",
         "gh-pages": "^6.1.1"
     },

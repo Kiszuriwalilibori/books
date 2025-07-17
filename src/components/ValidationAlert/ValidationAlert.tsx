@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AlertTitle, Collapse, IconButton, Box, Typography } from "@mui/material";
 import { ExpandMore, ExpandLess, Info, Close } from "@mui/icons-material";
 

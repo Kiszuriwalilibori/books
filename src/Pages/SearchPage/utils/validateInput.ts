@@ -74,7 +74,7 @@ const createDetailedMessage = (fieldErrors: FieldValidationError[]): string => {
             message += ` (wartość: "${fieldError.value}")`;
         }
 
-        fieldError.errors.forEach((error, errorIndex) => {
+        fieldError.errors.forEach((error /*, errorIndex*/) => {
             message += `\n   • ${error}`;
         });
     });

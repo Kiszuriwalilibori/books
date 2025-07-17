@@ -1,5 +1,5 @@
 import { sorting } from "./sorting";
-import { BooksState, Book } from "types";
+import { Book } from "types";
 
 describe("sorting function", () => {
     const books: Book[] = [

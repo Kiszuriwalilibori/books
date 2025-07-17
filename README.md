@@ -242,9 +242,17 @@ fix(ValidationAlert): improve styling and alignment consistency
 -   Fix vertical alignment to be consistent across all sections
 -   Align bullet points under Info icon in both middle and bottom sections
 -   Remove duplicate padding that caused misalignment in field errors section
+-   Add missing margin-bottom to align the last section correctly
+-   The validation alert now has uniform appearance with consistent spacing
+    and professional black text throughout all sections.
 
-The validation alert now has uniform appearance with consistent spacing
-and professional black text throughout all sections.
+### 1.5.12
+
+-   fixed sorting
+-   updated sorting test
+-   new selectors to replace creation in component
+-   installed depcheck
+-   unused imports cleared
 
 ### Todos
 

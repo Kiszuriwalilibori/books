@@ -19,12 +19,12 @@ export const useGetBooks = () => {
             showError({ isError: true, errorMessage: "Nie znaleziono książek spełniających podane kryteria" });
             navigate(Paths.error);
         };
-        const handleError = (response: any): void => {
-            setIsLoading(false);
-            controller.abort();
-            showError({ isError: true, errorMessage: getValue(response, "message") || "Unknown error" });
-            navigate(Paths.error);
-        };
+        // const handleError = (response: any): void => {
+        //     setIsLoading(false);
+        //     controller.abort();
+        //     showError({ isError: true, errorMessage: getValue(response, "message") || "Unknown error" });
+        //     navigate(Paths.error);
+        // };
 
         const handleSuccess = (foundBooks: BookRecord[]): void => {
             setIsLoading(false);

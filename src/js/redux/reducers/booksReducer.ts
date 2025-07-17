@@ -61,3 +61,5 @@ export const currentPageNumber = (state: RootStateType) => state.books.currentPa
 export const numberOfPages = (state: RootStateType) => state.books.numberOfPages;
 export const filter = (state: RootStateType) => state.books.filter;
 export const sort = (state: RootStateType) => state.books.sort;
+export const isSortOrderDescendingSelector = (state: RootStateType) => state.books.sort.isSortOrderDescending;
+export const currentSortColumnSelector = (state: RootStateType) => state.books.sort.currentSortColumn;

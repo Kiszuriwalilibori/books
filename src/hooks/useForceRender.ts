@@ -1,7 +1,7 @@
 import { useEnhancedState } from ".";
 
 export const useForceRender = () => {
-    const [foo, forceUpdate] = useEnhancedState<boolean>(false);
+    const [, forceUpdate] = useEnhancedState<boolean>(false);
     return forceUpdate;
 };
 

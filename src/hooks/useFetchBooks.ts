@@ -25,13 +25,6 @@ interface APIErrorResponse {
     [key: string]: unknown;
 }
 
-interface APISuccessResponse {
-    items?: BookRecord[];
-    [key: string]: unknown;
-}
-
-type APIResponse = APIErrorResponse | APISuccessResponse;
-
 const STEP = 40;
 const INITIAL_FETCH_SUMMARY: FetchSummary = { isError: false, errorMessage: "", data: [] };
 const INITIAL_FOUND_BOOKS: BookRecord[] = [];

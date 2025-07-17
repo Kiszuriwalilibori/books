@@ -1,5 +1,4 @@
 import React from "react";
-import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 
 import { combineReducers } from "redux";

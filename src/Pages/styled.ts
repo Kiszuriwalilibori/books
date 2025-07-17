@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
-export const PageContainer = styled(Container)(({ theme }) => ({
+export const PageContainer = styled(Container)(() => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -19,7 +19,7 @@ export const AlertBox = styled(Box)(({ theme }) => ({
     boxShadow: "0px 0px 58px -2px rgba(0, 0, 0, 0.75), inset 0 0 5px #cd0d11",
 }));
 
-export const AlertBoxItem = styled("span")(({ theme }) => ({
+export const AlertBoxItem = styled("span")(() => ({
     fontSize: "2rem",
     color: "#CD0D11",
     "@media only screen and (max-width: 780px)": {
@@ -27,7 +27,7 @@ export const AlertBoxItem = styled("span")(({ theme }) => ({
     },
 }));
 
-export const SearchPageLogo = styled("header")(({ theme }) => ({
+export const SearchPageLogo = styled("header")(() => ({
     textAlign: "center",
     fontWeight: 700,
     fontSize: "3rem",
@@ -40,7 +40,7 @@ export const SearchPageLogo = styled("header")(({ theme }) => ({
     },
 }));
 
-export const BooksPageLogo = styled("h1")(({ theme }) => ({
+export const BooksPageLogo = styled("h1")(() => ({
     textAlign: "center",
     fontWeight: 700,
     fontSize: "3rem",
@@ -53,7 +53,7 @@ export const BooksPageLogo = styled("h1")(({ theme }) => ({
     },
 }));
 
-export const SearchInputs = styled(Box)(({ theme }) => ({
+export const SearchInputs = styled(Box)(() => ({
     padding: "0.5rem",
     display: "flex",
     flexDirection: "row",
@@ -62,7 +62,7 @@ export const SearchInputs = styled(Box)(({ theme }) => ({
     "@media only screen and (max-width: 790px)": { flexDirection: "column" },
 }));
 
-export const SearchButtons = styled(Box)(({ theme }) => ({
+export const SearchButtons = styled(Box)(() => ({
     marginTop: "40px",
     padding: "0.5rem",
     display: "flex",
@@ -72,7 +72,7 @@ export const SearchButtons = styled(Box)(({ theme }) => ({
     "@media (max-width: 576px)": { flexDirection: "column" },
 }));
 
-export const NavigationContainer = styled("nav")(({ theme }) => ({
+export const NavigationContainer = styled("nav")(() => ({
     padding: "0.5rem",
     width: "100%",
     display: "flex",
@@ -87,7 +87,7 @@ export const NavigationContainer = styled("nav")(({ theme }) => ({
     },
 }));
 
-export const BookForm = styled("form")(({ theme }) => ({
+export const BookForm = styled("form")(() => ({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",

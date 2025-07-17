@@ -15,6 +15,8 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
         "baseUrl": "src",
         "paths": {
             "types/*": ["types/*"],

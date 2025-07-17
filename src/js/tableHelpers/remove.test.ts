@@ -1,5 +1,5 @@
 import { remove } from "./remove";
-import { BooksState, Book } from "types";
+import { BooksState } from "types";
 
 describe("remove function", () => {
     // Helper function to create mock books
