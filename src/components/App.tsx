@@ -20,7 +20,7 @@ function App() {
     return (
         <WithCheckSupportForLocalStorage>
             <WithLoadingIndicatorHOC>
-                <main>
+                <main role="main" id="main">
                     <Routes>
                         <Route path={Paths.landing} element={<Landing />} />
                         <Route path={Paths.search} element={<Search />} />

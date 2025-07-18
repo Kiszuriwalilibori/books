@@ -268,12 +268,12 @@ fix(ValidationAlert): improve styling and alignment consistency
 
 ----010 Use the React-Redux Hooks API# -właściwie łapanie errora w fetch dziwnie wygląda czy nie prościej z ajaxem to zrobić
 
-----015 przyjrzeć sie remove i removefromfavorites dokładnie w kontekście usuwania z ulubionych bo wygląda dziwnie. Później: nie stwierdzono
+--015 przyjrzeć sie remove i removefromfavorites dokładnie w kontekście usuwania z ulubionych bo wygląda dziwnie. Później: nie stwierdzono
 
----- 018 podczas walidacji po np. wyczyszczeniu nie znika informacja o błędzie a powinna,poza tym wywala tylko jedne błąd pola. Zawalczyć o yupa a przynajmniej poprawić
+-- 018 podczas walidacji po np. wyczyszczeniu nie znika informacja o błędzie a powinna,poza tym wywala tylko jedne błąd pola. Zawalczyć o yupa a przynajmniej poprawić
 Poza tym okienko walidacji przesuwa resztę w dół
 
-----019 przywalidacji jeżeli mamy jedno pole dobrze a jedno źle ogólnie mamy dobrze - do rozważenia
+--19 przywalidacji jeżeli mamy jedno pole dobrze a jedno źle ogólnie mamy dobrze - do rozważenia
 
 --021 bookstablefilter mógłby być z Formikiem albo React Form Hooks
 
@@ -306,7 +306,7 @@ domyslnymi wartościami albo zrobić opcjonalne albo jedno i drugie.
 
 45 Ze względu na zmiany w konstrukcji sprawdzanie pod kątem IE nie jest realizowane, czy da się to obejść.
 
-----046 modal ostrzegający przed uwunięciem maniebieską ramkę wskazującą na focusa Czy to musi być bo wygląda psakudnie a normalnie tego nie widuje się w modalach w modalu ostrzegającym przed usunięciem initial focus powinien być na pozostaw BYła próba ale chyba najpierw trzeba przerowbić cały modal. Na dzieńdobry modal jako całość ma focus. Żaden myk z initialfocus tego nie zmienia Aczkolwiek nawigacja wewnątrz działa.
+--046 modal ostrzegający przed uwunięciem maniebieską ramkę wskazującą na focusa Czy to musi być bo wygląda psakudnie a normalnie tego nie widuje się w modalach w modalu ostrzegającym przed usunięciem initial focus powinien być na pozostaw BYła próba ale chyba najpierw trzeba przerowbić cały modal. Na dzieńdobry modal jako całość ma focus. Żaden myk z initialfocus tego nie zmienia Aczkolwiek nawigacja wewnątrz działa.
 
 --047 Sprawdzić czy takie uzycie getBooks w useEffect nie powoduje przepełnienia. Ogólnie tam, gdzie są pobierane i używane dane. Cofnąć się do artykułu na temat
 

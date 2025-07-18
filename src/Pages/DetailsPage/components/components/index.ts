@@ -8,5 +8,6 @@ import Description from "./description";
 import Price from "./price";
 import Authors from "./authors";
 import Categories from "./categories";
+import CenteredButtonStack from "./CenteredButtonStack";
 
-export { Authors, Categories, Cover, Description, Link, ISBN, Paragraph, Price, Title };
+export { Authors, Categories, CenteredButtonStack, Cover, Description, Link, ISBN, Paragraph, Price, Title };

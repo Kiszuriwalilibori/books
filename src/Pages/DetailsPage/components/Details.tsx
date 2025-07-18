@@ -1,9 +1,7 @@
-import Stack from "@mui/material/Stack";
-
 import { useSelector } from "react-redux";
 import Button from "components/Button";
 
-import { Authors, Categories, Cover, Description, ISBN, Paragraph, Price, Title } from "./components";
+import { Authors, Categories, CenteredButtonStack, Cover, Description, ISBN, Paragraph, Price, Title } from "./components";
 import { convertToPolish } from "./components/utils";
 import { BookDetails } from "types";
 import { isOnlineSelector } from "store/selectors";
@@ -30,19 +28,19 @@ const Details = (props: BookDetails) => {
             {accessInfo?.textToSpeechPermission && <Paragraph content={accessInfo?.textToSpeechPermission} label={"Przygotowana do czytników tekstu"} preProcess={convertToPolish} />}
             {saleInfo?.listPrice && typeof saleInfo?.listPrice === "object" && Object.keys(saleInfo?.listPrice).length && <Price price={saleInfo?.listPrice} label={"Cena katalogowa"} />}
             {saleInfo?.retailPrice && typeof saleInfo?.retailPrice === "object" && Object.keys(saleInfo?.retailPrice).length && <Price price={saleInfo?.retailPrice} label={"Cena detaliczna"} />}
-            <Stack spacing={2} sx={{ paddingTop: 5 }}>
+            <CenteredButtonStack>
                 {saleInfo?.buyLink && (
-                    <a tabIndex={-1} className="no-text-decoration" href={saleInfo?.buyLink}>
-                        <Button disabled={!isOnline} className="button--ok button--centered button--no-underline button--long" children={"Do sklepu"} />
-                    </a>
+                    <Button disabled={!isOnline} className="button--ok button--centered button--no-underline button--long" onClick={() => window.open(saleInfo?.buyLink, "_blank")}>
+                        Do sklepu
+                    </Button>
                 )}
 
                 {accessInfo?.webReaderLink && (
-                    <a tabIndex={-1} className="no-text-decoration" href={accessInfo?.webReaderLink}>
-                        <Button disabled={!isOnline} className="button--ok button--centered button--no-underline button--long" children={"Przeczytaj fragment"} />
-                    </a>
+                    <Button disabled={!isOnline} className="button--ok button--centered button--no-underline button--long" onClick={() => window.open(accessInfo?.webReaderLink, "_blank")}>
+                        Przeczytaj fragment
+                    </Button>
                 )}
-            </Stack>
+            </CenteredButtonStack>
         </article>
     );
 };
