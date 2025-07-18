@@ -6,7 +6,7 @@ import { useDispatchAction } from "hooks";
 import { columns } from "models";
 import { NotSearchableFields, SearchableFields } from "types";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { selectAreFiltersVisible } from "store/selectors";
+import { areFiltersVisibleSelector } from "store/selectors";
 
 type Filter = {
     [key in SearchableFields | NotSearchableFields as string]: string;
@@ -20,7 +20,7 @@ const removeEmptyFields = (obj: Filter): Filter => {
 };
 
 const BooksTableFilter = () => {
-    const areFiltersVisible = useSelector(selectAreFiltersVisible);
+    const areFiltersVisible = useSelector(areFiltersVisibleSelector);
     const { register, getValues } = useForm();
     const { filterBooks } = useDispatchAction();
 

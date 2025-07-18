@@ -7,8 +7,7 @@ import { LogoFactory } from "components";
 
 import { PageContainer } from "pages/styled";
 import { SearchFormValues, ValidationState } from "./utils/model";
-import { isOnlineSelector } from "store/selectors";
-import { isLoadingSelector } from "store/selectors";
+import { isOnlineSelector, isLoadingSelector } from "store/selectors";
 import { useFetchBooks } from "hooks";
 
 export const SearchPage = () => {

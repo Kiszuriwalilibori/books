@@ -2,11 +2,11 @@ import uuid from "react-uuid";
 
 import Cell from "./components/Cell";
 
-import { useGetTableData } from "hooks";
+import { useGetBookTableData } from "hooks";
 import { columns } from "models";
 
 export const BooksTableBody = () => {
-    const tableData = useGetTableData();
+    const tableData = useGetBookTableData();
 
     if (!tableData || !tableData.length) return null;
 

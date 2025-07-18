@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 
-import { selectCanAddToFavorites } from "store/selectors";
+import { canAddToFavoritesSelector } from "store/selectors";
 import { RootStateType } from "types";
 import { AddBookToFavoritesButton, GoToShopButton, RemoveBookButton, RemoveBookFromFavoritesButton, ShowBookDetailsButton } from "../buttons";
 import { ButtonStack, TableCellWithButtonsBox } from "./TableCellWithButtons.styles";
@@ -18,7 +18,7 @@ interface Props {
 
 export function Cell(props: Props) {
     let { cellContent, bookID, isFromFavorites, title } = props;
-    const canAddToFavorites = useSelector(selectCanAddToFavorites);
+    const canAddToFavorites = useSelector(canAddToFavoritesSelector);
 
     return (
         <td key={uuid()} role="group" aria-label={`language and options for book ${title}`}>

@@ -7,9 +7,8 @@ import useEnhancedState from "./useEnhancedState";
 import useFavoriteBooks from "./useFavoriteBooks";
 import { useFetchBooks } from "./useFetchBooks";
 import useForceRender from "./useForceRender";
-import useGetBooks from "./useGetBooks";
 import useGetEndpoints from "./useGetEndpoints";
-import useGetTableData from "./useGetTableData";
+import useGetBookTableData from "./useGetBookTableData";
 import useGoToShop from "./useGoToShop";
 import useHandleConnectionStatus from "./useHandleConnectionStatus";
 import useInitialFocus from "./useInitialFocus";
@@ -29,9 +28,8 @@ export {
     useFavoriteBooks,
     useFetchBooks,
     useForceRender,
-    useGetBooks,
     useGetEndpoints,
-    useGetTableData,
+    useGetBookTableData,
     useGoToShop,
     useHandleConnectionStatus,
     useInitialFocus,

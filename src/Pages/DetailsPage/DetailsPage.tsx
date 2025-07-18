@@ -9,12 +9,13 @@ import Details from "./components";
 import { PageContainer } from "pages/styled";
 import { isOffline } from "utils";
 import { LoadingIndicator, ErrorMessage, NavigationFactory } from "components";
-import { currentURL } from "store/selectors";
+
 import { BookDetails } from "types";
 import { usePersistDetailsURL } from "hooks";
+import { currentURLSelector } from "store/selectors";
 
 const DetailsPage = () => {
-    const URL = useSelector(currentURL);
+    const URL = useSelector(currentURLSelector);
     const storedURL = usePersistDetailsURL(URL);
     const { isLoading, error, data } = useQuery([storedURL], () => axios(storedURL), {
         staleTime: 60000,

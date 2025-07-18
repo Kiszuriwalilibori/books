@@ -13,11 +13,17 @@ import { useDispatchAction } from "hooks";
 import { Button } from "components";
 
 import { NavigationContainer } from "pages/styled";
-import { getIsPreviousButtonVisible, getIsNextButtonVisible } from "store/selectors";
+import { previousButtonVisibleSelector, nextButtonVisibleSelector } from "store/selectors";
 
+/**
+ * NavigationFactory is a navigation component that renders context-aware navigation controls
+ * for different pages (e.g., books page, details page) in the Google Books Finder app.
+ * It provides pagination, previous/next navigation, filter toggling, and quick navigation buttons.
+ * Uses Redux selectors to determine button visibility and dispatches navigation actions.
+ */
 export const NavigationFactory = () => {
-    const isPreviousButtonVisible = useSelector(getIsPreviousButtonVisible);
-    const isNextButtonVisible = useSelector(getIsNextButtonVisible);
+    const isPreviousButtonVisible = useSelector(previousButtonVisibleSelector);
+    const isNextButtonVisible = useSelector(nextButtonVisibleSelector);
     const { showPreviousDetails, showNextDetails } = useDispatchAction();
     const location = useLocation();
 
