@@ -1,5 +1,12 @@
 import { useSnackbar } from "notistack";
 
+/**
+ * Custom hook to display snackbar notifications with various variants.
+ *
+ * - Provides info, error, success, and warning message methods.
+ *
+ * @returns {Object} Message display methods for different variants.
+ */
 const useMessage = () => {
     const { enqueueSnackbar } = useSnackbar();
 

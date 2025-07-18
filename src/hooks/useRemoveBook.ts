@@ -6,6 +6,14 @@ import { selectIsRemoveBookModalVisible, selectRemoveBookModalBook } from "store
 import { closeRemoveBookModal } from "store/actionCreators";
 import { BookID } from "types";
 
+/**
+ * Custom hook for handling book removal and modal state.
+ *
+ * - Provides a debounced handler to remove a book and close the modal.
+ * - Exposes modal visibility and a function to close the modal.
+ *
+ * @returns {Object} An object with handleRemove, isRemoveBookModalVisible, and closeModal.
+ */
 export const useRemoveBook = () => {
     const { removeBook } = useDispatchAction();
     const dispatch = useDispatch();

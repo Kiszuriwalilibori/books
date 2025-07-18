@@ -31,6 +31,12 @@ function areDeeplyEqual(x: any, y: any): boolean {
 
     return false;
 }
+/**
+ * Custom hook for state management with deep equality checks and reset capability.
+ *
+ * @param initialValue - The initial state value
+ * @returns {[T, Function, Function]} Array with value, setValue, resetState
+ */
 function useEnhancedState<T>(initialValue: T) {
     const [value, setValue] = useState(initialValue);
 

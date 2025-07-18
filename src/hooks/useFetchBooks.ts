@@ -29,6 +29,15 @@ const STEP = 40;
 const INITIAL_FETCH_SUMMARY: FetchSummary = { isError: false, errorMessage: "", data: [] };
 const INITIAL_FOUND_BOOKS: BookRecord[] = [];
 
+/**
+ * Custom hook for fetching books from an API and handling related UI state.
+ *
+ * - Initiates API requests to fetch books in batches.
+ * - Handles loading state, error reporting, and storing books in Redux.
+ * - Navigates or shows messages on error or empty results.
+ *
+ * @returns {Object} An object exposing fetchBooksFromAPI(path, controller) to trigger the fetch process.
+ */
 export const useFetchBooks = () => {
     const navigate = useNavigate();
     const showMessage = useMessage();

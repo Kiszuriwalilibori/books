@@ -7,6 +7,13 @@ import debounce from "lodash/debounce";
  * @param delay - Debounce delay in ms (default: 200)
  * @returns A debounced function with the same signature as fn.
  */
+/**
+ * Custom hook that returns a debounced callback with the same signature as the input function.
+ *
+ * @param fn - The function to debounce
+ * @param delay - Debounce delay in milliseconds (default: 200)
+ * @returns {Function} A debounced function with the same arguments as fn
+ */
 export function useDebouncedEvent<T extends (...args: any[]) => any>(
   fn: T,
   delay = 200

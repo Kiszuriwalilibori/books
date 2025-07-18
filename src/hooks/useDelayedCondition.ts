@@ -3,6 +3,14 @@ import { useEffect, useRef, useState } from "react";
 const DELAY = 1000;
 const DURATION = 1000;
 
+/**
+ * Custom hook for managing a delayed boolean condition with optional duration.
+ *
+ * @param condition - The boolean condition to delay
+ * @param delay - Delay in milliseconds before condition becomes true (default: 1000)
+ * @param duration - Duration in milliseconds to keep the condition true (default: 1000)
+ * @returns {boolean} The delayed condition value
+ */
 export const useDelayedCondition = (condition: boolean, delay = DELAY, duration = DURATION) => {
   const [delayedCondition, setDelayedCondition] = useState(false);
   const delayTimeout = useRef(undefined as undefined | NodeJS.Timeout);

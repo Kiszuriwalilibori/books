@@ -4,6 +4,14 @@ import { Book } from "types";
 import { useDispatchAction } from "hooks";
 import { columns } from "models";
 
+/**
+ * Custom hook for handling book table sorting logic.
+ *
+ * - Provides a debounced handler for sorting books by table column.
+ * - Integrates with Redux to dispatch sorting actions.
+ *
+ * @returns {Object} An object with handleSortClicked for table row sorting.
+ */
 export const useSortBooks = () => {
     const { sortBooks } = useDispatchAction();
 

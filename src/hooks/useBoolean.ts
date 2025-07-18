@@ -1,5 +1,11 @@
 import { useCallback, useState } from 'react';
 
+/**
+ * Custom hook for managing boolean state with utility setters and toggler.
+ *
+ * @param initialValue - The initial boolean value (default: false)
+ * @returns {[boolean, Function, Function, Function]} Array with value, setTrue, setFalse, toggle
+ */
 function useBoolean(initialValue: boolean = false) {
     const [value, setValue] = useState(initialValue);
 

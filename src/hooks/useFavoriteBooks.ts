@@ -12,6 +12,14 @@ export interface FavoriteBooks extends FilteredStorage<FavoriteRecord[]> {
     areNotEmpty: () => boolean;
     contain: (label: string) => boolean;
 }
+/**
+ * Custom hook for managing favorite books using local storage.
+ *
+ * - Provides utility methods to add, remove, check, and get the size of favorites.
+ * - Handles support detection and user notifications.
+ *
+ * @returns {FavoriteBooks} An object with favorite management utilities.
+ */
 const useFavoriteBooks = () => {
     const { cacheSupported } = useDispatchAction();
     const showMessage = useMessage();
