@@ -34,7 +34,7 @@ const INITIAL_FOUND_BOOKS: BookRecord[] = [];
  *
  * - Initiates API requests to fetch books in batches.
  * - Handles loading state, error reporting, and storing books in Redux.
- * - Navigates or shows messages on error or empty results.
+ * - Shows warning messages on empty results instead of navigating to error page.
  *
  * @returns {Object} An object exposing fetchBooksFromAPI(path, controller) to trigger the fetch process.
  */
@@ -42,6 +42,38 @@ export const useFetchBooks = () => {
     const navigate = useNavigate();
     const showMessage = useMessage();
     const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
+
+    const extractSearchCriteriaFromURL = (url: string): string => {
+        try {
+            // Extract the query part from the URL
+            const urlObj = new URL(url);
+            const queryParam = urlObj.searchParams.get("q");
+
+            if (!queryParam) return "brak kryteriów wyszukiwania";
+
+            // Parse the search criteria from the query parameter
+            const criteria = queryParam
+                .split("+")
+                .map(criterion => {
+                    if (criterion.includes(":")) {
+                        const [key, value] = criterion.split(":", 2);
+                        const fieldMap: { [key: string]: string } = {
+                            inauthor: "Autor",
+                            intitle: "Tytuł",
+                            subject: "Etykiety",
+                            keyword: "Słowo kluczowe",
+                        };
+                        return `${fieldMap[key] || key}: "${decodeURIComponent(value)}"`;
+                    }
+                    return `"${decodeURIComponent(criterion)}"`;
+                })
+                .join(", ");
+
+            return criteria || "brak kryteriów wyszukiwania";
+        } catch (error) {
+            return "nieprawidłowe kryteria wyszukiwania";
+        }
+    };
 
     const fetchBooksFromAPI = (path: string, controller: AbortController): void => {
         let startIndex = 0;
@@ -58,11 +90,9 @@ export const useFetchBooks = () => {
             navigate(Paths.error);
         };
         const handleNotFound = (): void => {
-            fetchSummary.isError = true;
-            fetchSummary.errorMessage = "Nie znaleziono książek spełniających podane kryteria";
-            showError(fetchSummary);
             setIsLoading(false);
-            navigate(Paths.error);
+            const criteriaText = extractSearchCriteriaFromURL(path);
+            showMessage.warning(`Nie znaleziono książek dla: ${criteriaText}`);
         };
 
         const handleSuccess = (foundBooks: BookRecord[]): void => {
