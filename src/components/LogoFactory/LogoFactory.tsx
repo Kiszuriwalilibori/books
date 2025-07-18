@@ -30,8 +30,7 @@ export const LogoFactory = () => {
             return <HiddenH1 label="Error Page" />;
         case Paths.no_page:
             return <HiddenH1 label="Non existing Page" />;
-        case Paths.not_found:
-            return <HiddenH1 label="Not found" />;
+
         default:
             return null;
     }

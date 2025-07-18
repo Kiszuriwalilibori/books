@@ -75,7 +75,7 @@ export type FilteringCondition = {
     [Item in KeyOfBook]?: string;
 };
 
-export type PathKeys = "not_found" | "error" | "data" | "details" | "books" | "search" | "load" | "landing" | "no_page";
+export type PathKeys = "error" | "data" | "details" | "books" | "search" | "load" | "landing" | "no_page";
 
 export type FilterObject = Partial<Record<ColumnHeaders, string>>;
 
