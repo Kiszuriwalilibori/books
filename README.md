@@ -254,6 +254,10 @@ fix(ValidationAlert): improve styling and alignment consistency
 -   installed depcheck
 -   unused imports cleared
 
+### 1.5.13
+
+-   046 fixed
+
 ### Todos
 
 ----001 convertToPolish pewnie trza by przerobić na mapę

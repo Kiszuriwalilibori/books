@@ -255,7 +255,8 @@ p#start {
 }
 .button:hover, .button:focus {
   text-decoration: none;
-  outline: none;
+  outline: 3px solid #005fcc;
+  outline-offset: 2px;
 }
 .button--no-underline {
   text-decoration: none;

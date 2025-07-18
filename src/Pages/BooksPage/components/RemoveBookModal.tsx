@@ -10,12 +10,26 @@ import { useRemoveBook } from "hooks/useRemoveBook";
  * @returns modal component
  */
 
-const RemoveItemWarning = React.forwardRef((props, ref) => {
+const RemoveBookModal = React.forwardRef((props, ref) => {
     const { handleRemove, isRemoveBookModalVisible, closeModal } = useRemoveBook();
     const handleCancel = useDebouncedCallback<HTMLButtonElement>(closeModal);
+    const cancelButtonRef = React.useRef<HTMLButtonElement>(null);
+
+    React.useEffect(() => {
+        if (isRemoveBookModalVisible) {
+            // Focus the cancel button after modal is rendered
+            const focusButton = () => {
+                if (cancelButtonRef.current) {
+                    cancelButtonRef.current.focus();
+                }
+            };
+
+            setTimeout(focusButton, 100);
+        }
+    }, [isRemoveBookModalVisible]);
 
     return (
-        <Modal open={isRemoveBookModalVisible} aria-label={"remove warning modal"} role="dialog">
+        <Modal open={isRemoveBookModalVisible} aria-label={"remove warning modal"} role="dialog" disableAutoFocus={true} disableEnforceFocus={true}>
             <PageContainer>
                 <AlertBox>
                     <p>Jesteś bliski usunięcia jednej z książek. Czy na pewno ?</p>
@@ -24,7 +38,7 @@ const RemoveItemWarning = React.forwardRef((props, ref) => {
                     <Button onClick={handleRemove} className="button--problem" type="submit">
                         Usuń
                     </Button>
-                    <Button onClick={handleCancel} className="button--ok" type="reset">
+                    <Button onClick={handleCancel} className="button--ok" type="reset" ref={cancelButtonRef}>
                         Pozostaw
                     </Button>
                 </div>
@@ -33,4 +47,4 @@ const RemoveItemWarning = React.forwardRef((props, ref) => {
     );
 });
 
-export default RemoveItemWarning;
+export default RemoveBookModal;
