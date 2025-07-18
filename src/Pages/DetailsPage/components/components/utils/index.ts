@@ -1,4 +1,4 @@
-import convertToPolish from "./convertToPolish";
+import { polishTranslationMap } from "./convertToPolish";
 import createSummary from "./createSummary";
 
-export { convertToPolish, createSummary };
+export { polishTranslationMap, createSummary };
