@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import RoundIconButton from "./RoundIconButton";
 
 import { useCreateDebouncedCallback } from "hooks/useCreateDebouncedCallback";
-import { isOnlineSelector } from "store/reducers/onlineReducer";
+import { isOnlineSelector } from "store/selectors";
 import { useGoToShop } from "hooks";
 
 interface Props {

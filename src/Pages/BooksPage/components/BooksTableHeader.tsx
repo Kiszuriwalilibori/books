@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { columns } from "models";
 import { Tooltip } from "components";
 import { useSortBooks } from "hooks/useSortBooks";
-import { isSortOrderDescendingSelector, currentSortColumnSelector } from "store/reducers/booksReducer";
+import { isSortOrderDescendingSelector, currentSortColumnSelector } from "store/selectors";
 
 const createMarker = (isSortOrderDescending: boolean) => (isSortOrderDescending ? " \u2193" : " \u2191");
 

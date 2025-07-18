@@ -6,7 +6,7 @@ import Button from "components/Button";
 import { Authors, Categories, Cover, Description, ISBN, Paragraph, Price, Title } from "./components";
 import { convertToPolish } from "./components/utils";
 import { BookDetails } from "types";
-import { isOnlineSelector } from "store/reducers/onlineReducer";
+import { isOnlineSelector } from "store/selectors";
 
 const Details = (props: BookDetails) => {
     const { volumeInfo, saleInfo, accessInfo } = props;

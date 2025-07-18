@@ -12,4 +12,3 @@ export const onlineReducer = createReducer(initialState, builder => {
 
 export default onlineReducer;
 
-export const isOnlineSelector = (state: RootStateType) => state.online.isOnline;

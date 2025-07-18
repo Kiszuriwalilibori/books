@@ -2,7 +2,14 @@ import { createSelector } from "@reduxjs/toolkit";
 import { currentIndex, URLs } from "../reducers/detailsReducer";
 import { isNetwork } from "../reducers/dataSourceReducer";
 import { isCacheSupported } from "../reducers/cacheReducer";
-import { currentPageNumber /*, currentSortColumn, isSortOrderDescending*/, filter, sort } from "../reducers/booksReducer";
+import { currentPageNumber, filter, sort } from "../reducers/booksReducer";
+
+// Moved selectors from reducers
+export const isOnlineSelector = (state: RootStateType) => state.online.isOnline;
+export const isLoadingSelector = (state: RootStateType) => state.loading.isLoading;
+export const errorMessageSelector = (state: RootStateType) => state.error.errorMessage;
+export const isSortOrderDescendingSelector = (state: RootStateType) => state.books.sort.isSortOrderDescending;
+export const currentSortColumnSelector = (state: RootStateType) => state.books.sort.currentSortColumn;
 import { selectAreFiltersVisible } from "../reducers/filtersVisibilityReducer";
 
 import { RootStateType } from "types";

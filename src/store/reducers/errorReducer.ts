@@ -1,7 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 import { showError } from "../actionCreators";
-import { RootStateType } from "components/AppProvider";
 
 const initialState = { errorMessage: "" };
 
@@ -13,4 +12,3 @@ export const errorReducer = createReducer(initialState, builder => {
 
 export default errorReducer;
 
-export const errorMessageSelector = (state: RootStateType) => state.error.errorMessage;

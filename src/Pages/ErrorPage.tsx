@@ -4,7 +4,7 @@ import { useCallback, useEffect } from "react";
 
 import { ErrorMessage, LogoFactory } from "components";
 import { withLinkToSearchPageHOC } from "hocs";
-import { errorMessageSelector } from "store/reducers/errorReducer";
+import { errorMessageSelector } from "store/selectors";
 
 export const ErrorPage = () => {
     const navigate = useNavigate();
