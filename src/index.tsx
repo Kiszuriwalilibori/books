@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { AppProvider, App } from "components";
-import { breakWhenInternetExplorer } from "js/utils";
+import { breakWhenInternetExplorer } from "utils";
 
 breakWhenInternetExplorer();
 

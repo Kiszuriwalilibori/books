@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { connect } from "react-redux";
 
-import { changePage } from "js/redux/actionCreators";
+import { changePage } from "store/actionCreators";
 import { AppDispatch, RootStateType } from "types";
 import { StyledPagination } from "./Pagination.styles";
 import { PaginationProps } from "@mui/material/Pagination";

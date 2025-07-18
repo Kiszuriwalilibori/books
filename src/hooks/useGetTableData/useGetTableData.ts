@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { shallowEqual, useSelector } from "react-redux";
 import { Books, RootStateType } from "types";
 import { useDispatchAction, useTypedSelector } from "hooks";
-import { selectGetTableDataArgs } from "js/redux/selectors";
+import { selectGetTableDataArgs } from "store/selectors";
 import useGetMemoizedWorker from "./useGetWorker";
 
 interface TableDataWorkerMessageEvent {

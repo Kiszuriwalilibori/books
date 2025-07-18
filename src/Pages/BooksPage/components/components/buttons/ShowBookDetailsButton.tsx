@@ -9,7 +9,7 @@ import Paths from "routing";
 
 import { useDispatchAction } from "hooks";
 import { DETAILS_FIELDS, GOOGLE_API } from "config";
-import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
+import { isOnlineSelector } from "store/reducers/onlineReducer";
 
 interface Props {
     bookID: string;

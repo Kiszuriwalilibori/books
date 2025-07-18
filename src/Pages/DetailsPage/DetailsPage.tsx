@@ -7,9 +7,9 @@ import { useQuery } from "@tanstack/react-query";
 import Details from "./components";
 
 import { PageContainer } from "pages/styled";
-import { isOffline } from "js/utils";
+import { isOffline } from "utils";
 import { LoadingIndicator, ErrorMessage, NavigationFactory } from "components";
-import { currentURL } from "js/redux/selectors";
+import { currentURL } from "store/selectors";
 import { BookDetails } from "types";
 import { usePersistDetailsURL } from "hooks";
 

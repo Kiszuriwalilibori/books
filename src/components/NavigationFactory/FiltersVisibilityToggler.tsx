@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import debounce from "lodash/debounce";
 
-import { toggleFiltersVisibility } from "js/redux/actionCreators";
+import { toggleFiltersVisibility } from "store/actionCreators";
 
 const FiltersVisibilityToggler = (): JSX.Element => {
     const dispatch = useDispatch();

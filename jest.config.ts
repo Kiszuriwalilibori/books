@@ -24,8 +24,15 @@ const config: Config.InitialOptions = {
         "^components/(.*)$": "<rootDir>/src/components/$1",
         "^js/(.*)$": "<rootDir>/src/js/$1",
         "^pages/(.*)$": "<rootDir>/src/pages/$1",
-        "^Routing/(.*)$": "<rootDir>/src/Routing/$1",
-        "^reducers/(.*)$": "<rootDir>/src/redux/reducers/$1",
+        "^Routing/(.*)$": "<rootDir>/src/routing/$1",
+        "^reducers/(.*)$": "<rootDir>/src/store/reducers/$1",
+        "^actionCreators/(.*)$": "<rootDir>/src/store/actionCreators/$1",
+        "^selectors/(.*)$": "<rootDir>/src/store/selectors/$1",
+        "^selectors$": "<rootDir>/src/store/selectors",
+        "^utils/(.*)$": "<rootDir>/src/utils/$1",
+        "^utils$": "<rootDir>/src/utils",
+        "^tableHelpers/(.*)$": "<rootDir>/src/tableHelpers/$1",
+        "^tableHelpers$": "<rootDir>/src/tableHelpers",
     },
 };
 

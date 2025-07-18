@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 
-import { Buttons } from "js/utils";
+import { Buttons } from "utils";
 import { RoundButtons } from "types";
 
 interface Props {

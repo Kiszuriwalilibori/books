@@ -4,8 +4,8 @@ import Paths from "routing";
 
 import { useMessage, useDispatchAction } from "hooks";
 import { BookRecord, FilteringCondition } from "types";
-import { formatFetchedDataAsBooks, getValue } from "js/utils";
-import { filtrate } from "../js/tableHelpers";
+import { formatFetchedDataAsBooks, getValue } from "utils";
+import { filtrate } from "../tableHelpers";
 
 export const useGetBooks = () => {
     const showMessage = useMessage();

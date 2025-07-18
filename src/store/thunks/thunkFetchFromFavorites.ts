@@ -2,7 +2,7 @@ import { ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 
 import { RootStateType } from "types";
-import { FilteredStorage } from "js/utils";
+import { FilteredStorage } from "utils";
 import { storeBooks, setIsFromNetwork, showError } from "../actionCreators";
 import { FAVORITE_BOOK_IDENTIFIER } from "config";
 

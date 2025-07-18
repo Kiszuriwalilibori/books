@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 
-import { selectCanAddToFavorites } from "js/redux/selectors";
+import { selectCanAddToFavorites } from "store/selectors";
 import { RootStateType } from "types";
 import { AddBookToFavoritesButton, GoToShopButton, RemoveBookButton, RemoveBookFromFavoritesButton, ShowBookDetailsButton } from "../buttons";
 import { ButtonStack, TableCellWithButtonsBox } from "./TableCellWithButtons.styles";

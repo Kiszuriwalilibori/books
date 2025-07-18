@@ -11,7 +11,7 @@ import { register } from "serviceWorkerRegistration";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SnackbarProvider } from "notistack";
-import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, filtersVisibilityReducer, loadingReducer, onlineReducer, removeBookModalReducer } from "js/redux/reducers";
+import { booksReducer, cacheReducer, dataSourceReducer, detailsReducer, errorReducer, filtersVisibilityReducer, loadingReducer, onlineReducer, removeBookModalReducer } from "store/reducers";
 
 import "../styles/App.css";
 

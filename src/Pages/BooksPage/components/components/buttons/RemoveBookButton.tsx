@@ -1,7 +1,7 @@
 import RoundIconButton from "./RoundIconButton";
 
 import { useCreateDebouncedCallback, useAppDispatch } from "hooks";
-import { showRemoveBookModal } from "js/redux/actionCreators";
+import { showRemoveBookModal } from "store/actionCreators";
 import { BookID } from "types";
 
 interface Props {

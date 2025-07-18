@@ -49,7 +49,7 @@ import Paths from "routing";
 
 import { Button } from "components";
 import { useFavoriteBooks } from "hooks";
-import { thunkFetchFromFavorites } from "js/redux/thunks/thunkFetchFromFavorites";
+import { thunkFetchFromFavorites } from "store/thunks/thunkFetchFromFavorites";
 import { AppDispatch, RootStateType } from "types";
 
 export interface Props {

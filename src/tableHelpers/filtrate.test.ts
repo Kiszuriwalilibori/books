@@ -1,4 +1,4 @@
-import { filtrate } from "js/tableHelpers";
+import { filtrate } from "tableHelpers";
 import { BooksState, FilteringCondition, Book } from "types";
 
 describe("filtrate function", () => {

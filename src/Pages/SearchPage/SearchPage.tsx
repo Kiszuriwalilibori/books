@@ -7,8 +7,8 @@ import { LogoFactory } from "components";
 
 import { PageContainer } from "pages/styled";
 import { SearchFormValues, ValidationState } from "./utils/model";
-import { isOnlineSelector } from "js/redux/reducers/onlineReducer";
-import { isLoadingSelector } from "js/redux/reducers/loadingReducer";
+import { isOnlineSelector } from "store/reducers/onlineReducer";
+import { isLoadingSelector } from "store/reducers/loadingReducer";
 import { useFetchBooks } from "hooks";
 
 export const SearchPage = () => {

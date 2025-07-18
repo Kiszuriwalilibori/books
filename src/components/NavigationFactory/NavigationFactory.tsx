@@ -11,8 +11,9 @@ import Paths from "routing";
 
 import { useDispatchAction } from "hooks";
 import { Button } from "components";
-import { getIsPreviousButtonVisible, getIsNextButtonVisible } from "js/redux/selectors";
+
 import { NavigationContainer } from "pages/styled";
+import { getIsPreviousButtonVisible, getIsNextButtonVisible } from "store/selectors";
 
 export const NavigationFactory = () => {
     const isPreviousButtonVisible = useSelector(getIsPreviousButtonVisible);

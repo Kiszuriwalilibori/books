@@ -6,7 +6,7 @@ import { useDispatchAction } from "hooks";
 import { columns } from "models";
 import { NotSearchableFields, SearchableFields } from "types";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { selectAreFiltersVisible } from "js/redux/selectors";
+import { selectAreFiltersVisible } from "store/selectors";
 
 type Filter = {
     [key in SearchableFields | NotSearchableFields as string]: string;

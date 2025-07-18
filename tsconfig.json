@@ -26,7 +26,14 @@
             "js/*": ["js/*"],
             "pages/*": ["pages/*"],
             "Routing/*": ["Routing/*"],
-            "reducers/*": ["redux/reducers/*"]
+            "reducers/*": ["store/reducers/*"],
+            "actionCreators/*": ["store/actionCreators/*"],
+            "selectors/*": ["store/selectors/*"],
+            "selectors": ["store/selectors"],
+            "utils/*": ["utils/*"],
+            "utils": ["utils"],
+            "tableHelpers/*": ["tableHelpers/*"],
+            "tableHelpers": ["tableHelpers"]
         }
     },
     "include": ["src"]

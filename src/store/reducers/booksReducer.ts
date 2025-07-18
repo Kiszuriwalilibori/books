@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { filterBooks, removeBook, changePage, setNumberOfPages, storeBooks, sortBooks } from "../actionCreators";
 import { BooksState, RootStateType } from "types";
-import { getNumberOfPages, remove } from "js/tableHelpers";
+import { getNumberOfPages, remove } from "tableHelpers";
 
 export const initialState: BooksState = {
     errorMessage: "",

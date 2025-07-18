@@ -6,7 +6,7 @@ import useMessage from "./useMessage";
 
 import { useDispatchAction } from "hooks";
 import { BookRecord, FlatBookRecord } from "types";
-import { formatFetchedDataAsBooks, getValue, isErrorCode } from "js/utils";
+import { formatFetchedDataAsBooks, getValue, isErrorCode } from "utils";
 import Paths from "routing";
 
 interface FetchSummary {

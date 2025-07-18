@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-import { getNumberOfPages, getSinglePageData, filtrate, sorting } from "js/tableHelpers";
+import { getNumberOfPages, getSinglePageData, filtrate, sorting } from "tableHelpers";
 import { GetTableDataParams } from "types";
 import { isEmpty } from "lodash/fp";
 
