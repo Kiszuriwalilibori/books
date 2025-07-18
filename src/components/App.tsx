@@ -6,6 +6,7 @@ import Paths from "routing";
 
 import { WithCheckSupportForLocalStorage, WithLoadingIndicatorHOC } from "hocs";
 import { useHandleConnectionStatus } from "hooks";
+import { SkipLink } from "components";
 
 const Books = loadable(() => import("pages/BooksPage"));
 const Error = loadable(() => import("pages/ErrorPage"));
@@ -20,17 +21,20 @@ function App() {
     return (
         <WithCheckSupportForLocalStorage>
             <WithLoadingIndicatorHOC>
-                <main role="main" id="main">
-                    <Routes>
-                        <Route path={Paths.landing} element={<Landing />} />
-                        <Route path={Paths.search} element={<Search />} />
-                        <Route path={Paths.books} element={<Books />} />
-                        <Route path={Paths.not_found} element={<NotFound />} />
-                        <Route path={Paths.error} element={<Error />} />
-                        <Route path={Paths.details} element={<Details />} />
-                        <Route path={Paths.no_page} element={<NoPage />} />
-                    </Routes>
-                </main>
+                <>
+                    <SkipLink />
+                    <main role="main" id="main" tabIndex={-1}>
+                        <Routes>
+                            <Route path={Paths.landing} element={<Landing />} />
+                            <Route path={Paths.search} element={<Search />} />
+                            <Route path={Paths.books} element={<Books />} />
+                            <Route path={Paths.not_found} element={<NotFound />} />
+                            <Route path={Paths.error} element={<Error />} />
+                            <Route path={Paths.details} element={<Details />} />
+                            <Route path={Paths.no_page} element={<NoPage />} />
+                        </Routes>
+                    </main>
+                </>
             </WithLoadingIndicatorHOC>
         </WithCheckSupportForLocalStorage>
     );

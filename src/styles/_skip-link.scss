@@ -1,0 +1,29 @@
+/* Skip to main content link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 9999;
+    transition: top 0.3s ease;
+
+    &:focus {
+        top: 6px;
+    }
+
+    &:hover {
+        background: #333;
+    }
+
+    /* Ensure it's visible when focused even with high contrast mode */
+    &:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+    }
+}
