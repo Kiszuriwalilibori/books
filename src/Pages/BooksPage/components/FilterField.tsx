@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const FilterField = styled(TextField)(({ theme }) => ({
+export const FilterField = styled(TextField)(({ theme }) => ({
     caretColor: theme.palette.common.black,
     backgroundColor: "#FFDD40",
     "& input": { color: theme.palette.common.black },

@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 
 import { canAddToFavoritesSelector } from "store/selectors";
 import { RootStateType } from "types";
-import { AddBookToFavoritesButton, GoToShopButton, RemoveBookButton, RemoveBookFromFavoritesButton, ShowBookDetailsButton } from "../buttons";
+
 import { ButtonStack, TableCellWithButtonsBox } from "./TableCellWithButtons.styles";
+import { GoToShopButton, RemoveBookButton, ShowBookDetailsButton, AddBookToFavoritesButton, RemoveBookFromFavoritesButton } from "./buttons";
 
 interface Props {
     index: number;

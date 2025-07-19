@@ -1,4 +1,4 @@
-import { polishTranslationMap } from './utils';
+import { polishTranslationMap } from "./utils";
 
 type Content = string | number | boolean;
 

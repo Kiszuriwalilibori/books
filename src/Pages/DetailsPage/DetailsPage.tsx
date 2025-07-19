@@ -4,7 +4,7 @@ import Fade from "@mui/material/Fade";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 
-import Details from "./components";
+import { Details } from "./components";
 
 import { PageContainer } from "pages/styled";
 import { isOffline } from "utils";

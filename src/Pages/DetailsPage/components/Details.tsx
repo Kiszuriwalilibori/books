@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import Button from "components/Button";
 
-import { Authors, Categories, CenteredButtonStack, Cover, Description, ISBN, Paragraph, Price, Title } from "./components";
-import { polishTranslationMap } from "./components/utils";
+import { Authors, Categories, CenteredButtonStack, Cover, Description, ISBN, Paragraph, Price, Title } from ".";
+import { polishTranslationMap } from "./utils";
 import { BookDetails } from "types";
 import { isOnlineSelector } from "store/selectors";
 

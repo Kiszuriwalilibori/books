@@ -1,9 +1,10 @@
 import uuid from "react-uuid";
 
-import { TableCellRegular } from "./TableCellRegular";
-import { TableCellWithButtons } from "./TableCellWithButtons/TableCellWithButtons";
 import { columns } from "models";
 import { Book } from "types";
+
+import { TableCellRegular } from "./TableCellRegular";
+import TableCellWithButtons from "./TableCellWithButtons";
 
 /**
  * creates cell in table with books

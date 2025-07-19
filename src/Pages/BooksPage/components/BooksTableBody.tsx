@@ -1,9 +1,8 @@
 import uuid from "react-uuid";
 
-import Cell from "./components/Cell";
-
 import { useGetBookTableData } from "hooks";
 import { columns } from "models";
+import Cell from "./Cell";
 
 export const BooksTableBody = () => {
     const tableData = useGetBookTableData();

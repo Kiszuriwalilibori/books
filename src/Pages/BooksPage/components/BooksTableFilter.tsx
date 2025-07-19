@@ -1,12 +1,12 @@
 import uuid from "react-uuid";
 import { useForm } from "react-hook-form";
 
-import { FilterField } from "./components";
 import { useDispatchAction } from "hooks";
 import { columns } from "models";
 import { NotSearchableFields, SearchableFields } from "types";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { areFiltersVisibleSelector } from "store/selectors";
+import { FilterField } from ".";
 
 type Filter = {
     [key in SearchableFields | NotSearchableFields as string]: string;
@@ -37,7 +37,7 @@ const BooksTableFilter = () => {
                         variant="outlined"
                         margin="none"
                         {...register(fieldName)}
-                        onChange={e => {
+                        onChange={(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
                             register(fieldName).onChange(e);
                             filterBooks(removeEmptyFields(getValues()));
                         }}

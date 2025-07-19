@@ -1,12 +1,12 @@
 import { Fade } from "@mui/material";
 
-import { withTableContainerHOC, withNavigationHOC, WithRemoveItemWarningHOC } from "hocs";
+import { withTableContainerHOC, withNavigationHOC, WithRemoveBookModalHOC } from "hocs";
 import { BooksTableBody, BooksTableHeader, BooksTableFilter } from "./components";
 import LogoFactory from "components/LogoFactory/LogoFactory";
 
 const Books = () => {
     return (
-        <WithRemoveItemWarningHOC>
+        <WithRemoveBookModalHOC>
             <>
                 <LogoFactory />
                 <Fade in={true} timeout={700}>
@@ -19,7 +19,7 @@ const Books = () => {
                     </table>
                 </Fade>
             </>
-        </WithRemoveItemWarningHOC>
+        </WithRemoveBookModalHOC>
     );
 };
 
