@@ -1,7 +1,7 @@
 {
     "name": "books",
     "homepage": "http://kiszuriwalilibori.github.io/books",
-    "version": "1.5.15",
+    "version": "1.6.0",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.11.3",
@@ -22,6 +22,8 @@
         "eslint-plugin-jest-dom": "^4.0.1",
         "eslint-plugin-testing-library": "^5.0.3",
         "formik": "^2.2.9",
+        "i18next": "^23.7.16",
+        "i18next-browser-languagedetector": "^7.1.0",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^27.4.7",
         "lodash": "^4.17.21",
@@ -30,6 +32,7 @@
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-hook-form": "^7.53.0",
+        "react-i18next": "^14.0.0",
         "react-redux": "^8.0.5",
         "react-router-dom": "^6.4.5",
         "react-scripts": "^5.0.1",
@@ -70,6 +73,7 @@
         "depcheck": "depcheck"
     },
     "devDependencies": {
+        "@types/i18next-browser-languagedetector": "^2.0.2",
         "@types/jest": "^27.0.2",
         "@types/loadable__component": "^5.13.4",
         "@types/lodash": "^4.14.176",

@@ -1,0 +1,55 @@
+{
+    "welcome": "Witaj w Google Books Finder",
+    "search": "Szukaj",
+    "favorites": "Ulubione",
+    "noBooks": "Nie znaleziono książek",
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "bookDetails": {
+        "author": "Autor",
+        "publisher": "Wydawca",
+        "publishedDate": "Data wydania",
+        "description": "Opis",
+        "addToFavorites": "Dodaj do ulubionych",
+        "removeFromFavorites": "Usuń z ulubionych"
+    },
+    "landingPage": {
+        "title": "Google Books Finder",
+        "subtitle": "Znajdź swoją następną ulubioną książkę"
+    },
+    "searchPage": {
+        "title": "Szukaj książek",
+        "inputPlaceholder": "Wpisz tytuł, autora lub temat",
+        "searchButton": "Szukaj"
+    },
+    "booksPage": {
+        "title": "Wyniki wyszukiwania",
+        "noResults": "Brak wyników wyszukiwania",
+        "sortBy": "Sortuj według",
+        "filterBy": "Filtruj według"
+    },
+    "detailsPage": {
+        "title": "Szczegóły książki",
+        "notFound": "Książka nie znaleziona"
+    },
+    "errorPage": {
+        "title": "Błąd",
+        "message": "Coś poszło nie tak. Spróbuj ponownie później."
+    },
+    "noPage": {
+        "title": "Strona nie znaleziona",
+        "message": "Przepraszamy, nie możemy znaleźć strony, której szukasz."
+    },
+    "common": {
+        "back": "Powrót",
+        "home": "Strona główna",
+        "yes": "Tak",
+        "no": "Nie",
+        "book": "Książka",
+        "magazine": "Czasopismo",
+        "allowed": "Dozwolone",
+        "notAllowed": "Niedozwolone",
+        "forSale": "Do sprzedaży",
+        "notForSale": "Nie do sprzedaży"
+    }
+}
