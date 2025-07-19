@@ -263,9 +263,13 @@ fix(ValidationAlert): improve styling and alignment consistency
 -   007 partially fixed (book not found errors and not all)
 -
 
+### 1.5.15
+
+-001 fixed
+
 ### Todos
 
-----001 convertToPolish pewnie trza by przerobić na mapę
+--001 convertToPolish pewnie trza by przerobić na mapę
 
 ---007 błędy przez notistacka a nie podstronę
 
