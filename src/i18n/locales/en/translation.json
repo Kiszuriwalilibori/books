@@ -1,55 +1,129 @@
 {
-    "welcome": "Witaj w Google Books Finder",
-    "search": "Szukaj",
-    "favorites": "Ulubione",
-    "noBooks": "Nie znaleziono książek",
-    "loading": "Ładowanie...",
-    "error": "Wystąpił błąd",
+    "app": {
+        "title": "Google Books Finder",
+        "welcome": "Welcome to Google Books Finder",
+        "loading": "Loading...",
+        "error": "Oops! Something went wrong",
+        "noInternetConnection": "No Internet connection available",
+        "noUrlProvided": "No URL provided for the searched book",
+        "noBooks": "No books found"
+    },
+    "actions": {
+        "search": "Search",
+        "favorites": "Favorites"
+    },
     "bookDetails": {
-        "author": "Autor",
-        "publisher": "Wydawca",
-        "publishedDate": "Data wydania",
-        "description": "Opis",
-        "addToFavorites": "Dodaj do ulubionych",
-        "removeFromFavorites": "Usuń z ulubionych"
+        "author": "Author",
+        "authors": "Authors",
+        "publisher": "Publisher",
+        "publishedDate": "Publication Date",
+        "language": "Language",
+        "pageCount": "Pages",
+        "categories": "Categories",
+        "description": "Description",
+        "printType": "Print Type",
+        "saleability": "Available for Sale",
+        "isEbook": "Is E-book",
+        "textToSpeech": "Text-to-Speech Ready",
+        "listPrice": "List Price",
+        "retailPrice": "Retail Price",
+        "goToStore": "Go to Store",
+        "readSample": "Read Sample",
+        "addToFavorites": "Add to Favorites",
+        "removeFromFavorites": "Remove from Favorites"
     },
     "landingPage": {
-        "title": "Google Books Finder",
-        "subtitle": "Znajdź swoją następną ulubioną książkę"
+        "title": "Google Books",
+        "subtitle": "Finder",
+        "greeting": "Welcome to my humble app",
+        "intro": {
+            "description": "What you're about to see is a modest interface for searching books in Google Books resources.",
+            "disclaimer": "I am only the creator of the interface.",
+            "responsibility": "Therefore, I have no influence on the actual search results in the database, only on preparing and sending the query.",
+            "presentation": "And, of course, presenting the results.",
+            "contentWarning": "I'm writing about this because Google Books content has its pros and cons. First of all, Polish characters are used inconsistently.",
+            "searchTip": "Therefore, if someone is interested in Wiedźmin, they have to search twice: \"Wiedźmin\" and \"Wiedzmin\".",
+            "versionNote": "And this version of the app (the first one, by the way) doesn't support regular expressions, etc.",
+            "tagsWarning": "Besides, I don't encourage searching by tags. A minimal number of books have them and you can make quite a mess.",
+            "authorTip": "The \"Author\" field in the search treats the entered string as a complete word, so it's not enough to type \"Mickiewi\" to get acquainted with the Bard's legacy.",
+            "conclusion": "And that would probably be all.",
+            "farewell": "May the Force be with you!",
+            "skipIntro": "However, if you don't want to watch this intro cum mortum, click anywhere on it."
+        }
     },
     "searchPage": {
-        "title": "Szukaj książek",
-        "inputPlaceholder": "Wpisz tytuł, autora lub temat",
-        "searchButton": "Szukaj"
+        "title": "Search Books",
+        "inputPlaceholder": "Enter title, author, or topic",
+        "searchButton": "Search",
+        "clearButton": "Clear"
     },
     "booksPage": {
-        "title": "Wyniki wyszukiwania",
-        "noResults": "Brak wyników wyszukiwania",
-        "sortBy": "Sortuj według",
-        "filterBy": "Filtruj według"
+        "title": "Search Results",
+        "noResults": "No search results",
+        "sortBy": "Sort by",
+        "filterBy": "Filter by"
     },
     "detailsPage": {
-        "title": "Szczegóły książki",
-        "notFound": "Książka nie znaleziona"
+        "title": "Book Details",
+        "notFound": "Book not found"
     },
     "errorPage": {
-        "title": "Błąd",
-        "message": "Coś poszło nie tak. Spróbuj ponownie później."
+        "title": "Error",
+        "message": "Something went wrong. Please try again later."
     },
     "noPage": {
-        "title": "Strona nie znaleziona",
-        "message": "Przepraszamy, nie możemy znaleźć strony, której szukasz."
+        "title": "Page Not Found",
+        "message": "Page at address {{url}} does not exist"
+    },
+    "navigation": {
+        "searchPage": "Search",
+        "foundBooks": "Found Books",
+        "previousBook": "<<<",
+        "nextBook": ">>>"
+    },
+    "modal": {
+        "removeBook": {
+            "title": "Remove Book",
+            "message": "You are about to remove one of the books. Are you sure?",
+            "confirm": "Remove",
+            "cancel": "Keep"
+        }
+    },
+    "validation": {
+        "title": "Validation Errors",
+        "showDetails": "Show details",
+        "hideDetails": "Hide details",
+        "closeAlert": "Close alert",
+        "errorDetails": "Error details",
+        "field": "Field",
+        "value": "value",
+        "errors": "Errors",
+        "invalidFields": "Invalid values in fields: {{fields}}",
+        "requirements": "Requirements for all fields",
+        "ruleDescriptions": {
+            "minLength": "Minimum 2 characters",
+            "alphanumeric": "At least one letter or digit",
+            "noSpaces": "No spaces at the beginning and end",
+            "noSpecialChars": "No forbidden special characters"
+        },
+        "errorMessages": {
+            "minLength": "must contain at least 2 characters",
+            "alphanumeric": "must contain at least one alphanumeric character (letter or digit)",
+            "noSpaces": "cannot start or end with a space",
+            "onlyWhitespace": "cannot consist only of whitespace characters",
+            "specialChars": "contains forbidden special characters"
+        }
     },
     "common": {
-        "back": "Powrót",
-        "home": "Strona główna",
-        "yes": "Tak",
-        "no": "Nie",
-        "book": "Książka",
-        "magazine": "Czasopismo",
-        "allowed": "Dozwolone",
-        "notAllowed": "Niedozwolone",
-        "forSale": "Do sprzedaży",
-        "notForSale": "Nie do sprzedaży"
+        "back": "Back",
+        "home": "Home",
+        "yes": "Yes",
+        "no": "No",
+        "book": "Book",
+        "magazine": "Magazine",
+        "allowed": "Allowed",
+        "notAllowed": "Not Allowed",
+        "forSale": "For Sale",
+        "notForSale": "Not For Sale"
     }
 }

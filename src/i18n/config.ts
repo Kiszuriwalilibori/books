@@ -4,7 +4,8 @@ import { InitOptions } from "i18next";
 import { initReactI18next } from "react-i18next";
 
 const i18nConfig: InitOptions = {
-    fallbackLng: "en",
+    fallbackLng: "pl",
+    lng: "pl",
     resources: {
         en: {
             translation: {},
@@ -19,6 +20,9 @@ const i18nConfig: InitOptions = {
         order: ["localStorage", "navigator"],
         caches: ["localStorage"],
         lookupLocalStorage: "i18nextLng",
+    },
+    interpolation: {
+        escapeValue: false,
     },
 };
 

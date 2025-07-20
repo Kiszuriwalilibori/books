@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Modal } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useDebouncedCallback } from "hooks";
 import { Button } from "components";
 import { AlertBox, PageContainer } from "pages/styled";
@@ -14,6 +15,7 @@ const RemoveBookModal = React.forwardRef((props, ref) => {
     const { handleRemove, isRemoveBookModalVisible, closeModal } = useRemoveBook();
     const handleCancel = useDebouncedCallback<HTMLButtonElement>(closeModal);
     const cancelButtonRef = React.useRef<HTMLButtonElement>(null);
+    const { t } = useTranslation();
 
     React.useEffect(() => {
         if (isRemoveBookModalVisible) {
@@ -29,17 +31,17 @@ const RemoveBookModal = React.forwardRef((props, ref) => {
     }, [isRemoveBookModalVisible]);
 
     return (
-        <Modal open={isRemoveBookModalVisible} aria-label={"remove warning modal"} role="dialog" disableAutoFocus={true} disableEnforceFocus={true}>
+        <Modal open={isRemoveBookModalVisible} aria-label={t("modal.removeBook.title")} role="dialog" disableAutoFocus={true} disableEnforceFocus={true}>
             <PageContainer>
                 <AlertBox>
-                    <p>Jesteś bliski usunięcia jednej z książek. Czy na pewno ?</p>
+                    <p>{t("modal.removeBook.message")}</p>
                 </AlertBox>
                 <div>
                     <Button onClick={handleRemove} className="button--problem" type="submit">
-                        Usuń
+                        {t("modal.removeBook.confirm")}
                     </Button>
                     <Button onClick={handleCancel} className="button--ok" type="reset" ref={cancelButtonRef}>
-                        Pozostaw
+                        {t("modal.removeBook.cancel")}
                     </Button>
                 </div>
             </PageContainer>

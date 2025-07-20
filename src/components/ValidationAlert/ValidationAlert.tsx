@@ -1,23 +1,12 @@
 import { useState } from "react";
 import { AlertTitle, Collapse, IconButton, Box, Typography } from "@mui/material";
 import { ExpandMore, ExpandLess, Close } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 import renderConditionally from "hocs/renderConditionally";
 
 import { FieldValidationError, SearchPageField, searchPageFieldPlaceholderMap } from "pages/SearchPage/utils/model";
-import StyledAlert, {
-  AlertContainer,
-  FieldValueTypography,
-  ErrorListItem,
-  SectionDivider,
-  FlexBox,
-  FlexGrowBox,
-  FlexGapBox,
-  MarginBottomTypography,
-  PaddedBox,
-  MarginBottomBox,
-  StyledInfoIcon
-} from "./ValidationAlert.styles";
+import StyledAlert, { AlertContainer, FieldValueTypography, ErrorListItem, SectionDivider, FlexBox, FlexGrowBox, FlexGapBox, MarginBottomTypography, PaddedBox, MarginBottomBox, StyledInfoIcon } from "./ValidationAlert.styles";
 
 interface Props {
     alertMessage: string;
@@ -28,6 +17,7 @@ interface Props {
 const ValidationAlert = (props: Props) => {
     const { alertMessage, fieldErrors, onClose } = props;
     const [expanded, setExpanded] = useState(false);
+    const { t } = useTranslation();
 
     const hasDetailedErrors = fieldErrors && fieldErrors.length > 0;
 
@@ -44,7 +34,7 @@ const ValidationAlert = (props: Props) => {
             <StyledAlert severity="error" role="alert">
                 <FlexBox>
                     <FlexGrowBox>
-                        <AlertTitle>Błędy walidacji</AlertTitle>
+                        <AlertTitle>{t("validation.title")}</AlertTitle>
                         <Typography variant="body2" component="div">
                             {alertMessage}
                         </Typography>
@@ -52,12 +42,12 @@ const ValidationAlert = (props: Props) => {
 
                     <FlexGapBox>
                         {hasDetailedErrors && (
-                            <IconButton size="small" onClick={handleToggleExpanded} aria-label={expanded ? "Ukryj szczegóły" : "Pokaż szczegóły"}>
+                            <IconButton size="small" onClick={handleToggleExpanded} aria-label={expanded ? t("validation.hideDetails") : t("validation.showDetails")}>
                                 {expanded ? <ExpandLess /> : <ExpandMore />}
                             </IconButton>
                         )}
                         {onClose && (
-                            <IconButton onClick={onClose} size="small" aria-label="Zamknij alert">
+                            <IconButton onClick={onClose} size="small" aria-label={t("validation.closeAlert")}>
                                 <Close />
                             </IconButton>
                         )}
@@ -69,25 +59,21 @@ const ValidationAlert = (props: Props) => {
                         <SectionDivider>
                             <Typography variant="subtitle2" gutterBottom>
                                 <StyledInfoIcon fontSize="small" />
-                                Szczegóły błędów:
+                                {t("validation.errorDetails")}:
                             </Typography>
 
                             <Box>
                                 {fieldErrors!.map((fieldError, index) => (
                                     <MarginBottomBox key={`${fieldError.field}-${index}`}>
                                         <MarginBottomTypography variant="body2">
-                                            <strong>Pole "{getFieldLabel(fieldError.field)}"</strong>
-                                            {fieldError.value && (
-                                                <FieldValueTypography component="span">
-                                                    "{fieldError.value.length > 30 ? `${fieldError.value.substring(0, 30)}...` : fieldError.value}"
-                                                </FieldValueTypography>
-                                            )}
+                                            <strong>
+                                                {t("validation.field")} "{getFieldLabel(fieldError.field)}"
+                                            </strong>
+                                            {fieldError.value && <FieldValueTypography component="span">"{fieldError.value.length > 30 ? `${fieldError.value.substring(0, 30)}...` : fieldError.value}"</FieldValueTypography>}
                                         </MarginBottomTypography>
                                         <PaddedBox>
                                             {fieldError.errors.map((error, errorIndex) => (
-                                                <ErrorListItem key={errorIndex}>
-                                                    {error}
-                                                </ErrorListItem>
+                                                <ErrorListItem key={errorIndex}>{error}</ErrorListItem>
                                             ))}
                                         </PaddedBox>
                                     </MarginBottomBox>
@@ -97,21 +83,13 @@ const ValidationAlert = (props: Props) => {
                             <SectionDivider>
                                 <Typography variant="subtitle2" gutterBottom>
                                     <StyledInfoIcon fontSize="small" />
-                                    Wymagania dla wszystkich pól:
+                                    {t("validation.requirements")}:
                                 </Typography>
                                 <PaddedBox>
-                                    <ErrorListItem>
-                                        Minimum 2 znaki
-                                    </ErrorListItem>
-                                    <ErrorListItem>
-                                        Co najmniej jedna litera lub cyfra
-                                    </ErrorListItem>
-                                    <ErrorListItem>
-                                        Bez spacji na początku i końcu
-                                    </ErrorListItem>
-                                    <ErrorListItem>
-                                        Bez niedozwolonych znaków specjalnych
-                                    </ErrorListItem>
+                                    <ErrorListItem>{t("validation.ruleDescriptions.minLength")}</ErrorListItem>
+                                    <ErrorListItem>{t("validation.ruleDescriptions.alphanumeric")}</ErrorListItem>
+                                    <ErrorListItem>{t("validation.ruleDescriptions.noSpaces")}</ErrorListItem>
+                                    <ErrorListItem>{t("validation.ruleDescriptions.noSpecialChars")}</ErrorListItem>
                                 </PaddedBox>
                             </SectionDivider>
                         </SectionDivider>

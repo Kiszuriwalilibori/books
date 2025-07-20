@@ -42,6 +42,7 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(FavoritesButton);
 import { connect } from "react-redux";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useNavigate } from "react-router-dom";
 
@@ -61,6 +62,7 @@ export function FavoritesButton(props: Props): JSX.Element {
     const navigate = useNavigate();
     const { fetchFromFavorites, isLoading } = props;
     const { favoriteBooks } = useFavoriteBooks();
+    const { t } = useTranslation();
 
     const processFavorites = useCallback(() => {
         fetchFromFavorites();
@@ -69,7 +71,7 @@ export function FavoritesButton(props: Props): JSX.Element {
 
     return (
         <Button disabled={!favoriteBooks.areNotEmpty() || isLoading} className="button--favorites" onClick={processFavorites}>
-            Ulubione
+            {t("actions.favorites")}
         </Button>
     );
 }

@@ -1,26 +1,61 @@
 {
-    "welcome": "Witaj w Google Books Finder",
-    "search": "Szukaj",
-    "favorites": "Ulubione",
-    "noBooks": "Nie znaleziono książek",
-    "loading": "Ładowanie...",
-    "error": "Wystąpił błąd",
+    "app": {
+        "title": "Google Books Finder",
+        "welcome": "Witaj w Google Books Finder",
+        "loading": "Ładowanie...",
+        "error": "Ojejku! Coś poszło nie tak",
+        "noInternetConnection": "Brak połączenia z internetem",
+        "noUrlProvided": "Nie dostarczono URL szukanej książki",
+        "noBooks": "Nie znaleziono książek"
+    },
+    "actions": {
+        "search": "Szukaj",
+        "favorites": "Ulubione"
+    },
     "bookDetails": {
         "author": "Autor",
+        "authors": "Autorzy",
         "publisher": "Wydawca",
-        "publishedDate": "Data publikacji",
+        "publishedDate": "Data wydania",
+        "language": "Język",
+        "pageCount": "Stron",
+        "categories": "Kategorie",
         "description": "Opis",
+        "printType": "Rodzaj druku",
+        "saleability": "Dostępna w sprzedaży",
+        "isEbook": "Jest e-bookiem",
+        "textToSpeech": "Przygotowana do czytników tekstu",
+        "listPrice": "Cena katalogowa",
+        "retailPrice": "Cena detaliczna",
+        "goToStore": "Do sklepu",
+        "readSample": "Przeczytaj fragment",
         "addToFavorites": "Dodaj do ulubionych",
         "removeFromFavorites": "Usuń z ulubionych"
     },
     "landingPage": {
-        "title": "Wyszukiwarka książek Google",
-        "subtitle": "Znajdź swoją następną ulubioną książkę"
+        "title": "Google Books",
+        "subtitle": "Finder",
+        "greeting": "Witam w mojej skromnej apce",
+        "intro": {
+            "description": "To, co za chwilę zobaczycie to skromny interfejs do wyszukiwania książek w zasobach Google Books.",
+            "disclaimer": "Jestem twórcą wyłącznie interfejsu.",
+            "responsibility": "Nie mam zatem wpływu na faktyczne wyniki wyszukiwania w bazie a tylko za przygotowanie i przesłanie zapytania.",
+            "presentation": "I, oczywiście, prezentację wyników.",
+            "contentWarning": "A piszę o tym dlatego, że zawartość Google Books ma swoje wady i zalety. Przede wszystkim polskie znaki są używane niekonsekwentnie.",
+            "searchTip": "Przeto, jeżeli kogoś interesuje Wiedźmin to musi szukać dwa razy: \"Wiedźmin\" i \"Wiedzmin\".",
+            "versionNote": "A ta wersja apki (pierwsza zresztą) nie obsługuje wyrażeń regularnych itp.",
+            "tagsWarning": "Poza tym nie zachęcam do szukania po etykietach. Ma je minimalna liczba książek i można sobie narobić niezłego bigosu.",
+            "authorTip": "Pole \"Autor\" w wyszukiwaniu traktuje wpisany ciąg jako pełen wyraz, toteż nie wystarczy wpisać \"Mickiewi\" żeby zapoznać się ze spuścizną Wieszcza.",
+            "conclusion": "I to by chyba było na tyle.",
+            "farewell": "Niech Moc będzie z Wami!",
+            "skipIntro": "Natomiast jeśli nie chcesz oglądać tego intro cum mortum, kliknij na nim gdziekolwiek."
+        }
     },
     "searchPage": {
         "title": "Wyszukaj książki",
         "inputPlaceholder": "Wpisz tytuł, autora lub temat",
-        "searchButton": "Szukaj"
+        "searchButton": "Szukaj",
+        "clearButton": "Wyczyść"
     },
     "booksPage": {
         "title": "Wyniki wyszukiwania",
@@ -38,7 +73,46 @@
     },
     "noPage": {
         "title": "Strona nie istnieje",
-        "message": "Przepraszamy, nie możemy znaleźć strony, której szukasz."
+        "message": "Strona o adresie {{url}} nie istnieje"
+    },
+    "navigation": {
+        "searchPage": "Wyszukiwanie",
+        "foundBooks": "Znalezione książki",
+        "previousBook": "<<<",
+        "nextBook": ">>>"
+    },
+    "modal": {
+        "removeBook": {
+            "title": "Usuń książkę",
+            "message": "Jesteś bliski usunięcia jednej z książek. Czy na pewno?",
+            "confirm": "Usuń",
+            "cancel": "Pozostaw"
+        }
+    },
+    "validation": {
+        "title": "Błędy walidacji",
+        "showDetails": "Pokaż szczegóły",
+        "hideDetails": "Ukryj szczegóły",
+        "closeAlert": "Zamknij alert",
+        "errorDetails": "Szczegóły błędów",
+        "field": "Pole",
+        "value": "wartość",
+        "errors": "Błędy",
+        "invalidFields": "Nieprawidłowe wartości w polach: {{fields}}",
+        "requirements": "Wymagania dla wszystkich pól",
+        "ruleDescriptions": {
+            "minLength": "Minimum 2 znaki",
+            "alphanumeric": "Co najmniej jedna litera lub cyfra",
+            "noSpaces": "Bez spacji na początku i końcu",
+            "noSpecialChars": "Bez niedozwolonych znaków specjalnych"
+        },
+        "errorMessages": {
+            "minLength": "musi zawierać co najmniej 2 znaki",
+            "alphanumeric": "musi zawierać co najmniej jeden znak alfanumeryczny (litera lub cyfra)",
+            "noSpaces": "nie może zaczynać się ani kończyć spacją",
+            "onlyWhitespace": "nie może składać się tylko z białych znaków",
+            "specialChars": "zawiera niedozwolone znaki specjalne"
+        }
     },
     "common": {
         "back": "Powrót",

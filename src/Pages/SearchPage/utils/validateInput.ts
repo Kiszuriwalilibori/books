@@ -1,5 +1,6 @@
 import pickBy from "lodash/pickBy";
 import isEmpty from "lodash/isEmpty";
+import i18n from "i18next";
 import { initialValidationState, SearchFormValues, FieldValidationError, SearchPageField, searchPageFieldPlaceholderMap } from "./model";
 import { SearchableFields } from "types";
 
@@ -22,24 +23,24 @@ const validateFieldValue = (value: string): string[] => {
     }
 
     if (value.length === 1) {
-        errors.push("musi zawierać co najmniej 2 znaki");
+        errors.push(i18n.t("validation.errorMessages.minLength"));
     }
 
     if (!/[A-Za-z0-9]/.test(value)) {
-        errors.push("musi zawierać co najmniej jeden znak alfanumeryczny (litera lub cyfra)");
+        errors.push(i18n.t("validation.errorMessages.alphanumeric"));
     }
 
     if (value.trim() !== value) {
-        errors.push("nie może zaczynać się ani kończyć spacją");
+        errors.push(i18n.t("validation.errorMessages.noSpaces"));
     }
 
     if (/^\s*$/.test(value) && value.length > 0) {
-        errors.push("nie może składać się tylko z białych znaków");
+        errors.push(i18n.t("validation.errorMessages.onlyWhitespace"));
     }
 
     // Check for potentially problematic characters
     if (/[<>{}[\]\\]/.test(value)) {
-        errors.push("zawiera niedozwolone znaki specjalne");
+        errors.push(i18n.t("validation.errorMessages.specialChars"));
     }
 
     return errors;
@@ -62,16 +63,16 @@ const getFieldLabel = (fieldName: string): string => {
 const createDetailedMessage = (fieldErrors: FieldValidationError[]): string => {
     if (fieldErrors.length === 0) return "";
 
-    let message = "Błędy walidacji:\n";
+    let message = i18n.t("validation.title") + ":\n";
 
     fieldErrors.forEach((fieldError, index) => {
         const fieldLabel = getFieldLabel(fieldError.field);
-        message += `\n${index + 1}. Pole "${fieldLabel}"`;
+        message += `\n${index + 1}. ${i18n.t("validation.field")} "${fieldLabel}"`;
 
         if (fieldError.value.length > 20) {
-            message += ` (wartość: "${fieldError.value.substring(0, 20)}...")`;
+            message += ` (${i18n.t("validation.value")}: "${fieldError.value.substring(0, 20)}...")`;
         } else {
-            message += ` (wartość: "${fieldError.value}")`;
+            message += ` (${i18n.t("validation.value")}: "${fieldError.value}")`;
         }
 
         fieldError.errors.forEach((error /*, errorIndex*/) => {
@@ -79,10 +80,10 @@ const createDetailedMessage = (fieldErrors: FieldValidationError[]): string => {
         });
     });
 
-    message += "\n\nWymagania dla wszystkich pól:";
-    message += "\n• Minimum 2 znaki";
-    message += "\n• Co najmniej jedna litera lub cyfra";
-    message += "\n• Bez spacji na początku i końcu";
+    message += "\n\n" + i18n.t("validation.requirements") + ":";
+    message += "\n• " + i18n.t("validation.ruleDescriptions.minLength");
+    message += "\n• " + i18n.t("validation.ruleDescriptions.alphanumeric");
+    message += "\n• " + i18n.t("validation.ruleDescriptions.noSpaces");
 
     return message;
 };
@@ -114,7 +115,9 @@ export const validateInput = (fields: SearchFormValues): ValidationResult => {
     }
 
     if (fieldErrors.length > 0) {
-        const simpleMessage = `Nieprawidłowe wartości w polach: ${fieldErrors.map(fe => getFieldLabel(fe.field)).join(", ")}`;
+        const simpleMessage = i18n.t("validation.invalidFields", {
+            fields: fieldErrors.map(fe => getFieldLabel(fe.field)).join(", "),
+        });
         const detailedMessage = createDetailedMessage(fieldErrors);
 
         validationResult = {
@@ -124,13 +127,13 @@ export const validateInput = (fields: SearchFormValues): ValidationResult => {
         };
 
         // Log detailed message to console for debugging
-        console.group("🔍 Szczegóły błędów walidacji:");
+        console.group("🔍 " + i18n.t("validation.errorDetails") + ":");
         console.log(detailedMessage);
         console.table(
             fieldErrors.map(fe => ({
-                Pole: getFieldLabel(fe.field),
-                Wartość: fe.value,
-                Błędy: fe.errors.join("; "),
+                [i18n.t("validation.field")]: getFieldLabel(fe.field),
+                [i18n.t("validation.value")]: fe.value,
+                [i18n.t("validation.errors")]: fe.errors.join("; "),
             }))
         );
         console.groupEnd();

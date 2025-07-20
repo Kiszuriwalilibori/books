@@ -3,6 +3,7 @@ import debounce from "lodash/debounce";
 
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import Pagination from "./Pagination";
 import FiltersVisibilityToggler from "./FiltersVisibilityToggler";
@@ -26,6 +27,7 @@ export const NavigationFactory = () => {
     const isNextButtonVisible = useSelector(nextButtonVisibleSelector);
     const { showPreviousDetails, showNextDetails } = useDispatchAction();
     const location = useLocation();
+    const { t } = useTranslation();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleShowPreviousBook: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(
@@ -43,7 +45,7 @@ export const NavigationFactory = () => {
         case Paths.books:
             return (
                 <NavigationContainer aria-label="navigation from books page">
-                    <LinkButton label="Wyszukiwanie" link={Paths.search} />
+                    <LinkButton label={t("navigation.searchPage")} link={Paths.search} />
                     <Pagination />
                     <FiltersVisibilityToggler />
                 </NavigationContainer>
@@ -52,10 +54,10 @@ export const NavigationFactory = () => {
         case Paths.details:
             return (
                 <NavigationContainer aria-label="navigation for single book page">
-                    <Button disabled={!isPreviousButtonVisible} onClick={handleShowPreviousBook} className="button--problem" children={"<<<"} />
-                    <LinkButton link={Paths.books} label="Znalezione książki" />
-                    <LinkButton link={Paths.search} label="Wyszukiwanie" />
-                    <Button disabled={!isNextButtonVisible} onClick={handleShowNextBook} className="button--problem" children={">>>"} />
+                    <Button disabled={!isPreviousButtonVisible} onClick={handleShowPreviousBook} className="button--problem" children={t("navigation.previousBook")} />
+                    <LinkButton link={Paths.books} label={t("navigation.foundBooks")} />
+                    <LinkButton link={Paths.search} label={t("navigation.searchPage")} />
+                    <Button disabled={!isNextButtonVisible} onClick={handleShowNextBook} className="button--problem" children={t("navigation.nextBook")} />
                 </NavigationContainer>
             );
 

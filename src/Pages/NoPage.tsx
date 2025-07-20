@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import { ErrorMessage } from "components";
 import { withLinkToSearchPageHOC } from "hocs";
@@ -7,16 +8,19 @@ import { LogoFactory } from "components";
 
 export const NotFoundPage = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
+
     useEffect(() => {
         setTimeout(() => {
             navigate(-1);
         }, 3000);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     return (
         <>
             <LogoFactory />
-            <ErrorMessage errorMessage={`Strona o adresie ${decodeURIComponent(window.location.href)} nie istnieje`} />
+            <ErrorMessage errorMessage={t("noPage.message", { url: decodeURIComponent(window.location.href) })} />
         </>
     );
 };

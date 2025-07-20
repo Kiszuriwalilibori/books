@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import Paths from "routing";
 
@@ -7,6 +8,7 @@ import { useDebouncedCallback } from "hooks";
 
 export const LandingPage = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleClick = useDebouncedCallback<HTMLDivElement>(navigate, Paths.search);
 
@@ -15,36 +17,34 @@ export const LandingPage = () => {
             <LogoFactory />
             <div className="starwars-frame" onClick={handleClick}>
                 <div className="starwars-title">
-                    Google Books<sub>Finder</sub>
+                    {t("landingPage.title")}
+                    <sub>{t("landingPage.subtitle")}</sub>
                 </div>
                 <div id="titles">
                     <div id="titlecontent">
                         <header>
-                            <p className="center">
-                                Witam
-                                <br />w mojej skromnej apce
-                            </p>
-                            <p>To, co za chwilę zobaczycie to skromny interfejs do wyszukiwania książek w zasobach Google Books.</p>
+                            <p className="center">{t("landingPage.greeting")}</p>
+                            <p>{t("landingPage.intro.description")}</p>
 
-                            <p>Jestem twórcą wyłącznie interfejsu.</p>
+                            <p>{t("landingPage.intro.disclaimer")}</p>
 
-                            <p>Nie mam zatem wpływu na faktyczne wyniki wyszukiwania w bazie a tylko za przygotowanie i przesłanie zapytania.</p>
+                            <p>{t("landingPage.intro.responsibility")}</p>
 
-                            <p>I, oczywiście, prezentację wyników.</p>
+                            <p>{t("landingPage.intro.presentation")}</p>
 
-                            <p>A piszę o tym dlatego, że zawartość Google Books ma swoje wady i zalety. Przede wszystkim polskie znaki są używane niekonsekwentnie.</p>
+                            <p>{t("landingPage.intro.contentWarning")}</p>
 
-                            <p>Przeto, jeżeli kogoś interesuje Wiedźmin to musi szukać dwa razy: "Wiedźmin" i "Wiedzmin".</p>
+                            <p>{t("landingPage.intro.searchTip")}</p>
 
-                            <p>A ta wersja apki (pierwsza zresztą) nie obsługuje wyrażeń regularnych itp.</p>
+                            <p>{t("landingPage.intro.versionNote")}</p>
 
-                            <p>Poza tym nie zachęcam do szukania po etykietach. Ma je minimalna liczba książek i można sobie narobić niezłego bigosu.</p>
-                            <p>Pole "Autor" w wyszukiwaniu traktuje wpisany ciąg jako pełen wyraz, toteż nie wystarczy wpisać "Mickiewi" żeby zapoznać się ze spuścizną Wieszcza.</p>
-                            <p className="center">I to by chyba było na tyle.</p>
+                            <p>{t("landingPage.intro.tagsWarning")}</p>
+                            <p>{t("landingPage.intro.authorTip")}</p>
+                            <p className="center">{t("landingPage.intro.conclusion")}</p>
 
-                            <p className="center">Niech Moc będzie z Wami!</p>
+                            <p className="center">{t("landingPage.intro.farewell")}</p>
 
-                            <p>Natomiast jeśli nie chcesz oglądać tego intro cum mortum, kliknij na nim gdziekolwiek.</p>
+                            <p>{t("landingPage.intro.skipIntro")}</p>
                         </header>
                     </div>
                 </div>

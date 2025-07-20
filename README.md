@@ -267,6 +267,37 @@ fix(ValidationAlert): improve styling and alignment consistency
 
 -001 fixed
 
+### 1.6.0
+
+feat: implement comprehensive internationalization (i18n) system
+
+-   Add react-i18next configuration with Polish and English translations
+-   Create organized translation structure with semantic namespacing:
+
+    -   app: application-level messages
+    -   actions: user interface actions
+    -   bookDetails: book information labels
+    -   searchPage/booksPage/detailsPage: page-specific content
+    -   validation: form validation messages and rules
+    -   favorites: favorites management
+    -   common: shared UI elements
+
+-   Internationalize all user-facing text across components:
+
+    -   Search functionality and form validation
+    -   Book details and metadata display
+    -   Navigation and action buttons
+    -   Error messages and loading states
+    -   Favorites management dialogs
+
+-   Improve validation system with translated error messages:
+
+    -   Separate ruleDescriptions from errorMessages for clarity
+    -   Support for parameterized translations
+    -   Consistent error reporting in console and UI
+
+-   Maintain backward compatibility while establishing scalable i18n architecture
+
 ### Todos
 
 --001 convertToPolish pewnie trza by przerobić na mapę

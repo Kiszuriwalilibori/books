@@ -3,6 +3,7 @@ import Fade from "@mui/material/Fade";
 
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 import { Details } from "./components";
 
@@ -17,6 +18,7 @@ import { currentURLSelector } from "store/selectors";
 const DetailsPage = () => {
     const URL = useSelector(currentURLSelector);
     const storedURL = usePersistDetailsURL(URL);
+    const { t } = useTranslation();
     const { isLoading, error, data } = useQuery([storedURL], () => axios(storedURL), {
         staleTime: 60000,
         cacheTime: 60000,
@@ -25,11 +27,11 @@ const DetailsPage = () => {
     });
 
     if (isOffline()) {
-        return <ErrorMessage errorMessage={"No Internet connection available"} />;
+        return <ErrorMessage errorMessage={t("noInternetConnection")} />;
     }
 
     if (!storedURL && !URL) {
-        return <ErrorMessage errorMessage={"Nie dostarczono URL szukanej książki"} />;
+        return <ErrorMessage errorMessage={t("noUrlProvided")} />;
     }
     if (isLoading) return <LoadingIndicator areDetailsLoading={true} />;
 

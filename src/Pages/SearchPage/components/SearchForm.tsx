@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useFormik } from "formik";
 import uuid from "react-uuid";
+import { useTranslation } from "react-i18next";
 
 import { Button, ValidationAlert } from "components";
 import { BookForm, SearchButtons, SearchInputs } from "pages/styled";
@@ -18,6 +19,7 @@ interface SearchFormProps {
 export const SearchForm: React.FC<SearchFormProps> = ({ isLoading, isOnline, onSubmit, onValidationChange }) => {
     const formID = uuid();
     const [validated, setValidated] = React.useState(initialValidationState);
+    const { t } = useTranslation();
 
     const handleCloseValidationAlert = () => {
         setValidated(initialValidationState);
@@ -58,10 +60,10 @@ export const SearchForm: React.FC<SearchFormProps> = ({ isLoading, isOnline, onS
                 </SearchInputs>
                 <SearchButtons>
                     <Button form={formID} disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
-                        Szukaj
+                        {t("searchPage.searchButton")}
                     </Button>
                     <Button disabled={isLoading || isFormEmpty()} onClick={clearFormAndValidation} className="button--problem" type="reset">
-                        Wyczyść
+                        {t("searchPage.clearButton")}
                     </Button>
                     <FavoriteButton />
                 </SearchButtons>
