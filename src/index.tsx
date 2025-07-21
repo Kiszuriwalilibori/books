@@ -1,9 +1,9 @@
 import { createRoot } from "react-dom/client";
 import { AppProvider, App } from "components";
-import { breakWhenInternetExplorer } from "utils";
+import { breakWhenIEDetected } from "utils";
 import "./i18n/config";
 
-breakWhenInternetExplorer();
+breakWhenIEDetected();
 
 const container = document.getElementById("root");
 const root = createRoot(container as Element);

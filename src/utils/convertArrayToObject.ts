@@ -1,7 +1,7 @@
 import { columns } from "models";
 import { Book } from "types";
 
-export const aryToObj = (book: string[] | Book) => {
+export const convertArrayToObject = (book: string[] | Book) => {
     if (Array.isArray(book)) {
         const obj = {} as Book;
         const fields = [...columns.sourceFields];
@@ -14,4 +14,4 @@ export const aryToObj = (book: string[] | Book) => {
         return book;
     }
 };
-export default aryToObj;
+export default convertArrayToObject;
