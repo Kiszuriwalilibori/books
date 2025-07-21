@@ -342,8 +342,8 @@ tak zostanie, tak to przyszło z materialUI
 
 --36 tableHelpers pewnie by lepiej było bardziej zintegrować z BooksManagerem
 
-----037 Uwaga: wiadomy kotek łapie również Powrót Taty " zroku 1928" gdzie to jest w podtytułacha, sprawdzić
-czy to tak ma właśnie być. Jeżeli tak to robi Google Books to nie poradzę
+--037 Uwaga: wiadomy kotek łapie również Powrót Taty " zroku 1928" gdzie to jest w podtytułacha, sprawdzić
+czy to tak ma właśnie być. Jeżeli tak to robi Google Books to nie poradzę. Później -nie stwierdzono
 
 --38 Do przepisania na usedispatch: SnackBar/ToggleSnackbar
 

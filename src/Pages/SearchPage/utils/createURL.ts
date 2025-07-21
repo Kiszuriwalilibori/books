@@ -13,8 +13,14 @@ export const createURL = (fields: SearchFormValues): string => {
     const PATH = "https://www.googleapis.com/books/v1/volumes?q=";
     const MAX_RESULTS = "&maxResults=40";
     const START_INDEX = "&startIndex=";
-    const searchKeys = { inauthor: fields.authors, intitle: fields.title, subject: fields.subject, keyword: fields.keyword };
+    // const searchKeys = { inauthor: fields.authors, intitle: fields.title, subject: fields.subject, keyword: fields.keyword };
 
+    const searchKeys = {
+        inauthor: fields.authors,
+        intitle: fields.title,
+        subject: fields.subject ? `"${fields.subject}"` : fields.subject,
+        keyword: fields.keyword,
+    };
     const stringifyKeys = fp.flow(
         fp.toPairs,
         fp.filter(([, value]) => value !== ""),
