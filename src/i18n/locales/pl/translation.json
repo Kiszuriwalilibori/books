@@ -6,7 +6,11 @@
         "error": "Ojejku! Coś poszło nie tak",
         "noInternetConnection": "Brak połączenia z internetem",
         "noUrlProvided": "Nie dostarczono URL szukanej książki",
-        "noBooks": "Nie znaleziono książek"
+        "noBooks": "Nie znaleziono książek",
+        "noSearchCriteria": "brak kryteriów wyszukiwania",
+        "invalidSearchCriteria": "nieprawidłowe kryteria wyszukiwania",
+        "unknownError": "Wystąpił nieznany błąd",
+        "networkError": "Wystąpił błąd dostępu do zasobu. Sprawdź połączenie z internetem lub skontaktuj się z administratorem."
     },
     "actions": {
         "search": "Szukaj",
@@ -30,7 +34,9 @@
         "goToStore": "Do sklepu",
         "readSample": "Przeczytaj fragment",
         "addToFavorites": "Dodaj do ulubionych",
-        "removeFromFavorites": "Usuń z ulubionych"
+        "removeFromFavorites": "Usuń z ulubionych",
+        "labels": "Etykiety",
+        "keyword": "Słowo kluczowe"
     },
     "landingPage": {
         "title": "Google Books",
@@ -55,7 +61,9 @@
         "title": "Wyszukaj książki",
         "inputPlaceholder": "Wpisz tytuł, autora lub temat",
         "searchButton": "Szukaj",
-        "clearButton": "Wyczyść"
+        "clearButton": "Wyczyść",
+        "noBooksFound": "Nie znaleziono książek dla: {{criteria}}",
+        "dataFetchedSuccessfully": "Poprawnie pobrano dane, łącznie pobrano {{count}} książek"
     },
     "booksPage": {
         "title": "Wyniki wyszukiwania",

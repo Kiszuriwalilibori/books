@@ -6,7 +6,11 @@
         "error": "Oops! Something went wrong",
         "noInternetConnection": "No Internet connection available",
         "noUrlProvided": "No URL provided for the searched book",
-        "noBooks": "No books found"
+        "noBooks": "No books found",
+        "noSearchCriteria": "no search criteria",
+        "invalidSearchCriteria": "invalid search criteria",
+        "unknownError": "An unknown error occurred",
+        "networkError": "A resource access error occurred. Check your internet connection or contact the administrator."
     },
     "actions": {
         "search": "Search",
@@ -30,7 +34,9 @@
         "goToStore": "Go to Store",
         "readSample": "Read Sample",
         "addToFavorites": "Add to Favorites",
-        "removeFromFavorites": "Remove from Favorites"
+        "removeFromFavorites": "Remove from Favorites",
+        "labels": "labels",
+        "keyword": "Keyword"
     },
     "landingPage": {
         "title": "Google Books",
@@ -55,7 +61,9 @@
         "title": "Search Books",
         "inputPlaceholder": "Enter title, author, or topic",
         "searchButton": "Search",
-        "clearButton": "Clear"
+        "clearButton": "Clear",
+        "noBooksFound": "No books found for: {{criteria}}",
+        "dataFetchedSuccessfully": "Data fetched successfully, total of {{count}} books retrieved"
     },
     "booksPage": {
         "title": "Search Results",

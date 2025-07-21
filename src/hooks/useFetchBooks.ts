@@ -1,9 +1,8 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import useMessage from "./useMessage";
-
 import { useDispatchAction } from "hooks";
 import { BookRecord, FlatBookRecord } from "types";
 import { formatFetchedDataAsBooks, getValue, isErrorCode } from "utils";
@@ -15,53 +14,33 @@ interface FetchSummary {
     errorMessage: string;
 }
 
-interface APIErrorResponse {
-    message?: string;
-    code?: number;
-    error?: {
-        message?: string;
-        code?: number;
-    };
-    [key: string]: unknown;
-}
-
 const STEP = 40;
 const INITIAL_FETCH_SUMMARY: FetchSummary = { isError: false, errorMessage: "", data: [] };
 const INITIAL_FOUND_BOOKS: BookRecord[] = [];
 
-/**
- * Custom hook for fetching books from an API and handling related UI state.
- *
- * - Initiates API requests to fetch books in batches.
- * - Handles loading state, error reporting, and storing books in Redux.
- * - Shows warning messages on empty results instead of navigating to error page.
- *
- * @returns {Object} An object exposing fetchBooksFromAPI(path, controller) to trigger the fetch process.
- */
 export const useFetchBooks = () => {
     const navigate = useNavigate();
     const showMessage = useMessage();
+    const { t } = useTranslation();
     const { setIsLoading, showError, storeBooks, setIsFromNetwork } = useDispatchAction();
 
     const extractSearchCriteriaFromURL = (url: string): string => {
         try {
-            // Extract the query part from the URL
             const urlObj = new URL(url);
             const queryParam = urlObj.searchParams.get("q");
 
-            if (!queryParam) return "brak kryteriów wyszukiwania";
+            if (!queryParam) return t("noSearchCriteria");
 
-            // Parse the search criteria from the query parameter
             const criteria = queryParam
                 .split("+")
                 .map(criterion => {
                     if (criterion.includes(":")) {
                         const [key, value] = criterion.split(":", 2);
                         const fieldMap: { [key: string]: string } = {
-                            inauthor: "Autor",
-                            intitle: "Tytuł",
-                            subject: "Etykiety",
-                            keyword: "Słowo kluczowe",
+                            inauthor: t("author"),
+                            intitle: t("title"),
+                            subject: t("labels"),
+                            keyword: t("keyword"),
                         };
                         return `${fieldMap[key] || key}: "${decodeURIComponent(value)}"`;
                     }
@@ -69,9 +48,9 @@ export const useFetchBooks = () => {
                 })
                 .join(", ");
 
-            return criteria || "brak kryteriów wyszukiwania";
+            return criteria || t("noSearchCriteria");
         } catch (error) {
-            return "nieprawidłowe kryteria wyszukiwania";
+            return t("invalidSearchCriteria");
         }
     };
 
@@ -81,18 +60,31 @@ export const useFetchBooks = () => {
         let fetchSummary = INITIAL_FETCH_SUMMARY;
         setIsLoading(true);
 
-        const handleError = (response: APIErrorResponse): void => {
-            const message = getValue(response, "message");
+        const handleError = (error: unknown): void => {
+            console.error("Error details:", error);
+
+            let errorMessage = t("unknownError");
+            if (error instanceof Error) {
+                errorMessage = error.message;
+                
+                if (errorMessage.includes("NetworkError") || errorMessage.includes("CORS")) {
+                    errorMessage = t("networkError");
+                }
+            } else if (typeof error === 'object' && error !== null) {
+                errorMessage = JSON.stringify(error);
+            }
+
             fetchSummary.isError = true;
-            fetchSummary.errorMessage = message || "unknown error";
+            fetchSummary.errorMessage = `${t("error")}: ${errorMessage}`;
             showError(fetchSummary);
             setIsLoading(false);
             navigate(Paths.error);
         };
+
         const handleNotFound = (): void => {
             setIsLoading(false);
             const criteriaText = extractSearchCriteriaFromURL(path);
-            showMessage.warning(`Nie znaleziono książek dla: ${criteriaText}`);
+            showMessage.warning(t("noBooksFound", { criteria: criteriaText }));
         };
 
         const handleSuccess = (foundBooks: BookRecord[]): void => {
@@ -101,7 +93,7 @@ export const useFetchBooks = () => {
             storeBooks(fetchSummary.data);
             setIsFromNetwork(true);
             setIsLoading(false);
-            showMessage.success(`Poprawnie pobrano dane, łącznie pobrano ${fetchSummary.data.length.toString()} książek`);
+            showMessage.success(t("dataFetchedSuccessfully", { count: fetchSummary.data.length }));
             navigate(Paths.books);
         };
 
@@ -115,10 +107,11 @@ export const useFetchBooks = () => {
 
         async function recursiveFetch(): Promise<void> {
             const fullPath = path + startIndex.toString();
-            const fetchResult = await fetch(fullPath, { signal: controller.signal }).catch(error => {
-                handleError(error);
-            });
-            if (fetchResult) {
+            try {
+                const fetchResult = await fetch(fullPath, { signal: controller.signal });
+                if (!fetchResult.ok) {
+                    throw new Error(`HTTP error! status: ${fetchResult.status}`);
+                }
                 const response = await fetchResult.json();
                 const code = getValue(response, "code");
                 if (isErrorCode(code)) {
@@ -133,20 +126,21 @@ export const useFetchBooks = () => {
                 } else {
                     if (response.error) {
                         handleError(response);
-                    }
-
-                    if (!response.eror && foundBooks.length === 0) {
+                    } else if (foundBooks.length === 0) {
                         handleNotFound();
                     } else {
                         handleSuccess(foundBooks);
                     }
                 }
+            } catch (error) {
+                handleError(error);
             }
         }
+
         recursiveFetch();
     };
 
-    return React.useMemo(() => fetchBooksFromAPI, []); // musi być zmemoizowane, jeżeli ma się pojawić jako dependencja
+    return React.useMemo(() => fetchBooksFromAPI, []);
 };
 
 export default useFetchBooks;

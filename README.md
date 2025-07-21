@@ -298,6 +298,17 @@ feat: implement comprehensive internationalization (i18n) system
 
 -   Maintain backward compatibility while establishing scalable i18n architecture
 
+### 1.6.1
+
+Enhance i18n support and error handling in book fetching functionality
+
+-   Add new translations for search criteria and error messages
+-   Improve error catching and display of network-related errors
+-   Include entries for book labels and keywords
+-   Implement messages for successful data fetching and no results scenarios
+-   Update both Polish (pl) and English (en) translation files
+-   Refactor useFetchBooks hook to use i18n translations
+
 ### Todos
 
 --001 convertToPolish pewnie trza by przerobić na mapę
