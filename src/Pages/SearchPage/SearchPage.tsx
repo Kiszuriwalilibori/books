@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
 import { SearchForm } from "./components/SearchForm";
@@ -11,26 +11,19 @@ import { isOnlineSelector, isLoadingSelector } from "store/selectors";
 import { useFetchBooks } from "hooks";
 
 export const SearchPage = () => {
-    const [URL, setURL] = useState("");
-
     const isLoading = useSelector(isLoadingSelector);
     const isOnline = useSelector(isOnlineSelector);
     const fetchBooksFromAPI = useFetchBooks();
 
-    const handleFormSubmit = useCallback((formValues: SearchFormValues) => {
-        setURL(createURL(formValues));
-    }, []);
+    const handleFormSubmit = useCallback(
+        (formValues: SearchFormValues) => {
+            const url = createURL(formValues);
+            fetchBooksFromAPI(url);
+        },
+        [fetchBooksFromAPI]
+    );
 
     const handleValidationChange = useCallback((validation: ValidationState) => {}, []);
-
-    useEffect(() => {
-        const controller = new AbortController();
-        if (URL) {
-            console.log(URL); // for testing purposes, remove before production
-            fetchBooksFromAPI(URL, controller);
-        }
-        return () => controller.abort();
-    }, [URL, fetchBooksFromAPI]);
 
     return (
         <PageContainer maxWidth={false} disableGutters sx={{ alignItems: "unset" }}>
