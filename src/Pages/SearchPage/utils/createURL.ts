@@ -13,6 +13,7 @@ export const createURL = (fields: SearchFormValues): string => {
     const PATH = "https://www.googleapis.com/books/v1/volumes?q=";
     const MAX_RESULTS = "&maxResults=40";
     const START_INDEX = "&startIndex=";
+    const API_KEY = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
     // const searchKeys = { inauthor: fields.authors, intitle: fields.title, subject: fields.subject, keyword: fields.keyword };
 
     const searchKeys = {
@@ -28,5 +29,6 @@ export const createURL = (fields: SearchFormValues): string => {
         fp.join("+")
     );
 
-    return PATH + stringifyKeys(searchKeys) + MAX_RESULTS + BOOK_FIELDS + START_INDEX;
+    // return PATH + stringifyKeys(searchKeys) + MAX_RESULTS + BOOK_FIELDS + START_INDEX;
+    return PATH + stringifyKeys(searchKeys) + MAX_RESULTS + BOOK_FIELDS + `&key=${API_KEY}` + START_INDEX;
 };
