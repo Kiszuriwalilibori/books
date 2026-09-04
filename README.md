@@ -378,3 +378,5 @@ jeżeli tak będzie to trza by doać opcję keyword do wyszukiwania
 This software is distributed under MIT license
 
 Copyright © 2023 [Piotr Maksymiuk](https://github.com/Kiszuriwalilibori). All rights reserved.
+
+// todo raz na jakiś czas wyszukiwanie książek rzuca 503 po pobraniu dwóch list, w trakcie pobierania trzeciej

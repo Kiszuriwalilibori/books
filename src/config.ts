@@ -6,7 +6,7 @@ export const DETAILS_FIELDS =
     "?fields = volumeInfo/title, volumeInfo/imageLinks/smallThumbnail/linkToCover,volumeInfo/authors, volumeInfo/publisher, volumeInfo/publishedDate, volumeInfo/language,volumeInfo/pageCount, volumeInfo/categories,volumeInfo/description, volumeInfo/industryIdentifiers, volumeInfo/printType, saleInfo/saleability, saleInfo/isEbook, saleInfo/listPrice, saleInfo/retailPrice, saleInfo/buyLink, accessInfo/webReaderLink, accessInfo/textToSpeechPermission";
 export const BOOK_FIELDS = "&fields= items(id, volumeInfo/title, volumeInfo/authors, volumeInfo/publishedDate, volumeInfo/language, volumeInfo/categories,volumeInfo/subtitle )";
 export const FAVORITE_FIELDS = "?fields= id,kind, volumeInfo/title, volumeInfo/authors, volumeInfo/publishedDate, volumeInfo/language, volumeInfo/categories,volumeInfo/subtitle";
-
+export const GOOGLE_API_KEY_PARAM = `&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`;
 export const FAVORITE_BOOK_IDENTIFIER = "books#volume";
 
 export const MAX_RESULTS = 40;
