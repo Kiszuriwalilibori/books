@@ -59,13 +59,13 @@ export const SearchForm: React.FC<SearchFormProps> = ({ isLoading, isOnline, onS
                     ))}
                 </SearchInputs>
                 <SearchButtons>
-                    <Button form={formID} disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
-                        {t("searchPage.searchButton")}
-                    </Button>
                     <Button disabled={isLoading || isFormEmpty()} onClick={clearFormAndValidation} className="button--problem" type="reset">
                         {t("searchPage.clearButton")}
                     </Button>
                     <FavoriteButton />
+                    <Button form={formID} disabled={isLoading || isFormEmpty() || !isOnline} onClick={handleSubmit as unknown as React.MouseEventHandler<HTMLButtonElement>} className="button--ok" type="submit">
+                        {t("searchPage.searchButton")}
+                    </Button>
                 </SearchButtons>
             </BookForm>
         </>
